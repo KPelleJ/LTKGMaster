@@ -1,4 +1,4 @@
-﻿namespace LTKGMaster.Folders.Models
+﻿namespace LTKGMaster.Models.Products
 {
     public class Product
     {
