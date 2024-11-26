@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Folders\Models\" />
     <Folder Include="Folders\Interfaces\" />
     <Folder Include="Folders\Handlers\" />
     <Folder Include="Folders\Repositories\" />
