@@ -8,16 +8,11 @@
         public string GPU { get; set; }
         public string RAM { get; set; }
         public string CPU { get; set; }
-        public Laptop(int catId, string model, int year, string brand, double price, string description,
-            int screenSize, string storage, string operateSystem, string gpu, string ram, string cpu
-            ) : base(catId, model, year, brand, price, description)
+        public Laptop(string model, int year, string brand, double price, string description) : 
+            base(model, year, brand, price, description)
         {
-            Storage = storage;
-            ScreenSize = screenSize;
-            OperateSystem = operateSystem;
-            GPU = gpu;
-            RAM = ram;
-            CPU = cpu;
+            Type = ProductType.Laptop;
         }
+
     }
 }
