@@ -3,21 +3,15 @@ using LTKGMaster.Models.Repositories;
 
 namespace LTKGMaster.Models.SalesAd
 {
-    public class SalesAdHandler : ILaptopRepository
+    public class SalesAdHandler
     {
-        public Laptop Add(Laptop product)
-        {
-            throw new NotImplementedException();
-        }
+        private ILaptopRepository _laptopRepository;
+        private ISalesAdRepository _salesAdRepository;
 
-        public void Delete(Laptop product)
+        public SalesAdHandler(ILaptopRepository laptopRepository, ISalesAdRepository salesAdRepository)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Laptop product)
-        {
-            throw new NotImplementedException();
+            _laptopRepository = laptopRepository;
+            _salesAdRepository = salesAdRepository;
         }
     }
 }
