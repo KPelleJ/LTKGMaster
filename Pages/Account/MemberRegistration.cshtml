@@ -1,0 +1,33 @@
+﻿@page
+@model LTKGMaster.Pages.Account.MemberRegistrationModel
+@{
+}
+<div class="container border" style="padding:20px">
+    <form method="post">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <h3>Account information</h3>
+        <div class="mb-3">
+            <label asp-for="Account.Credential.Email"></label>
+            <input type="email" asp-for="Account.Credential.Email" class="form-control" />
+            <span class="text-danger" asp-validation-for="Account.Credential.Email"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Account.Credential.Password"></label>
+            <input type="password" asp-for="Account.Credential.Password" class="form-control" />
+            <span class="text-danger" asp-validation-for="Account.Credential.Password"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Account.User.UserName"></label>
+            <input type="password" asp-for="Account.User.UserName" class="form-control" />
+            <span class="text-danger" asp-validation-for="Account.User.UserName"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Account.User.City"></label>
+            <input type="password" asp-for="Account.User.City" class="form-control" />
+            <span class="text-danger" asp-validation-for="Account.User.City"></span>
+        </div>
+        <div class="mb-2">
+            <input type="submit" class="btn btn-primary" value="Opret" />
+        </div>
+    </form>
+</div>
