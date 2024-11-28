@@ -12,6 +12,8 @@ namespace LTKGMaster
             // Add services to the container.
             builder.Services.AddRazorPages();
             builder.Services.AddSingleton<IAccountRepository,AccountRepository>();
+            builder.Services.AddSingleton<ILaptopRepository, LaptopRepository>();
+            builder.Services.AddSingleton<SalesAdRepository>();
 
 
             var app = builder.Build();
