@@ -28,5 +28,20 @@ namespace LTKGMaster.Models.Repositories
                 command.ExecuteNonQuery();
             }
         }
+        public void Update(IUser user)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                string sql = "INSERT INTO Users (UserName, City) " +
+                             "VALUES (@UserName, @City)";
+
+                SqlCommand command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@UserName", user.UserName);
+                command.Parameters.AddWithValue("@City", user.City);
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }

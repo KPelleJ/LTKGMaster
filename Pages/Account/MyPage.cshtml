@@ -1,0 +1,16 @@
+﻿@page
+@model LTKGMaster.Pages.Account.MyPageModel
+@{
+}
+
+<form method="post">
+    <div>
+        <label for="username">Brugernavn:</label>
+        <input type="text" id="username" name="username" value="@User.Username" />
+    </div>
+    <div>
+        <label for="city">By:</label>
+        <input type="text" id="city" name="city" value="@Model.City" />
+    </div>
+    <button type="submit">Opdater</button>
+</form>
