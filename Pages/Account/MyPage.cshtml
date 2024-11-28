@@ -3,14 +3,14 @@
 @{
 }
 
-<form method="post">
-    <div>
-        <label for="username">Brugernavn:</label>
-        <input type="text" id="username" name="username" value="@User.Username" />
-    </div>
-    <div>
-        <label for="city">By:</label>
-        <input type="text" id="city" name="city" value="@Model.City" />
-    </div>
-    <button type="submit">Opdater</button>
-</form>
+<ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-page="/Account/MySalesAds">Mine annoncer</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-page="/Account/MyFavorites">Mine favoritter</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-page="/Account/UpdateAccount">Opdater oplysninger</a>
+    </li>
+    </ul>
