@@ -8,6 +8,7 @@
         public string Brand { get; set; }
         public double Price { get; set; }
         public string Description { get; set; }
+        public enum ProductCategory { }
         public Product(int catId, string model, int year, string brand, double price, string description)
         {
             CatId = catId;

@@ -1,6 +1,45 @@
-﻿namespace LTKGMaster.Models.Repositories
+﻿using LTKGMaster.Models.Products;
+using Microsoft.Data.SqlClient;
+
+namespace LTKGMaster.Models.Repositories
 {
     public class LaptopRepository
     {
-    }
+        private readonly string _connectionString;
+        public LaptopRepository(IConfiguration configuration) 
+        {
+            _connectionString = configuration.GetConnectionString("myDb1");
+        }
+        public Laptop Add(Laptop product)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                string sql = "INSERT INTO Products (CatId, Description, Year, Brand, Model, Price, Storage, OperatingSystem, PSU, RAM, CPU, GPU) " +
+                             "VALUES (@CatId, @Description, @Year, @Brand, @Model, @Price, @Storage, @OperatingSystem, @PSU, @RAM, @CPU, @GPU);" +
+                             "SELECT Id FROM Products WHERE Id = SCOPE_IDENTITY();";
+
+                SqlCommand command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@CatId", (int)product.Category);
+                command.Parameters.AddWithValue("@Description", product.Description);
+                command.Parameters.AddWithValue("@Year", product.Year);
+                command.Parameters.AddWithValue("@Brand", product.Brand);
+                command.Parameters.AddWithValue("@Model", product.Model);
+                command.Parameters.AddWithValue("@Price", product.Price);
+                command.Parameters.AddWithValue("@Storage", product.Storage);
+                command.Parameters.AddWithValue("@OperatingSystem", product.OperatingSystem);
+                command.Parameters.AddWithValue("@PSU", product.PSU);
+                command.Parameters.AddWithValue("@RAM", product.RAM);
+                command.Parameters.AddWithValue("@CPU", product.CPU);
+                command.Parameters.AddWithValue("@GPU", product.GPU);
+
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    product.Id = reader.GetInt32(0);
+                }
+            }
+            return product;
+        }
 }
