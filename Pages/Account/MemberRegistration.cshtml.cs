@@ -10,7 +10,7 @@ namespace LTKGMaster.Pages.Account
         private readonly IAccountRepository _accountRepository;
 
         [BindProperty]
-        public IAccount Account { get; set; }
+        public RegularUser User { get; set; }
 
         public MemberRegistrationModel(IAccountRepository accountRepository)
         {
@@ -29,7 +29,7 @@ namespace LTKGMaster.Pages.Account
                 return Page();
             }
 
-            _accountRepository.Add(Account);
+            _accountRepository.Add(User);
             return RedirectToPage("/Index");
         }
     }

@@ -8,6 +8,6 @@
         public DateTime SignUpDate { get; set; }
         public int Rating { get; set; }
         public string City { get; set; }
-        public ICredential Credential { get; set; }
+        public Credential Credential { get; set; }
     }
 }

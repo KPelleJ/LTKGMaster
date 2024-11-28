@@ -7,24 +7,30 @@
         <div class="text-danger" asp-validation-summary="ModelOnly"></div>
         <h3>Account information</h3>
         <div class="mb-3">
-            <label asp-for="Account.Credential.Email"></label>
-            <input type="email" asp-for="Account.Credential.Email" class="form-control" />
-            <span class="text-danger" asp-validation-for="Account.Credential.Email"></span>
+            <label asp-for="User.Credential.Email"></label>
+            <input type="email" id="email1" asp-for="User.Credential.Email" class="form-control" />
+            <input type="hidden" id="email2" asp-for="User.CredMail" />
+            <script>
+                document.getElementById("email1").addEventListener("input", function (event) {
+                    document.getElementById("email2").value = event.target.value;
+                });
+            </script>
+            <span class="text-danger" asp-validation-for="User.Credential.Email"></span>
         </div>
         <div class="mb-3">
-            <label asp-for="Account.Credential.Password"></label>
-            <input type="password" asp-for="Account.Credential.Password" class="form-control" />
-            <span class="text-danger" asp-validation-for="Account.Credential.Password"></span>
+            <label asp-for="User.Credential.Password"></label>
+            <input type="password" asp-for="User.Credential.Password" class="form-control" />
+            <span class="text-danger" asp-validation-for="User.Credential.Password"></span>
+        </divUser
+        <div class="mb-3">
+            <label asp-for="User.UserName"></label>
+            <input type="text" asp-for="User.UserName" class="form-control" />
+            <span class="text-danger" asp-validation-for="User.UserName"></span>
         </div>
         <div class="mb-3">
-            <label asp-for="Account.User.UserName"></label>
-            <input type="password" asp-for="Account.User.UserName" class="form-control" />
-            <span class="text-danger" asp-validation-for="Account.User.UserName"></span>
-        </div>
-        <div class="mb-3">
-            <label asp-for="Account.User.City"></label>
-            <input type="password" asp-for="Account.User.City" class="form-control" />
-            <span class="text-danger" asp-validation-for="Account.User.City"></span>
+            <label asp-for="User.City"></label>
+            <input type="text" asp-for="User.City" class="form-control" />
+            <span class="text-danger" asp-validation-for="User.City"></span>
         </div>
         <div class="mb-2">
             <input type="submit" class="btn btn-primary" value="Opret" />

@@ -12,7 +12,7 @@ namespace LTKGMaster.Models.Repositories
             _connectionString = configuration.GetConnectionString("myDb1");
         }
 
-        public void Add(IAccount account)
+        public void Add(IUser account)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -20,15 +20,15 @@ namespace LTKGMaster.Models.Repositories
 
                 string sql = "INSERT INTO Credentials (Email, PasswordHash) " +
                              "VALUES (@Email, @PasswordHash);" +
-                             "INSERT INTO User (UserName, CredEmail, City)" +
+                             "INSERT INTO Users (UserName, CredEmail, City)" +
                              "VALUES (@UserName, @CredEmail, @City)";
 
                 SqlCommand command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@Email", account.Credential.Email);
                 command.Parameters.AddWithValue("@PasswordHash", BCrypt.Net.BCrypt.EnhancedHashPassword(account.Credential.Password,12));
-                command.Parameters.AddWithValue("@UserName", account.User.UserName);
+                command.Parameters.AddWithValue("@UserName", account.UserName);
                 command.Parameters.AddWithValue("@CredEmail", account.Credential.Email);
-                command.Parameters.AddWithValue("@City", account.User.City);
+                command.Parameters.AddWithValue("@City", account.City);
                 command.ExecuteNonQuery();
             }
         }

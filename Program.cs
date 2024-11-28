@@ -13,6 +13,7 @@ namespace LTKGMaster
             builder.Services.AddRazorPages();
             builder.Services.AddSingleton<IAccountRepository,AccountRepository>();
 
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

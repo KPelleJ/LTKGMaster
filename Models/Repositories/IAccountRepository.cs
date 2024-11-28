@@ -4,6 +4,6 @@ namespace LTKGMaster.Models.Repositories
 {
     public interface IAccountRepository
     {
-        void Add(IAccount account);
+        void Add(IUser account);
     }
 }
