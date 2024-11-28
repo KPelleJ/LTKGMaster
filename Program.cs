@@ -1,3 +1,6 @@
+using LTKGMaster.Models.Repositories;
+using LTKGMaster.Models.Users;
+
 namespace LTKGMaster
 {
     public class Program
@@ -8,6 +11,7 @@ namespace LTKGMaster
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+            builder.Services.AddSingleton<IAccountRepository,AccountRepository>();
 
             var app = builder.Build();
 
