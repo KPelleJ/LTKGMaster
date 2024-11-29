@@ -7,7 +7,7 @@ namespace LTKGMaster.Models.Users
     //Author Kasper
     public class UserAuthorization
     {
-
+        
         private readonly IHttpContextAccessor _contextAccessor;
 
         public UserAuthorization(IHttpContextAccessor contextAccessor)
@@ -37,7 +37,7 @@ namespace LTKGMaster.Models.Users
             };
 
             await _contextAccessor.HttpContext.SignInAsync(CookieConstants.CookieName, principal, authProperties);
-
+            
             return new RedirectToPageResult("/Index");
         }
         

@@ -13,7 +13,8 @@ namespace LTKGMaster.Pages.SalesAd
         {
             _salesAdHandler = salesAdHandler;
         }
-
+        
+        
         [BindProperty]
         public Laptop Laptop { get; set; }
 
@@ -27,10 +28,10 @@ namespace LTKGMaster.Pages.SalesAd
         {
             if (!ModelState.IsValid)
             {
-                return Page(); 
+                return Page();
             }
-            NewSalesAd.UserId = Int32.Parse(User.FindFirst("Id").ValueType);
-            _salesAdHandler.Add(Laptop, NewSalesAd);
+
+            _salesAdHandler.Addadd(Laptop, NewSalesAd);
 
             return RedirectToPage("/Index");
         }

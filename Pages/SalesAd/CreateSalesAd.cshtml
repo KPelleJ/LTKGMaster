@@ -13,8 +13,9 @@
     <h1>@ViewData["Title"]</h1>
     <form method="Post">
     <h3>Opret sales annonce</h3>
-    
-        
+    <div class="mb-3">
+        <input type="hidden" asp-for="NewSalesAd.UserId" value ="@int.Parse(User.FindFirst("Id").Value)" />
+    </div>
     <div class="mb-3">
         <label asp-for="NewSalesAd.Title"></label>
         <input type="text" asp-for="NewSalesAd.Title" class="form-control" />

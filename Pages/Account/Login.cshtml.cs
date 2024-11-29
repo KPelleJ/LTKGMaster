@@ -1,6 +1,9 @@
+using LTKGMaster.Models;
 using LTKGMaster.Models.Users;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Security.Claims;
 
 namespace LTKGMaster.Pages.Account
 {
@@ -30,6 +33,11 @@ namespace LTKGMaster.Pages.Account
             }
 
             return await _loginservice.UserLogin(Credential);
+        }
+
+        private void CookieAuthorization(IUser user)
+        {
+
         }
 
 
