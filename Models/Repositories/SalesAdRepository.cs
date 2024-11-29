@@ -8,7 +8,7 @@ using System.Reflection.PortableExecutable;
 
 namespace LTKGMaster.Models.Repositories
 {
-    public class SalesAdRepository
+    public class SalesAdRepository : ISalesAdRepository
     {
         private readonly string _connectionString;
 

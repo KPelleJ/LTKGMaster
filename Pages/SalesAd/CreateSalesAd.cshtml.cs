@@ -2,6 +2,7 @@ using LTKGMaster.Models.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using LTKGMaster.Models.SalesAd;
+using LTKGMaster.Models.Products;
 
 namespace LTKGMaster.Pages.SalesAd
 {
@@ -15,6 +16,9 @@ namespace LTKGMaster.Pages.SalesAd
         }
 
         [BindProperty]
+        public Laptop Laptop { get; set; }
+
+        [BindProperty]
         public ISalesAd NewSalesAd{ get; set; }
 
         public void OnGet()
@@ -25,9 +29,7 @@ namespace LTKGMaster.Pages.SalesAd
             if (!ModelState.IsValid)
             {
                 return Page(); 
-            }
-            NewSalesAd.DateOfCreation = DateTime.Now;
-            
+            } 
             _salesAdRepository.Add(NewSalesAd);
 
             return RedirectToPage("/SalesAd/Index");

@@ -17,6 +17,8 @@ namespace LTKGMaster
             builder.Services.AddSingleton<IAccountRepository,AccountRepository>();
             builder.Services.AddSingleton<ILaptopRepository, LaptopRepository>();
             builder.Services.AddSingleton<SalesAdRepository>();
+            builder.Services.AddSingleton<ISalesAdRepository,SalesAdRepository>();
+           
 
             // Dependency injection for HTTPContextAccessor used in login methods
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
