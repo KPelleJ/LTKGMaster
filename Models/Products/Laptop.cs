@@ -27,5 +27,10 @@ namespace LTKGMaster.Models.Products
             Type = ProductType.Laptop;
         }
 
+        public Laptop()
+        {
+            Type = ProductType.Laptop;
+        }
+
     }
 }

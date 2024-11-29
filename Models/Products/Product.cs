@@ -2,7 +2,7 @@
 
 namespace LTKGMaster.Models.Products
 {
-    public class Product
+    public abstract class Product
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Maks 255 tegn.")]
@@ -29,6 +29,10 @@ namespace LTKGMaster.Models.Products
             Brand = brand;
             Price = price;
             Description = description;
+        }
+        public Product()
+        {
+            
         }
     }
 }

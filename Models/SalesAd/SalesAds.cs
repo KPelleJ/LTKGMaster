@@ -1,13 +1,13 @@
 ﻿namespace LTKGMaster.Models.SalesAd
 {
-    public class SalesAd : ISalesAd
+    public class SalesAds 
     {
         public string Title { get; set; }
         public int ProductId { get; set; }
         public int UserId { get; set; }
         public DateTime DateOfCreation { get; set; }
 
-        public SalesAd(string title, int productId, int userId, DateTime dateTimeOfCreation)
+        public SalesAds(string title, int productId, int userId, DateTime dateTimeOfCreation)
         {
             Title = title;
             ProductId = productId;
@@ -15,7 +15,7 @@
             DateOfCreation = dateTimeOfCreation;
         }
 
-        public SalesAd()
+        public SalesAds()
         {
         }
     }

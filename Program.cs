@@ -1,5 +1,6 @@
 using LTKGMaster.Models;
 using LTKGMaster.Models.Repositories;
+using LTKGMaster.Models.SalesAd;
 using LTKGMaster.Models.Users;
 
 namespace LTKGMaster
@@ -16,8 +17,8 @@ namespace LTKGMaster
             // Dependency injection for repositories
             builder.Services.AddSingleton<IAccountRepository,AccountRepository>();
             builder.Services.AddSingleton<ILaptopRepository, LaptopRepository>();
-            builder.Services.AddSingleton<SalesAdRepository>();
             builder.Services.AddSingleton<ISalesAdRepository,SalesAdRepository>();
+            builder.Services.AddSingleton<SalesAdHandler>();
            
 
             // Dependency injection for HTTPContextAccessor used in login methods
