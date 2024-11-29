@@ -4,9 +4,9 @@ namespace LTKGMaster.Models.Repositories
 {
     public interface ISalesAdRepository
     {
-        void Add(ISalesAd salesAd);
-        void Delete(ISalesAd salesAd);
-        List<SalesAd.SalesAd> GetAll(ISalesAd salesAd);
-        void Update(ISalesAd salesAd);
+        void Add(SalesAds salesAd);
+        void Delete(SalesAds salesAd);
+        List<SalesAds> GetAll(SalesAds salesAd);
+        void Update(SalesAds salesAd);
     }
 }

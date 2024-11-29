@@ -2,6 +2,93 @@
 @model LTKGMaster.Pages.SalesAd.CreateSalesAdModel
 @{
 }
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <h1>@ViewData["Title"]</h1>
+    <form method="Post">
+    <h3>Opret sales annonce</h3>
+    <div class="mb-3">
+        <label asp-for="NewSalesAd.UserId"></label>
+        <input type="text" asp-for="NewSalesAd.UserId" class="form-control" />
+        <span class="text-danger" asp-validation-for="NewSalesAd.UserId"></span>
+    </div>
+        <div class="mb-3">
+            <label asp-for="Laptop.Type"></label>
+            <input type="text" asp-for="Laptop.Type" class="form-control" />
+            <span class="text-danger" asp-validation-for="Laptop.Type"></span>
+        </div>
+    <div class="mb-3">
+        <label asp-for="NewSalesAd.Title"></label>
+        <input type="text" asp-for="NewSalesAd.Title" class="form-control" />
+        <span class="text-danger" asp-validation-for="NewSalesAd.Title"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Laptop.Description"></label>
+        <input type="text" asp-for="Laptop.Description" class="form-control" />
+        <span class="text-danger" asp-validation-for="Laptop.Description"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Laptop.Year"></label>
+        <input type="text" asp-for="Laptop.Year" class="form-control" />
+        <span class="text-danger" asp-validation-for="Laptop.Year"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Laptop.Brand"></label>
+        <input type="text" asp-for="Laptop.Brand" class="form-control" />
+        <span class="text-danger" asp-validation-for="Laptop.Brand"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Laptop.Model"></label>
+        <input type="text" asp-for="Laptop.Model" class="form-control" />
+        <span class="text-danger" asp-validation-for="Laptop.Model"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Laptop.Price"></label>
+        <input type="text" asp-for="Laptop.Price" class="form-control" />
+        <span class="text-danger" asp-validation-for="Laptop.Price"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Laptop.Storage"></label>
+        <input type="text" asp-for="Laptop.Storage" class="form-control" />
+        <span class="text-danger" asp-validation-for="Laptop.Storage"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Laptop.ScreenSize"></label>
+        <input type="text" asp-for="Laptop.ScreenSize" class="form-control" />
+        <span class="text-danger" asp-validation-for="Laptop.ScreenSize"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Laptop.OperateSystem"></label>
+        <input type="text" asp-for="Laptop.OperateSystem" class="form-control" />
+        <span class="text-danger" asp-validation-for="Laptop.OperateSystem"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Laptop.GPU"></label>
+        <input type="text" asp-for="Laptop.GPU" class="form-control" />
+        <span class="text-danger" asp-validation-for="Laptop.GPU"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Laptop.RAM"></label>
+        <input type="text" asp-for="Laptop.RAM" class="form-control" />
+        <span class="text-danger" asp-validation-for="Laptop.RAM"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Laptop.CPU"></label>
+        <input type="text" asp-for="Laptop.CPU" class="form-control" />
+        <span class="text-danger" asp-validation-for="Laptop.CPU"></span>
+    </div>
+    <div class="mb-2">
+        <input type="submit" class="btn btn-primary" value="Create Ad" />
+    </div>
+    </form>
+</body>
+</html>
 
 
 

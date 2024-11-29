@@ -8,18 +8,17 @@ namespace LTKGMaster.Pages.SalesAd
 {
     public class CreateSalesAdModel : PageModel
     {
-        private readonly SalesAdRepository _salesAdRepository;
-
-        public CreateSalesAdModel(SalesAdRepository salesAdRepository)
+        private readonly SalesAdHandler _salesAdHandler;
+        public CreateSalesAdModel(SalesAdHandler salesAdHandler)
         {
-            _salesAdRepository = salesAdRepository;
+            _salesAdHandler = salesAdHandler;
         }
 
         [BindProperty]
         public Laptop Laptop { get; set; }
 
         [BindProperty]
-        public ISalesAd NewSalesAd{ get; set; }
+        public SalesAds NewSalesAd{ get; set; }
 
         public void OnGet()
         {
@@ -29,10 +28,10 @@ namespace LTKGMaster.Pages.SalesAd
             if (!ModelState.IsValid)
             {
                 return Page(); 
-            } 
-            _salesAdRepository.Add(NewSalesAd);
+            }
+            _salesAdHandler.Addadd(Laptop, NewSalesAd);
 
-            return RedirectToPage("/SalesAd/Index");
+            return RedirectToPage("/Index");
         }
     }
 }

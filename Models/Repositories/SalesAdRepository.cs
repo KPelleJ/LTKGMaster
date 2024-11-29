@@ -16,7 +16,7 @@ namespace LTKGMaster.Models.Repositories
         {
             _connectionString = configuration.GetConnectionString("myDb1");
         }
-        public void Add(ISalesAd salesAd)
+        public void Add(SalesAds salesAd)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -32,7 +32,7 @@ namespace LTKGMaster.Models.Repositories
             }
         }
 
-        public void Delete(ISalesAd salesAd)
+        public void Delete(SalesAds salesAd)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -47,7 +47,7 @@ namespace LTKGMaster.Models.Repositories
                 }
             }
         }
-        public void Update(ISalesAd salesAd)
+        public void Update(SalesAds salesAd)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -65,9 +65,9 @@ namespace LTKGMaster.Models.Repositories
                 }
             }
         }
-        public List<SalesAd.SalesAd> GetAll(ISalesAd salesAd)
+        public List<SalesAds> GetAll(SalesAds salesAd)
         {
-            List<SalesAd.SalesAd> salesAds = new List<SalesAd.SalesAd>();
+            List<SalesAds> salesAds = new List<SalesAds>();
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -82,7 +82,7 @@ namespace LTKGMaster.Models.Repositories
                 {
                     while (reader.Read())
                     {
-                        SalesAd.SalesAd salesAd1 = new SalesAd.SalesAd
+                        SalesAds salesAd1 = new SalesAds
                         {
                             ProductId = reader.GetInt32(reader.GetOrdinal("ProdId")),
                             UserId = reader.GetInt32(reader.GetOrdinal("UserId")),

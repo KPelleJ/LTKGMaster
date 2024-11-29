@@ -12,14 +12,17 @@ namespace LTKGMaster.Models.Repositories
         }
         public Laptop Add(Laptop product)
         {
+               
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
 
                 string sql = "INSERT INTO Products (CatId, Description, Year, Brand, Model, Price, ScreenSize, Storage, OperatingSystem, RAM, CPU, GPU) " +
-                             "VALUES (@CatId, @Description, @Year, @Brand, @Model, @Price, @Storage, @OperatingSystem, @RAM, @CPU, @GPU)";
+                             "VALUES (@CatId, @Description, @Year, @Brand, @Model, @Price, @ScreenSize, @Storage, @OperatingSystem, @RAM, @CPU, @GPU)" +
+                             "SELECT Id FROM Products WHERE Id = SCOPE_IDENTITY();";
 
                 SqlCommand command = new SqlCommand(sql, connection);
+                
                 command.Parameters.AddWithValue("@CatId", (int)product.Type);
                 command.Parameters.AddWithValue("@Description", product.Description);
                 command.Parameters.AddWithValue("@Year", product.Year);
@@ -33,7 +36,12 @@ namespace LTKGMaster.Models.Repositories
                 command.Parameters.AddWithValue("@RAM", product.RAM);
                 command.Parameters.AddWithValue("@CPU", product.CPU);
 
-                command.ExecuteNonQuery();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    product.Id = reader.GetInt32(0);
+                }
             }
             return product;
         }
