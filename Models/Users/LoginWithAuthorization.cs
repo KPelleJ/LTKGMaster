@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace LTKGMaster.Models.Users
 {
+    //Author Kasper
     public class LoginWithAuthorization:ILogin
     {
         private readonly IAccountRepository _accountRepository;

@@ -3,6 +3,7 @@ using System.Net;
 
 namespace LTKGMaster.Models.Users
 {
+    //Author Kasper
     public class Credential
     {
         [Required]

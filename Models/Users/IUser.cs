@@ -1,5 +1,6 @@
 ﻿namespace LTKGMaster.Models.Users
 {
+    //Author Kasper
     public interface IUser
     {
         public int Id { get; set; }

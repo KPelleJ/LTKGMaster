@@ -4,6 +4,7 @@ using System.Security.Claims;
 
 namespace LTKGMaster.Models.Users
 {
+    //Author Kasper
     public class UserAuthorization
     {
 
