@@ -48,5 +48,36 @@ namespace LTKGMaster.Models.Repositories
                 command.ExecuteNonQuery();
             }
         }
+
+        public IUser Get(string email)
+        {
+            //Det her skal laves om så der er en bedre måde at lave RegularUser på
+            IUser output = new RegularUser();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                //Noget galt i den her query
+                string sql = "SELECT Id, CredEmail, UserName, SignUpDate, Rating, City, Credentials.PasswordHash FROM Users " +
+                             $"JOIN Credentials ON Users.CredEmail = Credentials.Email WHERE CredEmail = '{email}'";
+
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    output.Id = reader.GetInt32(0);
+                    output.CredMail = reader.GetString(1);
+                    output.Credential.Email = output.CredMail;
+                    output.UserName = reader.GetString(2);
+                    output.SignUpDate = reader.GetDateTime(3);
+                    output.Rating = reader.GetInt32(4);
+                    output.City = reader.GetString(5);
+                    output.Credential.PasswordHash = reader.GetString(6);
+                }
+            }
+            return output;
+        }
     }
 }

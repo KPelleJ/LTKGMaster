@@ -1,3 +1,4 @@
+using LTKGMaster.Models;
 using LTKGMaster.Models.Repositories;
 using LTKGMaster.Models.Users;
 
@@ -11,9 +12,31 @@ namespace LTKGMaster
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+
+            // Dependency injection for repositories
             builder.Services.AddSingleton<IAccountRepository,AccountRepository>();
             builder.Services.AddSingleton<ILaptopRepository, LaptopRepository>();
             builder.Services.AddSingleton<SalesAdRepository>();
+
+            // Dependency injection for HTTPContextAccessor used in login methods
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            builder.Services.AddSingleton<ILogin, LoginWithAuthorization>();
+
+            //Cookie authentication service is added
+            builder.Services.AddAuthentication(CookieConstants.CookieName).AddCookie(CookieConstants.CookieName, options =>
+            {
+                options.Cookie.Name = CookieConstants.CookieName;
+                options.LoginPath = "/Account/Login";
+                //options.AccessDeniedPath = "/Account/AccessDenied";
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+            });
+
+            //Default and custom authorizations are added here
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminOnly", policy => policy.RequireClaim("Admin"));
+            }
+            );
 
 
             var app = builder.Build();
