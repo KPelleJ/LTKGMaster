@@ -7,16 +7,16 @@ namespace LTKGMaster.Models.Products
         [Range(0, 1000)]
         public int ScreenSize { get; set; }
         [Range(0, 150)]
-        [RegularExpression("%[^0-9a-zA-ZæøåÆØÅ -]%'")]
+        [RegularExpression(@"^[0-9a-zA-ZæøåÆØÅ._-]+$")]
         public string Storage {  get; set; }
         [Range(0, 150)]
-        [RegularExpression("%[^0-9a-zA-ZæøåÆØÅ -]%'")]
+        [RegularExpression(@"^[0-9a-zA-ZæøåÆØÅ@._-]+$")]
         public string OperateSystem { get; set; }
         [Range(0, 100)]
-        [RegularExpression("%[^0-9a-zA-ZæøåÆØÅ -]%'")]
+        [RegularExpression("@\"^[0-9a-zA-ZæøåÆØÅ@._-]+$")]
         public string GPU { get; set; }
         [Range(0, 100)]
-        [RegularExpression("%[^0-9a-zA-ZæøåÆØÅ -]%'")]
+        [RegularExpression("@\"^[0-9a-zA-ZæøåÆØÅ@._-]+$")]
         public string RAM { get; set; }
         [Range(0, 100)]
         [RegularExpression("%[^0-9a-zA-ZæøåÆØÅ -]%'")]
