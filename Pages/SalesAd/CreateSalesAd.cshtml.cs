@@ -31,7 +31,7 @@ namespace LTKGMaster.Pages.SalesAd
                 return Page();
             }
 
-            _salesAdHandler.Addadd(Laptop, NewSalesAd);
+            _salesAdHandler.Add(Laptop, NewSalesAd);
 
             return RedirectToPage("/Index");
         }
