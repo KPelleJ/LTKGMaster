@@ -19,7 +19,7 @@ namespace LTKGMaster.Models.Products
         [RegularExpression("@\"^[0-9a-zA-ZæøåÆØÅ@._-]+$")]
         public string RAM { get; set; }
         [Range(0, 100)]
-        [RegularExpression("%[^0-9a-zA-ZæøåÆØÅ -]%'")]
+        [RegularExpression("@\"^[0-9a-zA-ZæøåÆØÅ@._-]+$")]
         public string CPU { get; set; }
         public Laptop(string model, int year, string brand, double price, string description) : 
             base(model, year, brand, price, description)

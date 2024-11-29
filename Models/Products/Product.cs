@@ -7,13 +7,13 @@ namespace LTKGMaster.Models.Products
         public int Id { get; set; }
         [Required(ErrorMessage = "Maks 255 tegn.")]
         [StringLength(255)]
-        [RegularExpression("%[^0-9a-zA-ZæøåÆØÅ -]%'")]
+        [RegularExpression(@"^[0-9a-zA-ZæøåÆØÅ._-]+$")]
         public string Model { get; set; }
         [Required]
         public int Year { get; set; }
         [Required(ErrorMessage ="Maks 255 tegn.")]
         [StringLength(255)]
-        [RegularExpression("%[^0-9a-zA-ZæøåÆØÅ -]%'")]
+        [RegularExpression("@\"^[0-9a-zA-ZæøåÆØÅ@._-]+$")]
         public string Brand { get; set; }
         [Required(ErrorMessage ="Skal være mere end 0.")]
         [Range(0, 1000000)]
