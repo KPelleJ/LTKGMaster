@@ -29,8 +29,8 @@ namespace LTKGMaster
             {
                 options.Cookie.Name = CookieConstants.CookieName;
                 options.LoginPath = "/Account/Login";
+                options.ExpireTimeSpan = TimeSpan.FromDays(90);
                 //options.AccessDeniedPath = "/Account/AccessDenied";
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
             });
 
             //Default and custom authorizations are added here
