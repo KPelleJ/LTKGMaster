@@ -14,15 +14,8 @@
     <form method="Post">
     <h3>Opret sales annonce</h3>
     <div class="mb-3">
-        <label asp-for="NewSalesAd.UserId"></label>
-        <input type="text" asp-for="NewSalesAd.UserId" class="form-control" />
-        <span class="text-danger" asp-validation-for="NewSalesAd.UserId"></span>
+        <input type="hidden" asp-for="NewSalesAd.UserId" value ="@int.Parse(User.FindFirst("Id").Value)" />
     </div>
-        <div class="mb-3">
-            <label asp-for="Laptop.Type"></label>
-            <input type="text" asp-for="Laptop.Type" class="form-control" />
-            <span class="text-danger" asp-validation-for="Laptop.Type"></span>
-        </div>
     <div class="mb-3">
         <label asp-for="NewSalesAd.Title"></label>
         <input type="text" asp-for="NewSalesAd.Title" class="form-control" />

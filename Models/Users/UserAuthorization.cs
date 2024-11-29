@@ -7,7 +7,7 @@ namespace LTKGMaster.Models.Users
     //Author Kasper
     public class UserAuthorization
     {
-
+        
         private readonly IHttpContextAccessor _contextAccessor;
 
         public UserAuthorization(IHttpContextAccessor contextAccessor)
@@ -22,6 +22,7 @@ namespace LTKGMaster.Models.Users
                 {
                     new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(ClaimTypes.Email,user.CredMail),
+                    new Claim("Id",user.Id.ToString()),
                     new Claim("SignUpDate",user.SignUpDate.ToString()),
                     new Claim("Rating",user.Rating.ToString()),
                     new Claim("City", user.City)
@@ -36,7 +37,7 @@ namespace LTKGMaster.Models.Users
             };
 
             await _contextAccessor.HttpContext.SignInAsync(CookieConstants.CookieName, principal, authProperties);
-
+            
             return new RedirectToPageResult("/Index");
         }
         
