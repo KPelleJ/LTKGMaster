@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 
 namespace LTKGMaster.Models.Repositories
 {
+    //Author Kasper
     public class AccountRepository : IAccountRepository
     {
         private readonly string _connectionString;

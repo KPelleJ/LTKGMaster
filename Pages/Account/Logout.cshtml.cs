@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace LTKGMaster.Pages.Account
 {
+    //Author Kasper
     public class LogoutModel : PageModel
     {
         public async Task<IActionResult> OnGet()

@@ -2,6 +2,7 @@
 
 namespace LTKGMaster.Models.Repositories
 {
+    //Author Kasper
     public interface IAccountRepository
     {
         void Add(IUser account);

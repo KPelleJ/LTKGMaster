@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace LTKGMaster.Pages.Account
 {
+    //Author Kasper
     public class LoginModel : PageModel
     {
         private readonly ILogin _loginservice;
@@ -30,5 +31,7 @@ namespace LTKGMaster.Pages.Account
 
             return await _loginservice.UserLogin(Credential);
         }
+
+
     }
 }

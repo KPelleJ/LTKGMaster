@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace LTKGMaster.Pages.Account
 {
+    //Author Kasper
     public class MemberRegistrationModel : PageModel
     {
         private readonly IAccountRepository _accountRepository;
