@@ -21,7 +21,7 @@ namespace LTKGMaster.Models.Users
         public int Rating { get; set; }
 
         [Required]
-        [RegularExpression(@"^[a-zA-ZæøåÆØÅ -]+$", ErrorMessage = "The Username field contains invalid characters.")]
+        [RegularExpression(@"^[a-zA-ZæøåÆØÅ -]+$", ErrorMessage = "The City field contains invalid characters.")]
         [Length(1,50, ErrorMessage = "City name must be between 1 and 50 characters")]
         public string City { get; set; }
 

@@ -24,7 +24,7 @@ namespace LTKGMaster.Models.Users
             if (user.CredMail != null && credential.Email == user.CredMail && BCrypt.Net.BCrypt.EnhancedVerify(credential.Password, user.Credential.PasswordHash))
             {
                 //Authorizer Useren med værdier fra databasen
-                await _authorizer.AuthorizeAsync(user);
+                return await _authorizer.AuthorizeAsync(user);
             }
 
             return new PageResult();
