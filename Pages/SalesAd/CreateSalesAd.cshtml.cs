@@ -18,7 +18,7 @@ namespace LTKGMaster.Pages.SalesAd
         public Laptop Laptop { get; set; }
 
         [BindProperty]
-        public SalesAds NewSalesAd{ get; set; }
+        public SalesAds NewSalesAd { get; set; }
 
         public void OnGet()
         {
@@ -29,7 +29,8 @@ namespace LTKGMaster.Pages.SalesAd
             {
                 return Page(); 
             }
-            _salesAdHandler.Addadd(Laptop, NewSalesAd);
+            NewSalesAd.UserId = Int32.Parse(User.FindFirst("Id").ValueType);
+            _salesAdHandler.Add(Laptop, NewSalesAd);
 
             return RedirectToPage("/Index");
         }
