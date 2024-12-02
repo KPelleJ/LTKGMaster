@@ -23,7 +23,7 @@ namespace LTKGMaster.Models.Repositories
 
                 SqlCommand command = new SqlCommand(sql, connection);
                 
-                command.Parameters.AddWithValue("@CatId", (int)product.Type);
+                command.Parameters.AddWithValue("@CatId", product.Type);
                 command.Parameters.AddWithValue("@Description", product.Description);
                 command.Parameters.AddWithValue("@Year", product.Year);
                 command.Parameters.AddWithValue("@Brand", product.Brand);

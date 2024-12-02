@@ -28,10 +28,10 @@ namespace LTKGMaster.Pages.SalesAd
         }
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            //if (NewSalesAd != null && NewSalesAd._product.Id != null)
+            //{
+            //    return Page();
+            //}
 
             _salesAdHandler.Add(Laptop, NewSalesAd);
 

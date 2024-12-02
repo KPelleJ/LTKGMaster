@@ -9,5 +9,10 @@
     <p>@salesAd._product.Description</p>
     <p>@salesAd.DateOfCreation</p>
     <p>@salesAd._product.Price</p>
+    
+    <form method="post">
+        <input type="hidden" asp-for="@Model.Id" value="@salesAd._product.Id" />
+        <button type="submit">Slet annonce</button>
+    </form>
 }
 

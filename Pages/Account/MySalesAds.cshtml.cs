@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Diagnostics;
 
 namespace LTKGMaster.Pages.Account
 {
@@ -17,6 +18,8 @@ namespace LTKGMaster.Pages.Account
         public Product product { get; set; }
         private readonly ISalesAdRepository _salesAdRepository;
         public List<SalesAds> _salesAdList {  get; set; }
+        [BindProperty]
+        public int Id { get; set; }
         public MySalesAdsModel(ISalesAdRepository salesAdRepository)
         {
             _salesAdRepository = salesAdRepository;
@@ -25,6 +28,12 @@ namespace LTKGMaster.Pages.Account
         {
             int userId = int.Parse(User.FindFirst("Id").Value);
             _salesAdList = _salesAdRepository.GetAllFromUser(userId);
+        }
+        public IActionResult Onpost()
+        {
+            Debug.WriteLine(Id);
+            _salesAdRepository.Delete(Id);
+            return RedirectToPage("/Account/MySalesAds");
         }
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Reflection.PortableExecutable;
 
 namespace LTKGMaster.Models.Repositories
@@ -30,22 +31,22 @@ namespace LTKGMaster.Models.Repositories
                 command.Parameters.AddWithValue("@ProdId", salesAd._product.Id);
                 command.Parameters.AddWithValue("@UserId", salesAd._user.Id);
                 command.Parameters.AddWithValue("@Title", salesAd.Title);
+
+
                 command.ExecuteNonQuery();
             }
         }
-        public void Delete(SalesAds salesAd)
+        public void Delete(int id)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
                 string sql = "DELETE FROM SalesAds WHERE ProdId = @ProdId";
 
-                using (SqlCommand command = new SqlCommand(sql, connection))
-                {
-                    command.Parameters.AddWithValue("@ProdId", salesAd._product.Id);
-
-                    command.ExecuteNonQuery();
-                }
+                SqlCommand command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@ProdId", id);
+                
+                command.ExecuteNonQuery();
             }
         }
         public void Update(SalesAds salesAd)
