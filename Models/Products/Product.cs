@@ -17,12 +17,12 @@ namespace LTKGMaster.Models.Products
         public string Brand { get; set; }
         [Required(ErrorMessage ="Skal være mere end 0.")]
         [Range(0, 1000000)]
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         [Required(ErrorMessage ="Må ikke være mere end 4000 tegn.")]
         [MaxLength(4000)]
         public string Description { get; set; }
         public ProductType Type { get; protected set; }
-        public Product(string model, int year, string brand, double price, string description)
+        public Product(string model, int year, string brand, decimal price, string description)
         {
             Model = model;
             Year = year;

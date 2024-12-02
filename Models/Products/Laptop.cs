@@ -22,7 +22,7 @@ namespace LTKGMaster.Models.Products
         [RegularExpression(@"^[0-9a-zA-ZæøåÆØÅ.-]+$")]
         public string CPU { get; set; }
         
-        public Laptop(string model, int year, string brand, double price, string description) : 
+        public Laptop(string model, int year, string brand, decimal price, string description) : 
             base(model, year, brand, price, description)
         {
             Type = ProductType.Laptop;

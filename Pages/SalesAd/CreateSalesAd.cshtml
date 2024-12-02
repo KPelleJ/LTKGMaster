@@ -14,7 +14,7 @@
     <form method="Post">
     <h3>Opret sales annonce</h3>
     <div class="mb-3">
-        <input type="hidden" asp-for="NewSalesAd.UserId" value ="@int.Parse(User.FindFirst("Id").Value)" />
+        <input type="hidden" asp-for="NewSalesAd._user.Id" value ="@int.Parse(User.FindFirst("Id").Value)" />
     </div>
     <div class="mb-3">
         <label asp-for="NewSalesAd.Title"></label>

@@ -16,7 +16,7 @@ namespace LTKGMaster.Models.SalesAd
 
         public void Add(Laptop laptop, SalesAds salesAd)
         {
-            salesAd.ProductId = _laptopRepository.Add(laptop).Id;
+            salesAd._product.Id = _laptopRepository.Add(laptop).Id;
             _salesAdRepository.Add(salesAd);
         }
     }

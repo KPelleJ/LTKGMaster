@@ -8,5 +8,6 @@ namespace LTKGMaster.Models.Repositories
         void Delete(SalesAds salesAd);
         List<SalesAds> GetAll(SalesAds salesAd);
         void Update(SalesAds salesAd);
+        List<SalesAds> GetAllFromUser(int id);
     }
 }

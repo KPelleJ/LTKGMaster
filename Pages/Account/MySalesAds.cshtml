@@ -2,3 +2,12 @@
 @model LTKGMaster.Pages.Account.MySalesAdsModel
 @{
 }
+
+@foreach(var salesAd in Model._salesAdList)
+{
+    <h3>@salesAd.Title</h3>
+    <p>@salesAd._product.Description</p>
+    <p>@salesAd.DateOfCreation</p>
+    <p>@salesAd._product.Price</p>
+}
+

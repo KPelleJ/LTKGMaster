@@ -20,7 +20,6 @@ namespace LTKGMaster.Pages.Account
         }
         public IActionResult OnPost()
         {
-            
             return RedirectToPage("Account/MyPage");
         }
     }

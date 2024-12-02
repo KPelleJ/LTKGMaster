@@ -1,22 +1,27 @@
-﻿namespace LTKGMaster.Models.SalesAd
+﻿using LTKGMaster.Models.Products;
+using LTKGMaster.Models.Users;
+
+namespace LTKGMaster.Models.SalesAd
 {
     public class SalesAds 
     {
         public string Title { get; set; }
-        public int ProductId { get; set; }
-        public int UserId { get; set; }
+        public Laptop _product { get; set; }
+        public IUser _user { get; set; }
         public DateTime DateOfCreation { get; set; }
 
-        public SalesAds(string title, int productId, int userId, DateTime dateTimeOfCreation)
+        public SalesAds(Laptop product, IUser user, string title, DateTime dateTimeOfCreation)
         {
             Title = title;
-            ProductId = productId;
-            UserId = userId;
+            _product = product;
+            _user = user;
             DateOfCreation = dateTimeOfCreation;
         }
 
         public SalesAds()
         {
+            _product = new Laptop();
+            _user = new RegularUser();
         }
     }
 }
