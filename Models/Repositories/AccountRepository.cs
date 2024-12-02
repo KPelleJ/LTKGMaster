@@ -58,7 +58,6 @@ namespace LTKGMaster.Models.Repositories
             {
                 connection.Open();
 
-                //Noget galt i den her query
                 string sql = "SELECT Id, CredEmail, UserName, SignUpDate, Rating, City, Credentials.PasswordHash FROM Users " +
                              $"JOIN Credentials ON Users.CredEmail = Credentials.Email WHERE CredEmail = '{email}'";
 

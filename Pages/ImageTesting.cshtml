@@ -1,0 +1,15 @@
+﻿@page
+@using LTKGMaster.Models.Products
+@model LTKGMaster.Pages.ImageTestingModel
+@{
+}
+<h1>Upload Pictures</h1>
+<form method="post" enctype="multipart/form-data">
+    <input type="file" id="imageInput" name="images" multiple accept="image/*" />
+    <button type="submit">Upload</button>
+</form>
+
+@foreach (ProductPicture picture in Model.ProductPictureList)
+{
+    <a>@picture.ProductId --- @picture.FileName</a>
+}

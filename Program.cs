@@ -18,6 +18,7 @@ namespace LTKGMaster
             builder.Services.AddSingleton<IAccountRepository,AccountRepository>();
             builder.Services.AddSingleton<ILaptopRepository, LaptopRepository>();
             builder.Services.AddSingleton<ISalesAdRepository,SalesAdRepository>();
+            builder.Services.AddSingleton<PictureRepository>();
             builder.Services.AddSingleton<SalesAdHandler>();
            
 
