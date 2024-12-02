@@ -28,10 +28,10 @@ namespace LTKGMaster.Pages.SalesAd
         }
         public IActionResult OnPost()
         {
-            //if (NewSalesAd != null && NewSalesAd._product.Id != null)
-            //{
-            //    return Page();
-            //}
+            if (NewSalesAd._user.City == null && NewSalesAd._user.Rating == null)
+            {
+                return Page();
+            }
 
             _salesAdHandler.Add(Laptop, NewSalesAd);
 

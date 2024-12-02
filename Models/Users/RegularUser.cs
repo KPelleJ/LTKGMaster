@@ -10,7 +10,7 @@ namespace LTKGMaster.Models.Users
         [Required]
         [RegularExpression(@"^[0-9a-zA-ZæøåÆØÅ@._-]+$", ErrorMessage = "The Email field contains invalid characters.")]
         [Length(5, 125,ErrorMessage = "Your Email must be between 5 and 125 characters")]
-        public string ?CredMail { get; set; }
+        public string CredMail { get; set; }
 
         [Required]
         [RegularExpression(@"^[0-9a-zA-ZæøåÆØÅ]+$", ErrorMessage = "The Username field contains invalid characters.")]
