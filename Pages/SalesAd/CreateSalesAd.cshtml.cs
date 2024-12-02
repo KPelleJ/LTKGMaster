@@ -28,7 +28,7 @@ namespace LTKGMaster.Pages.SalesAd
         }
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
+            if (NewSalesAd._user.City == null && NewSalesAd._user.Rating == null)
             {
                 return Page();
             }

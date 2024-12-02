@@ -14,7 +14,7 @@
     <form method="Post">
     <h3>Opret sales annonce</h3>
     <div class="mb-3">
-        <input type="hidden" asp-for="NewSalesAd.UserId" value ="@int.Parse(User.FindFirst("Id").Value)" />
+        <input type="hidden" asp-for="NewSalesAd._user.Id" value ="@int.Parse(User.FindFirst("Id").Value)" />
     </div>
     <div class="mb-3">
         <label asp-for="NewSalesAd.Title"></label>
@@ -23,58 +23,58 @@
     </div>
     <div class="mb-3">
         <label asp-for="Laptop.Description"></label>
-        <input type="text" asp-for="Laptop.Description" class="form-control" />
-        <span class="text-danger" asp-validation-for="Laptop.Description"></span>
+            <input type="text" asp-for="Laptop.Description" class="form-control" />
+            <span class="text-danger" asp-validation-for="Laptop.Description"></span>
     </div>
     <div class="mb-3">
         <label asp-for="Laptop.Year"></label>
-        <input type="text" asp-for="Laptop.Year" class="form-control" />
-        <span class="text-danger" asp-validation-for="Laptop.Year"></span>
+            <input type="text" asp-for="Laptop.Year" class="form-control" />
+            <span class="text-danger" asp-validation-for="Laptop.Year"></span>
     </div>
     <div class="mb-3">
-        <label asp-for="Laptop.Brand"></label>
-        <input type="text" asp-for="Laptop.Brand" class="form-control" />
-        <span class="text-danger" asp-validation-for="Laptop.Brand"></span>
+            <label asp-for="Laptop.Brand"></label>
+            <input type="text" asp-for="Laptop.Brand" class="form-control" />
+            <span class="text-danger" asp-validation-for="Laptop.Brand"></span>
     </div>
     <div class="mb-3">
-        <label asp-for="Laptop.Model"></label>
-        <input type="text" asp-for="Laptop.Model" class="form-control" />
-        <span class="text-danger" asp-validation-for="Laptop.Model"></span>
+            <label asp-for="Laptop.Model"></label>
+            <input type="text" asp-for="Laptop.Model" class="form-control" />
+            <span class="text-danger" asp-validation-for="Laptop.Model"></span>
     </div>
     <div class="mb-3">
-        <label asp-for="Laptop.Price"></label>
-        <input type="text" asp-for="Laptop.Price" class="form-control" />
-        <span class="text-danger" asp-validation-for="Laptop.Price"></span>
+            <label asp-for="Laptop.Price"></label>
+            <input type="text" asp-for="Laptop.Price" class="form-control" />
+            <span class="text-danger" asp-validation-for="Laptop.Price"></span>
     </div>
     <div class="mb-3">
-        <label asp-for="Laptop.Storage"></label>
-        <input type="text" asp-for="Laptop.Storage" class="form-control" />
-        <span class="text-danger" asp-validation-for="Laptop.Storage"></span>
+            <label asp-for="Laptop.Storage"></label>
+            <input type="text" asp-for="Laptop.Storage" class="form-control" />
+            <span class="text-danger" asp-validation-for="Laptop.Storage"></span>
     </div>
     <div class="mb-3">
-        <label asp-for="Laptop.ScreenSize"></label>
-        <input type="text" asp-for="Laptop.ScreenSize" class="form-control" />
-        <span class="text-danger" asp-validation-for="Laptop.ScreenSize"></span>
+            <label asp-for="Laptop.ScreenSize"></label>
+            <input type="text" asp-for="Laptop.ScreenSize" class="form-control" />
+            <span class="text-danger" asp-validation-for="Laptop.ScreenSize"></span>
     </div>
     <div class="mb-3">
-        <label asp-for="Laptop.OperateSystem"></label>
-        <input type="text" asp-for="Laptop.OperateSystem" class="form-control" />
-        <span class="text-danger" asp-validation-for="Laptop.OperateSystem"></span>
+            <label asp-for="Laptop.OperateSystem"></label>
+            <input type="text" asp-for="Laptop.OperateSystem" class="form-control" />
+            <span class="text-danger" asp-validation-for="Laptop.OperateSystem"></span>
     </div>
     <div class="mb-3">
-        <label asp-for="Laptop.GPU"></label>
-        <input type="text" asp-for="Laptop.GPU" class="form-control" />
-        <span class="text-danger" asp-validation-for="Laptop.GPU"></span>
+            <label asp-for="Laptop.GPU"></label>
+            <input type="text" asp-for="Laptop.GPU" class="form-control" />
+            <span class="text-danger" asp-validation-for="Laptop.GPU"></span>
     </div>
     <div class="mb-3">
-        <label asp-for="Laptop.RAM"></label>
-        <input type="text" asp-for="Laptop.RAM" class="form-control" />
-        <span class="text-danger" asp-validation-for="Laptop.RAM"></span>
+            <label asp-for="Laptop.RAM"></label>
+            <input type="text" asp-for="Laptop.RAM" class="form-control" />
+            <span class="text-danger" asp-validation-for="Laptop.RAM"></span>
     </div>
     <div class="mb-3">
-        <label asp-for="Laptop.CPU"></label>
-        <input type="text" asp-for="Laptop.CPU" class="form-control" />
-        <span class="text-danger" asp-validation-for="Laptop.CPU"></span>
+            <label asp-for="Laptop.CPU"></label>
+            <input type="text" asp-for="Laptop.CPU" class="form-control" />
+            <span class="text-danger" asp-validation-for="Laptop.CPU"></span>
     </div>
     <div class="mb-2">
         <input type="submit" class="btn btn-primary" value="Create Ad" />
