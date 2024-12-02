@@ -23,7 +23,7 @@ namespace LTKGMaster
 
             // Dependency injection for HTTPContextAccessor used in login methods
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            builder.Services.AddSingleton<ILogin, LoginWithAuthorization>();
+            builder.Services.AddSingleton<ILogin, LoginWithAuthentication>();
 
             //Cookie authentication service is added
             builder.Services.AddAuthentication(CookieConstants.CookieName).AddCookie(CookieConstants.CookieName, options =>

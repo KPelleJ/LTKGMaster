@@ -31,7 +31,6 @@ namespace LTKGMaster.Models.Repositories
                 command.ExecuteNonQuery();
             }
         }
-
         public void Delete(SalesAds salesAd)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
