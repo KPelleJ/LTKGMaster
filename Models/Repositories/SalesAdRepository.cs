@@ -123,11 +123,48 @@ namespace LTKGMaster.Models.Repositories
                             Title = reader.GetString(reader.GetOrdinal("Title")),
                             DateOfCreation = reader.GetDateTime(reader.GetOrdinal("CreationDate"))
                         };
-                        salesAds.Add(salesAd1);
+                        salesAds.Add(salesAd);
                     }
                 }
             }
             return salesAds;
+        }
+
+        public List<SalesAds> GetAllLaptops()
+        {
+            List<SalesAds> laptops = new List<SalesAds>();
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                string sql = "SELECT CatId, ProdId, UserId, Title, CreationDate, Products.Description, Products.Price " +
+                            "FROM SalesAds JOIN Products ON Products.Id = SalesAds.ProdId WHERE CatId = 1";
+
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                command.Parameters.AddWithValue("@CatId", 1);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    SalesAds output = new SalesAds();
+                    int type;
+                    type = (int)output._product.Type;
+                    type = reader.GetInt32(0);
+                    output._product.Id = reader.GetInt32(1);
+                    output._user.Id = reader.GetInt32(2);
+                    output.Title = reader.GetString(3);
+                    output.DateOfCreation = reader.GetDateTime(4);
+                    output._product.Description = reader.GetString(5);
+                    output._product.Price = reader.GetDecimal(6);
+
+
+                    laptops.Add(output);
+                }
+                return laptops;
+            }
         }
     }
 }

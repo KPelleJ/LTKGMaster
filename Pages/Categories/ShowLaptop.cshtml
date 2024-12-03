@@ -22,3 +22,17 @@
         </li>
     </ul>
 </nav>
+
+<form>
+    <div class="form-control">
+        @foreach(var laptop in Model.laptops)
+        {
+            <h3>@laptop.Title</h3>
+            <p>@laptop._user.UserName</p>
+            <p>@laptop._product.Description</p>
+            <p>@laptop.DateOfCreation</p>
+            <p>@laptop._product.Price</p>
+
+        }
+    </div>
+</form>

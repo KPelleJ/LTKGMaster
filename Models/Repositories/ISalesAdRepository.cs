@@ -1,4 +1,5 @@
-﻿using LTKGMaster.Models.SalesAd;
+﻿using LTKGMaster.Models.Products;
+using LTKGMaster.Models.SalesAd;
 
 namespace LTKGMaster.Models.Repositories
 {
@@ -9,5 +10,7 @@ namespace LTKGMaster.Models.Repositories
         List<SalesAds> GetAll(SalesAds salesAd);
         void Update(SalesAds salesAd);
         List<SalesAds> GetAllFromUser(int id);
+
+        List<SalesAds> GetAllLaptops();
     }
 }
