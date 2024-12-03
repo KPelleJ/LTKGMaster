@@ -9,13 +9,10 @@ namespace LTKGMaster.Pages
     {
         private readonly PictureRepository _pictureRepository;
 
-
-        public ProductPicture ProductPicture { get; set; }
-
-        public List<ProductPicture> ProductPictureList { get; set; }
-
         [BindProperty]
         public List<IFormFile> Images { get; set; }
+
+        public List<ProductPicture> ProductPictureList { get; set; }
 
         public ImageTestingModel(PictureRepository pictureRepository)
         {
@@ -24,7 +21,7 @@ namespace LTKGMaster.Pages
 
         public void OnGet()
         {
-            ProductPictureList = _pictureRepository.GetAll(38);
+            ProductPictureList = ProductPictureConverter.ByteArrayToBase64(_pictureRepository.GetAll(38));
         }
 
         public IActionResult OnPost()

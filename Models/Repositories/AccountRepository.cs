@@ -79,5 +79,35 @@ namespace LTKGMaster.Models.Repositories
             }
             return output;
         }
+
+        public IUser GetById(int id)
+        {
+            IUser output = new RegularUser();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                string sql = "SELECT Id, CredEmail, UserName, SignUpDate, Rating, City, Credentials.PasswordHash FROM Users " +
+                             $"JOIN Credentials ON Users.CredEmail = Credentials.Email WHERE Id = @Id";
+
+                SqlCommand command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@Id", id);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    output.Id = reader.GetInt32(0);
+                    output.CredMail = reader.GetString(1);
+                    output.Credential.Email = output.CredMail;
+                    output.UserName = reader.GetString(2);
+                    output.SignUpDate = reader.GetDateTime(3);
+                    output.Rating = reader.GetInt32(4);
+                    output.City = reader.GetString(5);
+                    output.Credential.PasswordHash = reader.GetString(6);
+                }
+            }
+            return output;
+        }
     }
 }

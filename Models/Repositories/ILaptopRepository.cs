@@ -7,5 +7,6 @@ namespace LTKGMaster.Models.Repositories
         Laptop Add(Laptop product);
         void Delete(Laptop product);
         void Update(Laptop product);
+        Laptop GetById(int id);
     }
 }

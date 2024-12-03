@@ -9,7 +9,14 @@
     <button type="submit">Upload</button>
 </form>
 
-@foreach (ProductPicture picture in Model.ProductPictureList)
-{
-    <a>@picture.ProductId --- @picture.FileName</a>
-}
+<div class="container">
+    <div class="row row-cols-2">
+        @foreach (var picture in Model.ProductPictureList)
+        {
+            <div class="col">
+                <p>@picture.FileName</p>
+                <img src="@picture.ImageDataBase64String" class="img-fluid" alt="Product Image">
+            </div>
+        }
+    </div>
+</div>

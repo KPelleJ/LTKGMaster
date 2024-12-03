@@ -2,17 +2,10 @@
 @model LTKGMaster.Pages.SalesAd.CreateSalesAdModel
 @{
 }
-<!DOCTYPE html>
-<html lang="da">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"]</title>
-</head>
 <body>
-    <h1>@ViewData["Title"]</h1>
-    <form method="Post">
+    <form method="Post" enctype="multipart/form-data">
     <h3>Opret sales annonce</h3>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="mb-3">
         <input type="hidden" asp-for="NewSalesAd._user.Id" value ="@int.Parse(User.FindFirst("Id").Value)" />
     </div>
@@ -76,12 +69,34 @@
             <input type="text" asp-for="Laptop.CPU" class="form-control" />
             <span class="text-danger" asp-validation-for="Laptop.CPU"></span>
     </div>
+        <div class="mb-3">
+            <input type="file" asp-for="ProductImages" id="imageInput" multiple accept="image/*" />
+            <span class="text-danger" asp-validation-for="ProductImages"></span>
+        </div>
     <div class="mb-2">
         <input type="submit" class="btn btn-primary" value="Create Ad" />
     </div>
     </form>
 </body>
-</html>
+
+<script>
+    const imageInput = document.getElementById('imageInput');
+    const errorMessage = document.getElementById('errorMessage');
+
+    // Validate file selection on form submission
+    document.querySelector('form').addEventListener('submit', (event) => {
+        const fileCount = imageInput.files.length;
+
+        if (fileCount < 1 || fileCount > 9) {
+            // Show error message
+            errorMessage.style.display = 'block';
+            event.preventDefault(); // Prevent form submission
+        } else {
+            // Hide error message
+            errorMessage.style.display = 'none';
+        }
+    });
+</script>
 
 
 
