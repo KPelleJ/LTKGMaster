@@ -26,11 +26,10 @@ namespace LTKGMaster.Models.Repositories
 
                 SqlCommand command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@ProdId", image.ProductId);
-                command.Parameters.AddWithValue("@PictureString", image.ImageData);
+                command.Parameters.AddWithValue("@PictureString", image.ImageDataByteArray);
                 command.Parameters.AddWithValue("FileName", image.FileName);
                 command.ExecuteNonQuery();
             }
-
         }
 
         public List<ProductPicture> GetAll(int productId)
@@ -55,10 +54,7 @@ namespace LTKGMaster.Models.Repositories
                 }
                 
             }
-
-
             return outputPictures;
         }
-
     }
 }

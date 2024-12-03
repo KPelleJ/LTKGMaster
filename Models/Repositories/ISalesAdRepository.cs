@@ -9,5 +9,7 @@ namespace LTKGMaster.Models.Repositories
         List<SalesAds> GetAll(SalesAds salesAd);
         void Update(SalesAds salesAd);
         List<SalesAds> GetAllFromUser(int id);
+
+        SalesAds GetById(int id);
     }
 }

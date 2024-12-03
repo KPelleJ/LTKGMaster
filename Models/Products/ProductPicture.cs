@@ -4,22 +4,33 @@
     {
         public string FileName { get; set; }
 
-        public byte[] ImageData { get; set; }
+        public byte[] ImageDataByteArray { get; set; }
+
+        public string ImageDataBase64String { get; set; }
 
         public int ProductId { get; set; }
 
-        public ProductPicture(string fileName, byte[] imageData) 
+        public ProductPicture(string fileName, byte[] byteData, string stringData) : this(fileName, byteData)
         {
-            ProductId = 37;
-            FileName = fileName;
-            ImageData = imageData;
+            ImageDataBase64String = stringData;
         }
-        
-        public ProductPicture(int productId, string fileName, byte[] imageData) 
+
+        public ProductPicture(string fileName, byte[] byteData)
+        {
+            FileName = fileName;
+            ImageDataByteArray = byteData;
+        }
+
+        public ProductPicture(int productId, string fileName, byte[] byteData, string stringData) :this (productId, fileName, byteData)
         { 
+            ImageDataBase64String = stringData;
+        }
+
+        public ProductPicture(int productId, string fileName, byte[] byteData)
+        {
             ProductId = productId;
             FileName = fileName;
-            ImageData = imageData;
+            ImageDataByteArray = byteData;
         }
     }
 }

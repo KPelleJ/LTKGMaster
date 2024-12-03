@@ -36,6 +36,7 @@ namespace LTKGMaster.Models.Repositories
                 command.ExecuteNonQuery();
             }
         }
+
         public void Delete(int id)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -49,6 +50,7 @@ namespace LTKGMaster.Models.Repositories
                 command.ExecuteNonQuery();
             }
         }
+
         public void Update(SalesAds salesAd)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -67,6 +69,7 @@ namespace LTKGMaster.Models.Repositories
                 }
             }
         }
+
         public List<SalesAds> GetAllFromUser(int id)
         {
             List<SalesAds> list = new List<SalesAds>();
@@ -101,6 +104,35 @@ namespace LTKGMaster.Models.Repositories
                 return list;
             }
         }
+
+        public SalesAds GetById(int id)
+        {
+            SalesAds output = new SalesAds();
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                string sql = "SELECT ProdId, UserId, Title, CreationDate FROM SalesAds WHERE ProdId = @ProdId";
+
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                command.Parameters.AddWithValue("@ProdId", id);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    output.ProdId = reader.GetInt32(0);
+                    output.UserId = reader.GetInt32(1);
+                    output.Title = reader.GetString(2);
+                    output.DateOfCreation = reader.GetDateTime(3);
+                }
+            }
+
+            return output;
+        }
+
         public List<SalesAds> GetAll(SalesAds salesAd)
         {
             List<SalesAds> salesAds = new List<SalesAds>();

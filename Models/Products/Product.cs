@@ -22,6 +22,7 @@ namespace LTKGMaster.Models.Products
         [Required(ErrorMessage ="Skal være mere end 0.")]
         [Range(0, 1000000)]
         public decimal Price { get; set; }
+
         [Required(ErrorMessage ="Må ikke være mere end 4000 tegn.")]
         [MaxLength(4000)]
         public string Description { get; set; }
@@ -29,6 +30,7 @@ namespace LTKGMaster.Models.Products
         public List<ProductPicture> Pictures { get; set; }
 
         public ProductType Type { get; protected set; }
+
         public Product(string model, int year, string brand, decimal price, string description)
         {
             Model = model;
@@ -37,6 +39,7 @@ namespace LTKGMaster.Models.Products
             Price = price;
             Description = description;
         }
+
         public Product()
         {
             

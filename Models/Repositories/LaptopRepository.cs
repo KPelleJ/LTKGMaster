@@ -1,4 +1,5 @@
 ﻿using LTKGMaster.Models.Products;
+using LTKGMaster.Models.SalesAd;
 using Microsoft.Data.SqlClient;
 
 namespace LTKGMaster.Models.Repositories
@@ -86,6 +87,42 @@ namespace LTKGMaster.Models.Repositories
 
                 command.ExecuteNonQuery();
             }
+        }
+
+        public Laptop GetById(int id)
+        {
+            Laptop output = new Laptop();
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                string sql = "SELECT Id, Description, Year, Brand, Model, Price, ScreenSize, Storage, OperatingSystem, GPU, RAM, CPU FROM Products WHERE Id = @Id;";
+
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                command.Parameters.AddWithValue("@Id", id);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    output.Id = reader.GetInt32(0);
+                    output.Description = reader.GetString(1);
+                    output.Year = reader.GetInt32(2);
+                    output.Brand = reader.GetString(3);
+                    output.Model = reader.GetString(4);
+                    output.Price = reader.GetDecimal(5);
+                    output.ScreenSize = reader.GetInt32(6);
+                    output.Storage = reader.GetString(7);
+                    output.OperateSystem = reader.GetString(8);
+                    output.GPU = reader.GetString(9);
+                    output.RAM = reader.GetString(10);
+                    output.CPU = reader.GetString(11);
+                }
+            }
+
+            return output;
         }
     }
 }

@@ -10,5 +10,7 @@ namespace LTKGMaster.Models.Repositories
         void Update(IUser account);
 
         IUser Get(string email);
+
+        IUser GetById(int id);
     }
 }
