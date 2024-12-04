@@ -36,7 +36,6 @@ namespace LTKGMaster.Models.Repositories
                 command.ExecuteNonQuery();
             }
         }
-
         public void Delete(int id)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -50,7 +49,6 @@ namespace LTKGMaster.Models.Repositories
                 command.ExecuteNonQuery();
             }
         }
-
         public void Update(SalesAds salesAd)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -69,7 +67,6 @@ namespace LTKGMaster.Models.Repositories
                 }
             }
         }
-
         public List<SalesAds> GetAllFromUser(int id)
         {
             List<SalesAds> list = new List<SalesAds>();
@@ -104,7 +101,6 @@ namespace LTKGMaster.Models.Repositories
                 return list;
             }
         }
-
         public SalesAds GetById(int id)
         {
             SalesAds output = new SalesAds();
@@ -132,7 +128,6 @@ namespace LTKGMaster.Models.Repositories
 
             return output;
         }
-
         public List<SalesAds> GetAll(SalesAds salesAd)
         {
             List<SalesAds> salesAds = new List<SalesAds>();
@@ -161,7 +156,6 @@ namespace LTKGMaster.Models.Repositories
             }
             return salesAds;
         }
-
         public List<SalesAds> GetAllLaptops()
         {
             List<SalesAds> laptops = new List<SalesAds>();

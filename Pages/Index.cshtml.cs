@@ -25,7 +25,6 @@ namespace LTKGMaster.Pages
 
         public void OnGet()
         {
-           
             var salesAds = _salesAdRepository.GetAllLaptops(); 
             foreach (var ad in salesAds)
             {
