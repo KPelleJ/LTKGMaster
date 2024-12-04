@@ -22,6 +22,7 @@ namespace LTKGMaster.Pages
 
         public List<SalesAds> SalesAds { get; set; }
 
+
         public void OnGet()
         {
            
