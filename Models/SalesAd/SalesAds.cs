@@ -11,6 +11,7 @@ namespace LTKGMaster.Models.SalesAd
         public Laptop _product { get; set; }
         public IUser _user { get; set; }
         public DateTime DateOfCreation { get; set; }
+        public List<ProductPicture> ProductPictures { get; set; }
 
         public SalesAds(Laptop product, IUser user, string title, DateTime dateTimeOfCreation)
         {

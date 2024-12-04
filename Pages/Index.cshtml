@@ -1,26 +1,37 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+ViewData["Title"] = "Salgs Annoncer";
 }
 
+<div class="container">
+    <div class="title-container text-center my-4">
+        <h1>@ViewData["Title"]</h1>
+    </div>
 
-<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-    <ul class="navbar-nav flex-grow-1">
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-page="/Categories/ShowLaptop">Laptop</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-page="/Categories/ShowProduct1">Product1</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-page="/Categories/ShowProduct2">Product2</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-page="/Categories/ShowProduct3">Product3</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-page="/Categories/ShowProduct4">Product4</a>
-        </li>
-    </ul>
-</nav>
+    <div class="grid-container">
+        @foreach (var ad in Model.SalesAds)
+        {
+            <div class="ad-box mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>@ad.Title</h2>
+                        <p>Created: @ad.DateOfCreation.ToString("dd-MM-yyyy")</p>
+                        <p>Product ID: @ad.ProdId</p>
+
+                        <div class="ad-images mb-3">
+                            @foreach (var picture in ad.ProductPictures)
+                            {
+                                <div class="ad-image mb-3">
+                                    <img src="@picture.ImageDataBase64String" class="img-fluid" alt="@picture.FileName" />
+                                </div>
+                            }
+                        </div>
+
+                        <a class="btn btn-primary" asp-page="/SalesAd/Details" asp-route-id="@ad.ProdId">View Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
