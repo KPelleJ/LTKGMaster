@@ -18,12 +18,9 @@ ViewData["Title"] = "Salgs Annoncer";
                         <h2>@ad.Title</h2>
                         <p>Created: @ad.DateOfCreation.ToString("dd-MM-yyyy")</p>
                         <div class="ad-images mb-3">
-                            @foreach (var picture in ad.ProductPictures)
-                            {
-                                <div class="ad-image mb-3">
-                                    <img src="@picture.ImageDataBase64String" class="img-fluid" alt="@picture.FileName" />
-                                </div>
-                            }
+                            <div class="ad-image mb-3">
+                                <img src="@ad.ProductPictures.First().ImageDataBase64String" class="img-fluid" alt="@ad.ProductPictures.First().FileName" />
+                            </div>
                         </div>
 
                         <a class="btn btn-primary" asp-page="/SalesAd/ShowAd" asp-route-id="@ad._product.Id">View Details</a>
