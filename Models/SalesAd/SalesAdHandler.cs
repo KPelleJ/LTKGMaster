@@ -49,6 +49,7 @@ namespace LTKGMaster.Models.SalesAd
         {
             return _salesAdRepository.GetAllFromUser(userId);
         }
+
         public void DeleteSalesAd(int id)
         {
             _salesAdRepository.Delete(id);

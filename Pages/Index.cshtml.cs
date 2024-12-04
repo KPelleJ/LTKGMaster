@@ -3,6 +3,7 @@ using LTKGMaster.Models.Repositories;
 using LTKGMaster.Models.SalesAd;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Diagnostics;
 using System.Reflection;
 
 namespace LTKGMaster.Pages
@@ -25,13 +26,20 @@ namespace LTKGMaster.Pages
 
         public void OnGet()
         {
-            var salesAds = _salesAdRepository.GetAllLaptops(); 
+           
+            var salesAds = _salesAdRepository.GetAllLaptops();
+            List<SalesAds> output = new List<SalesAds>();
+
             foreach (var ad in salesAds)
             {
-                ad.ProductPictures = _pictureRepository.GetAll(ad.ProdId);
+                ad.ProductPictures = _pictureRepository.GetAll(ad._product.Id);
                 ad.ProductPictures = ProductPictureConverter.ByteArrayToBase64(ad.ProductPictures);
+                output.Add(ad);
             }
-            SalesAds = salesAds;
+
+            Debug.WriteLine("Stop");
+
+            SalesAds = output;
         }
     }
 }
