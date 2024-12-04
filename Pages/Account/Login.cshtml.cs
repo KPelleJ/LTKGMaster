@@ -63,7 +63,7 @@ namespace LTKGMaster.Pages.Account
 
             var authProperties = new AuthenticationProperties
             {
-                IsPersistent = user.Credential.RememberMe
+                IsPersistent = Credential.RememberMe
             };
 
             await HttpContext.SignInAsync(CookieConstants.CookieName, principal, authProperties);

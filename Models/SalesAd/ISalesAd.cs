@@ -1,4 +1,7 @@
 ﻿
+using LTKGMaster.Models.Products;
+using LTKGMaster.Models.Users;
+
 namespace LTKGMaster.Models.SalesAd
 {
     public interface ISalesAd
@@ -7,5 +10,7 @@ namespace LTKGMaster.Models.SalesAd
         int ProductId { get; set; }
         string Title { get; set; }
         int UserId { get; set; }
+        Product _product { get; set; }
+        IUser _user { get; set; }
     }
 }
