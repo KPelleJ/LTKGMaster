@@ -18,7 +18,6 @@ namespace LTKGMaster.Pages.SalesAd
             _salesAdHandler = salesAdHandler;
         }
         
-        
         [BindProperty]
         public Laptop Laptop { get; set; }
 
@@ -34,7 +33,7 @@ namespace LTKGMaster.Pages.SalesAd
         }
         public IActionResult OnPost()
         {
-            if (NewSalesAd._user.City == null && NewSalesAd._user.Rating == null)
+            if (NewSalesAd is null)
             {
                 return Page();
             }

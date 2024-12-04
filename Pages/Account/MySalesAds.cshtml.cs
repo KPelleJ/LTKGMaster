@@ -16,23 +16,23 @@ namespace LTKGMaster.Pages.Account
         public IUser user { get; set; }
         public SalesAds salesAd { get; set; }
         public Product product { get; set; }
-        private readonly ISalesAdRepository _salesAdRepository;
+        private readonly SalesAdHandler _salesAdHandler;
         public List<SalesAds> _salesAdList {  get; set; }
         [BindProperty]
         public int Id { get; set; }
-        public MySalesAdsModel(ISalesAdRepository salesAdRepository)
+        public MySalesAdsModel(SalesAdHandler salesAdHandler)
         {
-            _salesAdRepository = salesAdRepository;
+            _salesAdHandler = salesAdHandler;
         }
         public void OnGet()
         {
             int userId = int.Parse(User.FindFirst("Id").Value);
-            _salesAdList = _salesAdRepository.GetAllFromUser(userId);
+            _salesAdList = _salesAdHandler.GetAllSalesToUser(userId);
         }
         public IActionResult Onpost()
         {
             Debug.WriteLine(Id);
-            _salesAdRepository.Delete(Id);
+            _salesAdHandler.DeleteSalesAd(Id);
             return RedirectToPage("/Account/MySalesAds");
         }
     }

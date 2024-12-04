@@ -1,5 +1,6 @@
 ﻿using LTKGMaster.Models.Products;
 using LTKGMaster.Models.Repositories;
+using LTKGMaster.Models.Users;
 
 namespace LTKGMaster.Models.SalesAd
 {
@@ -42,6 +43,15 @@ namespace LTKGMaster.Models.SalesAd
             output._product = _laptopRepository.GetById(id);
             output._product.Pictures = ProductPictureConverter.ByteArrayToBase64(_pictureRepository.GetAll(id));
             return output;
+        }
+
+        public List<SalesAds> GetAllSalesToUser(int userId)
+        {
+            return _salesAdRepository.GetAllFromUser(userId);
+        }
+        public void DeleteSalesAd(int id)
+        {
+            _salesAdRepository.Delete(id);
         }
     }
 }
