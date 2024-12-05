@@ -6,7 +6,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace LTKGMaster.Models.Repositories
 {
-    public class PictureRepository
+    public class PictureRepository : IPictureRepository
     {
         private readonly string _connectionString;
 
@@ -32,6 +32,22 @@ namespace LTKGMaster.Models.Repositories
             }
         }
 
+        public void Delete(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                string sql = "DELETE FROM ProductPictures Where ProdId = @ProdId";
+
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                command.Parameters.AddWithValue("@ProdId", id);
+
+                command.ExecuteNonQuery();
+            }
+        }
+
         public List<ProductPicture> GetAll(int productId)
         {
             List<ProductPicture> outputPictures = new List<ProductPicture>();
@@ -52,7 +68,7 @@ namespace LTKGMaster.Models.Repositories
                     ProductPicture output = new ProductPicture(reader.GetInt32(0), reader.GetString(2), outputByte);
                     outputPictures.Add(output);
                 }
-                
+
             }
             return outputPictures;
         }

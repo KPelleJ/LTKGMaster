@@ -11,10 +11,10 @@ namespace LTKGMaster.Pages
     public class IndexModel : PageModel
     {
         private readonly ISalesAdRepository _salesAdRepository;
-        private readonly PictureRepository _pictureRepository;
+        private readonly IPictureRepository _pictureRepository;
         private readonly ILogger<IndexModel> _logger;
 
-        public IndexModel(ISalesAdRepository salesAdRepository, PictureRepository pictureRepository, ILogger<IndexModel> logger)
+        public IndexModel(ISalesAdRepository salesAdRepository, IPictureRepository pictureRepository, ILogger<IndexModel> logger)
         {
             _salesAdRepository = salesAdRepository;
             _logger = logger;
@@ -27,12 +27,12 @@ namespace LTKGMaster.Pages
         public void OnGet()
         {
            
-            var salesAds = _salesAdRepository.GetAllLaptops();
+            var salesAds = _salesAdRepository.GetAll();
             List<SalesAds> output = new List<SalesAds>();
 
             foreach (var ad in salesAds)
             {
-                ad.ProductPictures = _pictureRepository.GetAll(ad._product.Id);
+                ad.ProductPictures = _pictureRepository.GetAll(ad.ProdId);
                 ad.ProductPictures = ProductPictureConverter.ByteArrayToBase64(ad.ProductPictures);
                 output.Add(ad);
             }

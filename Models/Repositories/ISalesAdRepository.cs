@@ -7,10 +7,11 @@ namespace LTKGMaster.Models.Repositories
     {
         void Add(SalesAds salesAd);
         void Delete(int id);
-        List<SalesAds> GetAll(SalesAds salesAd);
+        List<SalesAds> GetAll();
         void Update(SalesAds salesAd);
         List<SalesAds> GetAllFromUser(int id);
         List<SalesAds> GetAllLaptops();
+        List<SalesAds> GetAllProductsOfType(ProductType prodtype);
         SalesAds GetById(int id);
     }
 }

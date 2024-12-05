@@ -29,7 +29,7 @@ namespace LTKGMaster.Models.Products
 
         public List<ProductPicture> Pictures { get; set; }
 
-        public ProductType Type { get; protected set; }
+        public ProductType Type { get; set; }
 
         public Product(string model, int year, string brand, decimal price, string description)
         {

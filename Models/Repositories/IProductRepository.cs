@@ -2,11 +2,11 @@
 
 namespace LTKGMaster.Models.Repositories
 {
-    public interface ILaptopRepository
+    public interface IProductRepository
     {
         Product Add(Product product);
-        void Delete(Product product);
+        void Delete(int id);
         void Update(Product product);
-        Product GetById(int id);
+        Product GetById(int id, ProductType type);
     }
 }

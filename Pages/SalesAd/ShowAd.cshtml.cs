@@ -1,3 +1,4 @@
+using LTKGMaster.Models;
 using LTKGMaster.Models.SalesAd;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -18,9 +19,9 @@ namespace LTKGMaster.Pages.SalesAd
             _salesAdHandler = salesAdHandler;
         }
 
-        public IActionResult OnGet(int id)
+        public IActionResult OnGet(int id, ProductType type)
         {
-            AdForShow = _salesAdHandler.Get(id);
+            AdForShow = _salesAdHandler.Get(id, type);
             return Page();
         }
     }

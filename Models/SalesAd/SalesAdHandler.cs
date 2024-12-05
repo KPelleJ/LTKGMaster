@@ -6,27 +6,27 @@ namespace LTKGMaster.Models.SalesAd
 {
     public class SalesAdHandler
     {
-        private ILaptopRepository _laptopRepository;
+        private IProductRepository _productRepository;
         private ISalesAdRepository _salesAdRepository;
         private IAccountRepository _accountRepository;
-        private readonly PictureRepository _pictureRepository;
+        private readonly IPictureRepository _pictureRepository;
 
-        public SalesAdHandler(ILaptopRepository laptopRepository, ISalesAdRepository salesAdRepository, PictureRepository pictureRepository, IAccountRepository accountRepository)
+        public SalesAdHandler(IProductRepository productRepository, ISalesAdRepository salesAdRepository, IPictureRepository pictureRepository, IAccountRepository accountRepository)
         {
-            _laptopRepository = laptopRepository;
+            _productRepository = productRepository;
             _salesAdRepository = salesAdRepository;
             _pictureRepository = pictureRepository;
             _accountRepository = accountRepository;
         }
 
-        public void Add(Laptop laptop, SalesAds salesAd, List<IFormFile> productImages)
+        public void Add(Product product, SalesAds salesAd, List<IFormFile> productImages)
         {
-            salesAd._product.Id = _laptopRepository.Add(laptop).Id;
+            salesAd.ProdId = _productRepository.Add(product).Id;
 
             foreach (var image in productImages)
             {
                 ProductPicture output = ProductPictureConverter.ConvertToByteArray(image);
-                output.ProductId = salesAd._product.Id;
+                output.ProductId = salesAd.ProdId;
                 _pictureRepository.Add(output);
             }
 
@@ -36,11 +36,11 @@ namespace LTKGMaster.Models.SalesAd
         //!!!!!!!!!!!!!!!!!!!!!!!ATTENZIONE!!!!!!!!!!!!!!!!!!
         //Den her metode kan laves om til en giga lang query hvis det er bedre, vi skal lige høre Camilla ad
         //!!!!!!!!!!!!!!!!!!!!!!!ATTENZIONE!!!!!!!!!!!!!!!!!!
-        public SalesAds Get(int id)
+        public SalesAds Get(int id, ProductType type)
         { 
             SalesAds output = _salesAdRepository.GetById(id);
             output._user = _accountRepository.GetById(output.UserId);
-            output._product = _laptopRepository.GetById(id);
+            output._product = _productRepository.GetById(id, type);
             output._product.Pictures = ProductPictureConverter.ByteArrayToBase64(_pictureRepository.GetAll(id));
             return output;
         }
@@ -52,7 +52,9 @@ namespace LTKGMaster.Models.SalesAd
 
         public void DeleteSalesAd(int id)
         {
+            _pictureRepository.Delete(id);
             _salesAdRepository.Delete(id);
+            _productRepository.Delete(id);
         }
     }
 }

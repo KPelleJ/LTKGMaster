@@ -1,3 +1,4 @@
+using LTKGMaster.Models;
 using LTKGMaster.Models.Products;
 using LTKGMaster.Models.Repositories;
 using LTKGMaster.Models.SalesAd;
@@ -21,6 +22,7 @@ namespace LTKGMaster.Pages.Categories
         public void OnGet()
         {
             laptops = _salesAdRepository.GetAllLaptops();
+            laptops = _salesAdRepository.GetAllProductsOfType(ProductType.Laptop);
         }
     }
 }

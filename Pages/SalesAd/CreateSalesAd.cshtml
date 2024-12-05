@@ -1,4 +1,5 @@
 ﻿@page
+@using LTKGMaster.Models
 @model LTKGMaster.Pages.SalesAd.CreateSalesAdModel
 @{
 }
@@ -6,8 +7,13 @@
     <form method="Post" enctype="multipart/form-data">
     <h3>Opret sales annonce</h3>
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="mb-3">
+            <label asp-for="ProductToAdd.Type"></label>
+            <select asp-for="ProductToAdd.Type" class="form-control" asp-items="Html.GetEnumSelectList<ProductType>()"></select>
+            <span class="text-danger" asp-validation-for="ProductToAdd.Type"></span>
+        </div>
     <div class="mb-3">
-        <input type="hidden" asp-for="NewSalesAd._user.Id" value ="@int.Parse(User.FindFirst("Id").Value)" />
+        <input type="hidden" asp-for="NewSalesAd.UserId" value ="@int.Parse(User.FindFirst("Id").Value)" />
     </div>
     <div class="mb-3">
         <label asp-for="NewSalesAd.Title"></label>
@@ -15,29 +21,29 @@
         <span class="text-danger" asp-validation-for="NewSalesAd.Title"></span>
     </div>
     <div class="mb-3">
-        <label asp-for="Laptop.Description"></label>
-            <input type="text" asp-for="Laptop.Description" class="form-control" />
-            <span class="text-danger" asp-validation-for="Laptop.Description"></span>
+        <label asp-for="ProductToAdd.Description"></label>
+            <input type="text" asp-for="ProductToAdd.Description" class="form-control" />
+            <span class="text-danger" asp-validation-for="ProductToAdd.Description"></span>
     </div>
     <div class="mb-3">
-        <label asp-for="Laptop.Year"></label>
-            <input type="text" asp-for="Laptop.Year" class="form-control" />
-            <span class="text-danger" asp-validation-for="Laptop.Year"></span>
+        <label asp-for="ProductToAdd.Year"></label>
+            <input type="text" asp-for="ProductToAdd.Year" class="form-control" />
+            <span class="text-danger" asp-validation-for="ProductToAdd.Year"></span>
     </div>
     <div class="mb-3">
-            <label asp-for="Laptop.Brand"></label>
-            <input type="text" asp-for="Laptop.Brand" class="form-control" />
-            <span class="text-danger" asp-validation-for="Laptop.Brand"></span>
+            <label asp-for="ProductToAdd.Brand"></label>
+            <input type="text" asp-for="ProductToAdd.Brand" class="form-control" />
+            <span class="text-danger" asp-validation-for="ProductToAdd.Brand"></span>
     </div>
     <div class="mb-3">
-            <label asp-for="Laptop.Model"></label>
-            <input type="text" asp-for="Laptop.Model" class="form-control" />
-            <span class="text-danger" asp-validation-for="Laptop.Model"></span>
+            <label asp-for="ProductToAdd.Model"></label>
+            <input type="text" asp-for="ProductToAdd.Model" class="form-control" />
+            <span class="text-danger" asp-validation-for="ProductToAdd.Model"></span>
     </div>
     <div class="mb-3">
-            <label asp-for="Laptop.Price"></label>
-            <input type="text" asp-for="Laptop.Price" class="form-control" />
-            <span class="text-danger" asp-validation-for="Laptop.Price"></span>
+            <label asp-for="ProductToAdd.Price"></label>
+            <input type="text" asp-for="ProductToAdd.Price" class="form-control" />
+            <span class="text-danger" asp-validation-for="ProductToAdd.Price"></span>
     </div>
         <div class="mb-3">
             <input type="file" asp-for="ProductImages" id="imageInput" multiple accept="image/*" />

@@ -1,4 +1,5 @@
 using LTKGMaster.Models;
+using LTKGMaster.Models.Products;
 using LTKGMaster.Models.Repositories;
 using LTKGMaster.Models.SalesAd;
 using LTKGMaster.Models.Users;
@@ -15,10 +16,11 @@ namespace LTKGMaster
             builder.Services.AddRazorPages();
 
             // Dependency injection for repositories
-            builder.Services.AddSingleton<IAccountRepository,AccountRepository>();
-            builder.Services.AddSingleton<ILaptopRepository, LaptopRepository>();
-            builder.Services.AddSingleton<ISalesAdRepository,SalesAdRepository>();
-            builder.Services.AddSingleton<PictureRepository>();
+            builder.Services.AddSingleton<IAccountRepository, AccountRepository>();
+            builder.Services.AddSingleton<IProductRepository, ProductRepository>();
+            builder.Services.AddSingleton<ISalesAdRepository, SalesAdRepository>();
+            builder.Services.AddSingleton<IPictureRepository, PictureRepository>();
+            builder.Services.AddSingleton<ProductFactory>();
             builder.Services.AddSingleton<SalesAdHandler>();
            
 
