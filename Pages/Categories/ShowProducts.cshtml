@@ -19,10 +19,10 @@
         @foreach (var product in Model.Products)
         {
             <h3>@product.Title</h3>
-            <p>@product._user.UserName</p>
-            <p>@product._product.Description</p>
+            <p>@product.User.UserName</p>
+            <p>@product.Product.Description</p>
             <p>@product.DateOfCreation</p>
-            <p>@product._product.Price</p>
+            <p>@product.Product.Price</p>
         }
     </div>
 </form>

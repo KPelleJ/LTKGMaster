@@ -20,12 +20,12 @@ namespace LTKGMaster
             builder.Services.AddSingleton<IProductRepository, ProductRepository>();
             builder.Services.AddSingleton<ISalesAdRepository, SalesAdRepository>();
             builder.Services.AddSingleton<IPictureRepository, PictureRepository>();
+            builder.Services.AddSingleton<ProductPictureConverter>();
             builder.Services.AddSingleton<ProductFactory>();
             builder.Services.AddSingleton<SalesAdHandler>();
            
 
             // Dependency injection for HTTPContextAccessor used in login methods
-            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             builder.Services.AddSingleton<ILogin, LoginWithAuthentication>();
 
             //Cookie authentication service is added

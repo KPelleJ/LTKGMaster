@@ -6,19 +6,19 @@ namespace LTKGMaster.Models.SalesAd
 {
     public class SalesAdHandler
     {
-        private IProductRepository _productRepository;
-        private ISalesAdRepository _salesAdRepository;
-        private IAccountRepository _accountRepository;
+        private readonly IProductRepository _productRepository;
+        private readonly ISalesAdRepository _salesAdRepository;
+        private readonly IAccountRepository _accountRepository;
         private readonly IPictureRepository _pictureRepository;
         private readonly ProductPictureConverter _pictureConverter;
 
-        public SalesAdHandler(IProductRepository productRepository, ISalesAdRepository salesAdRepository, IPictureRepository pictureRepository, IAccountRepository accountRepository, ProductPictureConverter pictureConverter)
+        public SalesAdHandler(IProductRepository productRepository, ISalesAdRepository salesAdRepository, IPictureRepository pictureRepository, IAccountRepository accountRepository, ProductPictureConverter productPictureConverter)
         {
             _productRepository = productRepository;
             _salesAdRepository = salesAdRepository;
             _pictureRepository = pictureRepository;
             _accountRepository = accountRepository;
-            _pictureConverter = pictureConverter;
+            _pictureConverter = productPictureConverter;
         }
 
         public void Add(Product product, SalesAds salesAd, List<IFormFile> productImages)
@@ -41,13 +41,13 @@ namespace LTKGMaster.Models.SalesAd
         public SalesAds Get(int id, ProductType type)
         { 
             SalesAds output = _salesAdRepository.GetById(id);
-            output._user = _accountRepository.GetById(output.UserId);
-            output._product = _productRepository.GetById(id, type);
-            output._product.Pictures = _pictureConverter.ByteArrayToBase64(_pictureRepository.GetAll(id));
+            output.User = _accountRepository.GetById(output.UserId);
+            output.Product = _productRepository.GetById(id, type);
+            output.ProductPictures = _pictureConverter.ByteArrayToBase64(_pictureRepository.GetAll(id));
             return output;
         }
 
-        public List<SalesAds> GetAllSalesToUser(int userId)
+        public List<SalesAds> GetSalesAdsFromUser(int userId)
         {
             return _salesAdRepository.GetAllFromUser(userId);
         }
@@ -65,8 +65,8 @@ namespace LTKGMaster.Models.SalesAd
 
             foreach (SalesAds output in _salesAdRepository.GetAllProductsOfType(type))
             {
-                output._product = _productRepository.GetById(output.ProdId, type);
-                output._user = _accountRepository.GetById(output.UserId);
+                output.Product = _productRepository.GetById(output.ProdId, type);
+                output.User = _accountRepository.GetById(output.UserId);
                 output.ProductPictures = _pictureRepository.GetAll(output.ProdId);
                 outputList.Add(output);
             }

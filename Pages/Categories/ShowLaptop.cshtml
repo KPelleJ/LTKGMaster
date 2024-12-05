@@ -28,10 +28,10 @@
         @foreach(var laptop in Model.laptops)
         {
             <h3>@laptop.Title</h3>
-            <p>@laptop._user.UserName</p>
-            <p>@laptop._product.Description</p>
+            <p>@laptop.User.UserName</p>
+            <p>@laptop.Product.Description</p>
             <p>@laptop.DateOfCreation</p>
-            <p>@laptop._product.Price</p>
+            <p>@laptop.Product.Price</p>
         }
     </div>
 </form>

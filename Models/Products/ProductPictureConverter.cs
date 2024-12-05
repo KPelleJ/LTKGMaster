@@ -4,7 +4,8 @@ namespace LTKGMaster.Models.Products
 {
     public class ProductPictureConverter
     {
-        
+        public ProductPictureConverter() { }
+
         public ProductPicture ConvertToByteArray(IFormFile image)
         {
             byte[] outputData;
