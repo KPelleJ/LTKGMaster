@@ -180,16 +180,13 @@ namespace LTKGMaster.Models.Repositories
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-
                 string sql ="SELECT CatId, ProdId, UserId, Title, CreationDate, Products.Description, Products.Price " +
                             "FROM SalesAds JOIN Products ON Products.Id = SalesAds.ProdId WHERE CatId = @CatId";
 
                 SqlCommand command = new SqlCommand(sql, connection);
-
                 command.Parameters.AddWithValue("@CatId", prodtype);
-
+                
                 SqlDataReader reader = command.ExecuteReader();
-
                 while (reader.Read())
                 {
                     SalesAds output = new SalesAds();
@@ -197,13 +194,10 @@ namespace LTKGMaster.Models.Repositories
                     output.UserId = reader.GetInt32(2);
                     output.Title = reader.GetString(3);
                     output.DateOfCreation = reader.GetDateTime(4);
-                    //output.Product.Description = reader.GetString(5);
-                    //output.Product.Price = reader.GetDecimal(6);
 
                     Product product = _factory.Create(prodtype);
                     product.Description = reader.GetString(5);
                     product.Price = reader.GetDecimal(6);
-                    
                     output.Product = product;
 
                     laptops.Add(output);
