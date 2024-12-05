@@ -10,28 +10,34 @@
 </head>
 <body>
     <header>
-                <div class="container"></div>
-                <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        
+        <div class="container">
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                    <div>
                     <a class="navbar-brand d-flex align-items-center" asp-area="" asp-page="/Index">
                         <img src="~/PictureLogos/llgwlg.png" width="120" height="auto" alt="Logo" class="me-2" />
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                        <div role="search">
+                    <ul>
+                        <li role="search">
                             <input type="search" placeholder="Search.." id="searchbar" name="q" aria-label="Search through site content" />
                             <button type="submit">Search</button>
-                        </div>
-                        <div class="nav-item">
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/SalesAd/CreateSalesAd">Opret ny annonce</a>
-                        </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Categories/ShowProducts">Kategorier</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="mr-2">
                     <partial name="_LoginStatusPartial" />
                 </div>
-            </div>
         </nav>
+        </div>
     </header>
 
     <div class="container">

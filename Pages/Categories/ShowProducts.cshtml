@@ -1,0 +1,28 @@
+﻿@page
+@using LTKGMaster.Models
+@model LTKGMaster.Pages.Categories.ShowProductsModel
+@{
+}
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+<ul class="navbar-nav flex-grow-1">
+@foreach(var type in Model.ProductTypes)
+{
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-page="/Categories/ShowProducts" asp-route-type="@type">@type.GetDisplayName()</a>
+        </li>
+}
+</ul>
+</nav>
+
+<form>
+    <div class="form-control">
+        @foreach (var product in Model.Products)
+        {
+            <h3>@product.Title</h3>
+            <p>@product._user.UserName</p>
+            <p>@product._product.Description</p>
+            <p>@product.DateOfCreation</p>
+            <p>@product._product.Price</p>
+        }
+    </div>
+</form>

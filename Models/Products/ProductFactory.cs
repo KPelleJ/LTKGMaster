@@ -15,6 +15,8 @@
                     return new Laptop();
                 case ProductType.Television: 
                     return new Television();
+                case ProductType.Console:
+                    return new Console();
                 default:
                     return null;
             }

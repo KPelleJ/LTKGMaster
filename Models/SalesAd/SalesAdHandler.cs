@@ -56,5 +56,20 @@ namespace LTKGMaster.Models.SalesAd
             _salesAdRepository.Delete(id);
             _productRepository.Delete(id);
         }
+
+        public List<SalesAds> GetProductsOfType(ProductType type)
+        {
+            List<SalesAds> outputList = new List<SalesAds>();
+
+            foreach (SalesAds output in _salesAdRepository.GetAllProductsOfType(type))
+            {
+                output._product = _productRepository.GetById(output.ProdId, type);
+                output._user = _accountRepository.GetById(output.UserId);
+                output.ProductPictures = _pictureRepository.GetAll(output.ProdId);
+                outputList.Add(output);
+            }
+
+            return outputList;
+        }
     }
 }
