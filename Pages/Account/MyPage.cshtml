@@ -1,19 +1,29 @@
 ﻿@page
 @model LTKGMaster.Pages.Account.MyPageModel
 @{
+    
 }
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/AccountStyle.css">
+</head>
 
-<ul class="navbar-nav flex-grow-1">
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-page="/SalesAd/CreateSalesAd">Opret ny annonce</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-page="/Account/MySalesAds">Mine annoncer</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-page="/Account/MyFavorites">Mine favoritter</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-page="/Account/UpdateAccount">Opdater oplysninger</a>
-    </li>
+<div class="text-center">
+    <h1>Hej!</h1>
+</div>
+
+<div class="navbar-container my-page-navbar">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-page="/SalesAd/CreateSalesAd">Opret ny annonce</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-page="/Account/MySalesAds">Mine annoncer</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-page="/Account/MyFavorites">Mine favoritter</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-page="/Account/UpdateAccount">Opdater oplysninger</a>
+        </li>
     </ul>
+</div>

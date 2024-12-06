@@ -2,17 +2,26 @@
 @model LTKGMaster.Pages.Account.MySalesAdsModel
 @{
 }
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/AccountStyle.css">
+</head>
 
-@foreach(var salesAd in Model._salesAdList)
-{
-    <h3>@salesAd.Title</h3>
-    <p>@salesAd.Product.Description</p>
-    <p>@salesAd.DateOfCreation</p>
-    <p>@salesAd.Product.Price</p>
-    
-    <form method="post">
-        <input type="hidden" asp-for="@Model.Id" value="@salesAd.ProdId" />
-        <button type="submit">Slet annonce</button>
-    </form>
-}
+<div class="sales-ads-container">
+    <h2 class="ads-heading">Mine salgs annoncer</h2>
+
+    @foreach (var salesAd in Model._salesAdList)
+    {
+        <div class="sales-ad">
+            <h3>@salesAd.Title</h3>
+            <p>@salesAd.Product.Description</p>
+            <p>@salesAd.DateOfCreation</p>
+            <p>@salesAd.Product.Price</p>
+
+            <form method="post">
+                <input type="hidden" asp-for="@Model.Id" value="@salesAd.ProdId" />
+                <button type="submit" class="delete-button">Slet annonce</button>
+            </form>
+        </div>
+    }
+</div>
 
