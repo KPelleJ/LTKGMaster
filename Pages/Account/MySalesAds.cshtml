@@ -6,9 +6,9 @@
 @foreach(var salesAd in Model._salesAdList)
 {
     <h3>@salesAd.Title</h3>
-    <p>@salesAd._product.Description</p>
+    <p>@salesAd.Product.Description</p>
     <p>@salesAd.DateOfCreation</p>
-    <p>@salesAd._product.Price</p>
+    <p>@salesAd.Product.Price</p>
     
     <form method="post">
         <input type="hidden" asp-for="@Model.Id" value="@salesAd.ProdId" />

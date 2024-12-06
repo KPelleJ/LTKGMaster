@@ -27,7 +27,7 @@ namespace LTKGMaster.Pages.Account
         public void OnGet()
         {
             int userId = int.Parse(User.FindFirst("Id").Value);
-            _salesAdList = _salesAdHandler.GetAllSalesToUser(userId);
+            _salesAdList = _salesAdHandler.GetSalesAdsFromUser(userId);
         }
         public IActionResult Onpost()
         {

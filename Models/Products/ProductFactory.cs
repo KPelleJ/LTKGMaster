@@ -2,11 +2,6 @@
 {
     public class ProductFactory
     {
-        public ProductFactory() 
-        { 
-        
-        }
-
         public Product Create(ProductType productType)
         {
             switch (productType)

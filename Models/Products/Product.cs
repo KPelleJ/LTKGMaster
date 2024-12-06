@@ -30,8 +30,6 @@ namespace LTKGMaster.Models.Products
         [MaxLength(4000)]
         public string Description { get; set; }
 
-        public List<ProductPicture> Pictures { get; set; }
-
         public ProductType Type { get; set; }
 
         public Product(string model, int year, string brand, decimal price, string description)
@@ -43,9 +41,9 @@ namespace LTKGMaster.Models.Products
             Description = description;
         }
 
-        public Product()
-        {
-            
+        public Product() 
+        { 
+        
         }
     }
 }

@@ -19,12 +19,6 @@ namespace LTKGMaster.Models.Users
 
         public bool RememberMe { get; set; }
 
-        public Credential(string email, string passwordHash) :this()
-        { 
-            Email = email;
-            PasswordHash = passwordHash;
-        }
-
         public Credential() 
         { 
         

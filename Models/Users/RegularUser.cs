@@ -29,21 +29,6 @@ namespace LTKGMaster.Models.Users
         [Required]
         public Credential Credential { get; set; }
 
-        public RegularUser(int id, string userName, DateTime signUpDate, string city, Credential credential) : this(userName, city, credential)
-        {
-            Id = id;
-            SignUpDate = signUpDate;
-        }
-
-        public RegularUser(string userName, string city, Credential credential) : this()
-        {
-            UserName = userName;
-            City = city;
-            Credential = credential;
-
-            CredMail = Credential.Email;
-        }
-
         public RegularUser() 
         {
             Credential = new Credential();
