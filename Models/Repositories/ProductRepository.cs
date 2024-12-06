@@ -3,6 +3,9 @@ using Microsoft.Data.SqlClient;
 
 namespace LTKGMaster.Models.Repositories
 {
+    /// <summary>
+    /// Denne klasse håndtere Crudfunktioner for vores produkter, som Laptop, Console
+    /// </summary>
     public class ProductRepository:IProductRepository
     {
         private readonly string _connectionString;
@@ -14,6 +17,11 @@ namespace LTKGMaster.Models.Repositories
             _factory = factory;
         }
 
+        /// <summary>
+        /// Denne metode sender et nyt produkt ned i databasen og returnere et produkt.
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
         public Product Add(Product product)
         {
 
@@ -44,6 +52,10 @@ namespace LTKGMaster.Models.Repositories
             return product;
         }
 
+        /// <summary>
+        /// Denne metode håndtere opdatering af produkter vi allerede har i databasen. 
+        /// </summary>
+        /// <param name="product"></param>
         public void Update(Product product)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -65,6 +77,11 @@ namespace LTKGMaster.Models.Repositories
             }
         }
 
+        /// <summary>
+        /// Denne metode håndtere sletning af produkter vi har på vores website, så når kunderne sletter deres salgsannonce, 
+        /// så går den også herind og sletter produktet fra databasen.
+        /// </summary>
+        /// <param name="id"></param>
         public void Delete(int id)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -81,6 +98,13 @@ namespace LTKGMaster.Models.Repositories
             }
         }
 
+        /// <summary>
+        /// Denne metode finder et produkt udfra produktets id, og fordi vi har flere produkter så sender vi også ProductType med
+        /// som parameter.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public Product GetById(int id, ProductType type)
         {
             Product output = _factory.Create(type);

@@ -2,6 +2,9 @@
 
 namespace LTKGMaster.Models
 {
+    /// <summary>
+    /// Denne klasse har alle vores ProductTyper i en enum så vi har et bedre overblik over hvilke produkttyper vi har.
+    /// </summary>
     public enum ProductType
     {
         [Display(Name = "Bærbar pc")]

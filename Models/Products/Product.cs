@@ -2,6 +2,9 @@
 
 namespace LTKGMaster.Models.Products
 {
+    /// <summary>
+    /// Denne klasse er superklassen over vores produkter, det er her vi har alle vores attributer til de forskellige produkter.
+    /// </summary>
     public abstract class Product
     {
         public int Id { get; set; }
