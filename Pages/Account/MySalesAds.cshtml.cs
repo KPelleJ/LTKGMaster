@@ -1,6 +1,6 @@
 using LTKGMaster.Models.Products;
 using LTKGMaster.Models.Repositories;
-using LTKGMaster.Models.SalesAd;
+using LTKGMaster.Models.SalesAds;
 using LTKGMaster.Models.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.CookiePolicy;
@@ -14,10 +14,10 @@ namespace LTKGMaster.Pages.Account
     public class MySalesAdsModel : PageModel
     {
         public IUser user { get; set; }
-        public SalesAds salesAd { get; set; }
+        public SalesAd salesAd { get; set; }
         public Product product { get; set; }
         private readonly SalesAdHandler _salesAdHandler;
-        public List<SalesAds> _salesAdList {  get; set; }
+        public List<SalesAd> _salesAdList {  get; set; }
         [BindProperty]
         public int Id { get; set; }
         public MySalesAdsModel(SalesAdHandler salesAdHandler)

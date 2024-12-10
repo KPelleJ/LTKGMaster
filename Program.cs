@@ -1,7 +1,7 @@
 using LTKGMaster.Models;
 using LTKGMaster.Models.Products;
 using LTKGMaster.Models.Repositories;
-using LTKGMaster.Models.SalesAd;
+using LTKGMaster.Models.SalesAds;
 using LTKGMaster.Models.Users;
 
 namespace LTKGMaster
@@ -23,6 +23,7 @@ namespace LTKGMaster
             builder.Services.AddSingleton<ProductPictureConverter>();
             builder.Services.AddSingleton<ProductFactory>();
             builder.Services.AddSingleton<SalesAdHandler>();
+            builder.Services.AddSingleton<UserRegistration>();
            
 
             // Dependency injection for HTTPContextAccessor used in login methods

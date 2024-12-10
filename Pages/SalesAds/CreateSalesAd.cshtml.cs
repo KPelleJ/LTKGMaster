@@ -1,7 +1,7 @@
 using LTKGMaster.Models.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using LTKGMaster.Models.SalesAd;
+using LTKGMaster.Models.SalesAds;
 using LTKGMaster.Models.Products;
 using Microsoft.AspNetCore.Authorization;
 using static System.Net.Mime.MediaTypeNames;
@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 using LTKGMaster.Models;
 using System.Diagnostics;
 
-namespace LTKGMaster.Pages.SalesAd
+namespace LTKGMaster.Pages.SalesAds
 {
     [Authorize]
     public class CreateSalesAdModel : PageModel
@@ -24,7 +24,7 @@ namespace LTKGMaster.Pages.SalesAd
         public StandardProduct ProductToAdd { get; set; } 
 
         [BindProperty]
-        public SalesAds NewSalesAd { get; set; }
+        public SalesAd NewSalesAd { get; set; }
 
         [BindProperty]
         [Length(1, 9)]

@@ -1,6 +1,6 @@
 using LTKGMaster.Models.Products;
 using LTKGMaster.Models.Repositories;
-using LTKGMaster.Models.SalesAd;
+using LTKGMaster.Models.SalesAds;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Diagnostics;
@@ -23,7 +23,7 @@ namespace LTKGMaster.Pages
             _pictureConverter = pictureConverter;
         }
 
-        public List<SalesAds> SalesAds { get; set; }
+        public List<SalesAd> SalesAds { get; set; }
 
 
         public void OnGet()
@@ -32,7 +32,7 @@ namespace LTKGMaster.Pages
             //!!!!!!!!!!!!!!ATTENZIONE!!!!!!!!!!!!
             //Det her skal flyttes in i salesAdHandler
             var salesAds = _salesAdRepository.GetAll();
-            List<SalesAds> output = new List<SalesAds>();
+            List<SalesAd> output = new List<SalesAd>();
 
             foreach (var ad in salesAds)
             {

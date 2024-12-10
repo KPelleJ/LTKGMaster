@@ -1,6 +1,6 @@
 ﻿
 using LTKGMaster.Models.Products;
-using LTKGMaster.Models.SalesAd;
+using LTKGMaster.Models.SalesAds;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -22,7 +22,7 @@ namespace LTKGMaster.Models.Repositories
             _factory = factory;
         }
 
-        public void Add(SalesAds salesAd)
+        public void Add(SalesAd salesAd)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -53,7 +53,7 @@ namespace LTKGMaster.Models.Repositories
             }
         }
 
-        public void Update(SalesAds salesAd)
+        public void Update(SalesAd salesAd)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -72,9 +72,9 @@ namespace LTKGMaster.Models.Repositories
             }
         }
 
-        public List<SalesAds> GetAllFromUser(int id)
+        public List<SalesAd> GetAllFromUser(int id)
         {
-            List<SalesAds> list = new List<SalesAds>();
+            List<SalesAd> list = new List<SalesAd>();
 
             using(SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -92,7 +92,7 @@ namespace LTKGMaster.Models.Repositories
 
                 while (reader.Read())
                 {
-                    SalesAds output = new SalesAds();
+                    SalesAd output = new SalesAd();
                     output.ProdId = reader.GetInt32(0);
                     output.UserId = reader.GetInt32(1);
                     output.Title = reader.GetString(2);
@@ -112,9 +112,9 @@ namespace LTKGMaster.Models.Repositories
             }
         }
 
-        public SalesAds GetById(int id)
+        public SalesAd GetById(int id)
         {
-            SalesAds output = new SalesAds();
+            SalesAd output = new SalesAd();
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -140,22 +140,22 @@ namespace LTKGMaster.Models.Repositories
             return output;
         }
 
-        public List<SalesAds> GetAll()
+        public List<SalesAd> GetAll()
         {
-            List<SalesAds> allProducts = new List<SalesAds>();
+            List<SalesAd> allProducts = new List<SalesAd>();
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
 
                 string sql = "SELECT CatId, ProdId, UserId, Title, CreationDate, Products.Description, Products.Price " +
-                            "FROM SalesAds JOIN Products ON Products.Id = SalesAds.ProdId";
+                             "FROM SalesAds JOIN Products ON Products.Id = SalesAds.ProdId";
 
                 SqlCommand command = new SqlCommand(sql, connection);
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    SalesAds output = new SalesAds();
+                    SalesAd output = new SalesAd();
                     output.ProdId = reader.GetInt32(1);
                     output.UserId = reader.GetInt32(2);
                     output.Title = reader.GetString(3);
@@ -173,9 +173,9 @@ namespace LTKGMaster.Models.Repositories
             }
             }
 
-        public List<SalesAds> GetAllProductsOfType(ProductType prodtype)
+        public List<SalesAd> GetAllProductsOfType(ProductType prodtype)
         {
-            List<SalesAds> laptops = new List<SalesAds>();
+            List<SalesAd> laptops = new List<SalesAd>();
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -189,7 +189,7 @@ namespace LTKGMaster.Models.Repositories
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    SalesAds output = new SalesAds();
+                    SalesAd output = new SalesAd();
                     output.ProdId = reader.GetInt32(1);
                     output.UserId = reader.GetInt32(2);
                     output.Title = reader.GetString(3);

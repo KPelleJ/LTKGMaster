@@ -3,7 +3,9 @@ using Microsoft.Data.SqlClient;
 
 namespace LTKGMaster.Models.Repositories
 {
-    //Author Kasper
+    /// <summary>
+    /// Handles data related to User accounts between the client and sql database.
+    /// </summary>
     public class AccountRepository : IAccountRepository
     {
         private readonly string _connectionString;
@@ -13,6 +15,10 @@ namespace LTKGMaster.Models.Repositories
             _connectionString = configuration.GetConnectionString("myDb1");
         }
 
+        /// <summary>
+        /// Adds a IUser object to the sql database
+        /// </summary>
+        /// <param name="account">IUser object with user information to be written to the sql database</param>
         public void Add(IUser account)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -26,7 +32,7 @@ namespace LTKGMaster.Models.Repositories
 
                 SqlCommand command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@Email", account.Credential.Email);
-                command.Parameters.AddWithValue("@PasswordHash", BCrypt.Net.BCrypt.EnhancedHashPassword(account.Credential.Password,12));
+                command.Parameters.AddWithValue("@PasswordHash", account.Credential.PasswordHash);
                 command.Parameters.AddWithValue("@UserName", account.UserName);
                 command.Parameters.AddWithValue("@CredEmail", account.Credential.Email);
                 command.Parameters.AddWithValue("@City", account.City);
@@ -34,6 +40,10 @@ namespace LTKGMaster.Models.Repositories
             }
         }
 
+        /// <summary>
+        /// Updates a IUser object in the sql database
+        /// </summary>
+        /// <param name="user">IUser object with user information to be updated in the sql database</param>
         public void Update(IUser user)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -50,6 +60,11 @@ namespace LTKGMaster.Models.Repositories
             }
         }
 
+        /// <summary>
+        /// Reads and gets an IUser object from the sql database. Used when users want to log in to the system.
+        /// </summary>
+        /// <param name="email">Unique email identifier used to retrieve information regarding the IUser object</param>
+        /// <returns>The IUser object matching the email</returns>
         public IUser Get(string email)
         {
             //Det her skal laves om så der er en bedre måde at lave RegularUser på
@@ -80,6 +95,12 @@ namespace LTKGMaster.Models.Repositories
             return output;
         }
 
+        /// <summary>
+        /// Reads and gets an IUser object from the sql database. Used when only the UserId is known for retrieving information
+        /// regarding salesads
+        /// </summary>
+        /// <param name="id">The UserId of the IUser object that is to be retrieved</param>
+        /// <returns>IUser object from the sql database with a matching UserId</returns>
         public IUser GetById(int id)
         {
             IUser output = new RegularUser();

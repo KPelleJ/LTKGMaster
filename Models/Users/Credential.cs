@@ -3,21 +3,30 @@ using System.Net;
 
 namespace LTKGMaster.Models.Users
 {
-    //Author Kasper
+    /// <summary>
+    /// Contains information used for user creation and login operations.
+    /// </summary>
     public class Credential
     {
+        /// <summary>
+        /// A unique email address to be used by the user
+        /// </summary>
         [Required]
         [RegularExpression(@"^[0-9a-zA-ZæøåÆØÅ@._-]+$", ErrorMessage = "The Email field contains invalid characters.")]
         [Length(5, 125, ErrorMessage = "Your Email must be between 5 and 125 characters")]
         public string Email { get; set; }
 
+        /// <summary>
+        /// The password input before hashing
+        /// </summary>
         [Required]
         [Length(5,40, ErrorMessage = "Your Password must be between 5 and 125 characters")]
         public string Password { get; set; }
 
+        /// <summary>
+        /// The hashed password to be used for validation
+        /// </summary>
         public string ?PasswordHash { get; set; }
-
-        public bool RememberMe { get; set; }
 
         public Credential() 
         { 

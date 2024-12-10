@@ -1,16 +1,16 @@
 using LTKGMaster.Models;
-using LTKGMaster.Models.SalesAd;
+using LTKGMaster.Models.SalesAds;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace LTKGMaster.Pages.SalesAd
+namespace LTKGMaster.Pages.SalesAds
 {
 
     //Work in progress. Der skal tilføjes ting i HTML'en til de enkelte produktiformationer og der skal laves en billede karousel
     public class ShowAdModel : PageModel
     {
         [BindProperty]
-        public SalesAds AdForShow {  get; set; }
+        public SalesAd AdForShow {  get; set; }
 
         private readonly SalesAdHandler _salesAdHandler;
 

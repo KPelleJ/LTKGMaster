@@ -1,5 +1,6 @@
 ﻿namespace LTKGMaster.Models.Products
 {
+
     public class ProductFactory
     {
         public Product Create(ProductType productType)

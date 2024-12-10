@@ -1,16 +1,16 @@
 ﻿using LTKGMaster.Models.Products;
-using LTKGMaster.Models.SalesAd;
+using LTKGMaster.Models.SalesAds;
 
 namespace LTKGMaster.Models.Repositories
 {
     public interface ISalesAdRepository
     {
-        void Add(SalesAds salesAd);
+        void Add(SalesAd salesAd);
         void Delete(int id);
-        List<SalesAds> GetAll();
-        void Update(SalesAds salesAd);
-        List<SalesAds> GetAllFromUser(int id);
-        List<SalesAds> GetAllProductsOfType(ProductType prodtype);
-        SalesAds GetById(int id);
+        List<SalesAd> GetAll();
+        void Update(SalesAd salesAd);
+        List<SalesAd> GetAllFromUser(int id);
+        List<SalesAd> GetAllProductsOfType(ProductType prodtype);
+        SalesAd GetById(int id);
     }
 }

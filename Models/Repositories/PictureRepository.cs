@@ -6,6 +6,9 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace LTKGMaster.Models.Repositories
 {
+    /// <summary>
+    /// Handles data related to ProductPictures that is to be written or read from the sql database.
+    /// </summary>
     public class PictureRepository : IPictureRepository
     {
         private readonly string _connectionString;
@@ -15,6 +18,10 @@ namespace LTKGMaster.Models.Repositories
             _connectionString = configuration.GetConnectionString("myDb1");
         }
 
+        /// <summary>
+        /// Adds data relating to a ProductPicture object to the sql database
+        /// </summary>
+        /// <param name="image">The ProductPicture containing the data to be written to the sql database</param>
         public void Add(ProductPicture image)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -32,6 +39,10 @@ namespace LTKGMaster.Models.Repositories
             }
         }
 
+        /// <summary>
+        /// Removes a picture from the sql database
+        /// </summary>
+        /// <param name="id">The id of the Product of which the ProductPicture belongs to.</param>
         public void Delete(int id)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -48,6 +59,11 @@ namespace LTKGMaster.Models.Repositories
             }
         }
 
+        /// <summary>
+        /// Retrieves a list of ProductPictures to be used in SalesAd
+        /// </summary>
+        /// <param name="productId">The id of the Product of which the ProductPictures belongs to.</param>
+        /// <returns>A list containing the ProductPictures that match the Id of the input productId</returns>
         public List<ProductPicture> GetAll(int productId)
         {
             List<ProductPicture> outputPictures = new List<ProductPicture>();

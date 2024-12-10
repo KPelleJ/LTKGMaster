@@ -2,7 +2,7 @@
 using LTKGMaster.Models.Repositories;
 using LTKGMaster.Models.Users;
 
-namespace LTKGMaster.Models.SalesAd
+namespace LTKGMaster.Models.SalesAds
 {
     public class SalesAdHandler
     {
@@ -21,7 +21,7 @@ namespace LTKGMaster.Models.SalesAd
             _pictureConverter = productPictureConverter;
         }
 
-        public void Add(Product product, SalesAds salesAd, List<IFormFile> productImages)
+        public void Add(Product product, SalesAd salesAd, List<IFormFile> productImages)
         {
             salesAd.ProdId = _productRepository.Add(product).Id;
 
@@ -38,16 +38,16 @@ namespace LTKGMaster.Models.SalesAd
         //!!!!!!!!!!!!!!!!!!!!!!!ATTENZIONE!!!!!!!!!!!!!!!!!!
         //Den her metode kan laves om til en giga lang query hvis det er bedre, vi skal lige høre Camilla ad
         //!!!!!!!!!!!!!!!!!!!!!!!ATTENZIONE!!!!!!!!!!!!!!!!!!
-        public SalesAds Get(int id, ProductType type)
+        public SalesAd Get(int id, ProductType type)
         { 
-            SalesAds output = _salesAdRepository.GetById(id);
+            SalesAd output = _salesAdRepository.GetById(id);
             output.User = _accountRepository.GetById(output.UserId);
             output.Product = _productRepository.GetById(id, type);
             output.ProductPictures = _pictureConverter.ByteArrayToBase64(_pictureRepository.GetAll(id));
             return output;
         }
 
-        public List<SalesAds> GetSalesAdsFromUser(int userId)
+        public List<SalesAd> GetSalesAdsFromUser(int userId)
         {
             return _salesAdRepository.GetAllFromUser(userId);
         }
@@ -59,11 +59,11 @@ namespace LTKGMaster.Models.SalesAd
             _productRepository.Delete(id);
         }
 
-        public List<SalesAds> GetProductsOfType(ProductType type)
+        public List<SalesAd> GetProductsOfType(ProductType type)
         {
-            List<SalesAds> outputList = new List<SalesAds>();
+            List<SalesAd> outputList = new List<SalesAd>();
 
-            foreach (SalesAds output in _salesAdRepository.GetAllProductsOfType(type))
+            foreach (SalesAd output in _salesAdRepository.GetAllProductsOfType(type))
             {
                 output.Product = _productRepository.GetById(output.ProdId, type);
                 output.User = _accountRepository.GetById(output.UserId);

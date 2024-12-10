@@ -8,14 +8,14 @@ namespace LTKGMaster.Pages.Account
     //Author Kasper
     public class MemberRegistrationModel : PageModel
     {
-        private readonly IAccountRepository _accountRepository;
+        private readonly UserRegistration _userRegistration;
 
         [BindProperty]
         public RegularUser User { get; set; }
 
-        public MemberRegistrationModel(IAccountRepository accountRepository)
+        public MemberRegistrationModel(UserRegistration userRegistration)
         {
-            _accountRepository = accountRepository;
+            _userRegistration = userRegistration;
         }
 
         public void OnGet()
@@ -30,7 +30,7 @@ namespace LTKGMaster.Pages.Account
                 return Page();
             }
 
-            _accountRepository.Add(User);
+            _userRegistration.CreateUser(User);
             return RedirectToPage("/Index");
         }
     }

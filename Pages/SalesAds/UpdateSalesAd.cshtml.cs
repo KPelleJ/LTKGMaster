@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace LTKGMaster.Pages.SalesAd
+namespace LTKGMaster.Pages.SalesAds
 {
     public class UpdateSalesAdModel : PageModel
     {

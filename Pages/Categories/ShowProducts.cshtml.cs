@@ -1,5 +1,5 @@
 using LTKGMaster.Models;
-using LTKGMaster.Models.SalesAd;
+using LTKGMaster.Models.SalesAds;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -10,7 +10,7 @@ namespace LTKGMaster.Pages.Categories
         private readonly SalesAdHandler _salesAdHandler;
 
         [BindProperty]
-        public List<SalesAds> Products { get; set; }
+        public List<SalesAd> Products { get; set; }
 
         public ProductType[] ProductTypes = (ProductType[])Enum.GetValues(typeof(ProductType));
 
@@ -22,7 +22,7 @@ namespace LTKGMaster.Pages.Categories
         {
             if (type == 0)
             {
-                Products = new List<SalesAds>();
+                Products = new List<SalesAd>();
                 return Page();
             }
 

@@ -2,7 +2,9 @@
 
 namespace LTKGMaster.Models.Users
 {
-    //Author Kasper
+    /// <summary>
+    /// Defines methods to be used for user login actions
+    /// </summary>
     public interface ILogin
     {
         bool UserLogin(Credential c);

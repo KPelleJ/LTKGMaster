@@ -7,19 +7,19 @@
     <form method="post">
         <div class="text-danger" asp-validation-summary="ModelOnly"></div>
         <div class="mb-3">
-            <label asp-for="Credential.Email"></label>
+            <label asp-for="Credential.Email">Email adresse</label>
             <input type="text" asp-for="Credential.Email" class="form-control" />
             <span class="text-danger" asp-validation-for="Credential.Email"></span>
         </div>
         <div class="mb-3">
-            <label asp-for="Credential.Password"></label>
+            <label asp-for="Credential.Password">Kodeord</label>
             <input type="password" asp-for="Credential.Password" class="form-control" />
             <span class="text-danger" asp-validation-for="Credential.Password"></span>
         </div>
         <div class="row form-check mb-2">
             <div class="col-2">
-                <input type="checkbox" asp-for="Credential.RememberMe" class="form-check-input" />
-                <label class="form-check-label" asp-for="Credential.RememberMe"></label>
+                <input type="checkbox" asp-for="RememberMe" class="form-check-input" />
+                <label class="form-check-label" asp-for="RememberMe">Husk mig</label>
             </div>
         </div>
         <div class="mb-2">

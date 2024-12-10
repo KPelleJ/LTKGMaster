@@ -2,7 +2,7 @@
 using LTKGMaster.Models.Products;
 using LTKGMaster.Models.Users;
 
-namespace LTKGMaster.Models.SalesAd
+namespace LTKGMaster.Models.SalesAds
 {
     public interface ISalesAd
     {

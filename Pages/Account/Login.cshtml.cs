@@ -17,6 +17,9 @@ namespace LTKGMaster.Pages.Account
         [BindProperty]
         public Credential Credential { get; set; }
 
+        [BindProperty]
+        public bool RememberMe { get; set; }
+
         public LoginModel(ILogin loginservice, IAccountRepository accountRepository) 
         { 
             _loginservice = loginservice;
@@ -63,7 +66,7 @@ namespace LTKGMaster.Pages.Account
 
             var authProperties = new AuthenticationProperties
             {
-                IsPersistent = Credential.RememberMe
+                IsPersistent = RememberMe
             };
 
             await HttpContext.SignInAsync(CookieConstants.CookieName, principal, authProperties);

@@ -2,7 +2,9 @@
 
 namespace LTKGMaster.Models.Repositories
 {
-    //Author Kasper
+    /// <summary>
+    /// Defines methods to be used for handling data related to the User accounts.
+    /// </summary>
     public interface IAccountRepository
     {
         void Add(IUser account);
