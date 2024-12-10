@@ -3,7 +3,7 @@
 namespace LTKGMaster.Models
 {
     /// <summary>
-    /// Denne klasse har alle vores ProductTyper i en enum så vi har et bedre overblik over hvilke produkttyper vi har.
+    /// This is where we store the enum that have all our different product types.
     /// </summary>
     public enum ProductType
     {

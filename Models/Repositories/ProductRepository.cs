@@ -4,7 +4,7 @@ using Microsoft.Data.SqlClient;
 namespace LTKGMaster.Models.Repositories
 {
     /// <summary>
-    /// Denne klasse håndtere Crudfunktioner for vores produkter, som Laptop, Console
+    /// This class handles CRUD funktions for the product class.
     /// </summary>
     public class ProductRepository:IProductRepository
     {
@@ -18,10 +18,10 @@ namespace LTKGMaster.Models.Repositories
         }
 
         /// <summary>
-        /// Denne metode sender et nyt produkt ned i databasen og returnere et produkt.
+        /// This method adds a new product to the database and returns the product again.
         /// </summary>
-        /// <param name="product"></param>
-        /// <returns></returns>
+        /// <param name="product">This is the product we want to add to the database</param>
+        /// <returns>The product we want to return so that we can use it somewhere else in our code.</returns>
         public Product Add(Product product)
         {
 
@@ -53,9 +53,9 @@ namespace LTKGMaster.Models.Repositories
         }
 
         /// <summary>
-        /// Denne metode håndtere opdatering af produkter vi allerede har i databasen. 
+        /// This method handles the update of an already excisting product in the database.
         /// </summary>
-        /// <param name="product"></param>
+        /// <param name="product">The product we want to update.</param>
         public void Update(Product product)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -78,10 +78,10 @@ namespace LTKGMaster.Models.Repositories
         }
 
         /// <summary>
-        /// Denne metode håndtere sletning af produkter vi har på vores website, så når kunderne sletter deres salgsannonce, 
-        /// så går den også herind og sletter produktet fra databasen.
+        /// This method handles the deleting of the product we have on our website, so that the customers can delete their sales ads
+        /// it also deletes the product form the database.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">It is the id of the product we want to delete.</param>
         public void Delete(int id)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -99,12 +99,12 @@ namespace LTKGMaster.Models.Repositories
         }
 
         /// <summary>
-        /// Denne metode finder et produkt udfra produktets id, og fordi vi har flere produkter så sender vi også ProductType med
-        /// som parameter.
+        /// This method finds the Product with the Id, 
+        /// and because we have more that just one type of Product we send a ProductType parameter with it.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="type"></param>
-        /// <returns></returns>
+        /// <param name="id">It is the id that we use to get the Product</param>
+        /// <param name="type">Its the type of Product we get when we call the method.</param>
+        /// <returns>Returns the Product we want to get by id.</returns>
         public Product GetById(int id, ProductType type)
         {
             Product output = _factory.Create(type);

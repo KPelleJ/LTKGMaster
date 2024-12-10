@@ -4,16 +4,15 @@ using System.Reflection;
 namespace LTKGMaster.Models
 {
     /// <summary>
-    /// Denne klasse er en extension til vores enum som bare viser et specifikt navn ude på websiten som vi så bestemmer i enumklassen
+    /// This is the class the gives us the ability to display the name of our enums in our code that we decide in the enum class.
     /// </summary>
     public static class EnumExtensions
     {
         /// <summary>
-        /// Denne metode giver os muligheden for at DisplayName virker ude på vores html sider ellers kom navnet på den enkelte
-        /// enum bare frem
+        /// This is the method that gives us the oppotunity to Display the name of our enum annotation DisplayName out in the website.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="value">The enum form which we want to use the DisplayName.</param>
+        /// <returns>Returns the string that shows in the Display name annotation.</returns>
         public static string GetDisplayName(this Enum value)
         {
             var fieldInfo = value.GetType().GetField(value.ToString());

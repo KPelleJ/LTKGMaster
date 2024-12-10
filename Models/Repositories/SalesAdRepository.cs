@@ -102,8 +102,6 @@ namespace LTKGMaster.Models.Repositories
                     outputProduct.Description = reader.GetString(4);
                     outputProduct.Price = reader.GetDecimal(5);
                     output.Product = outputProduct;
-                    //output.Product.Description = reader.GetString(4);
-                    //output.Product.Price = reader.GetDecimal(5);
                     
                     
                     list.Add(output);
