@@ -3,7 +3,8 @@
 namespace LTKGMaster.Models.Products
 {
     /// <summary>
-    /// Denne klasse er en subklasse til Product superklassen den fortæller bare at en Laptop bliver født som en Laptop.
+    /// This class is a subclass to the Product superclass it inherits from the superclass,
+    /// it only tells that when we create a Laptop object it is a Laptop.
     /// </summary>
     public class Laptop: Product
     {

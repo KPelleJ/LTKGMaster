@@ -3,7 +3,8 @@
 namespace LTKGMaster.Models.Products
 {
     /// <summary>
-    /// Denne klasse er superklassen over vores produkter, det er her vi har alle vores attributer til de forskellige produkter.
+    /// This is the superclass for all out products, this is where all the attributes is for the different products.
+    /// The class is abstract so we cant instatiate them in our code.
     /// </summary>
     public abstract class Product
     {

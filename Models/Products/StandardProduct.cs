@@ -1,7 +1,8 @@
 ﻿namespace LTKGMaster.Models.Products
 {
     /// <summary>
-    /// Dette er vores standard product subklasse som vi bruger når vi laver et nyt product.
+    /// This is our standard product subclass, we use this class as a placeholder to store informationer 
+    /// before it enters the product factory.
     /// </summary>
     public class StandardProduct:Product
     {

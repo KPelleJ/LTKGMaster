@@ -3,7 +3,7 @@
 namespace LTKGMaster.Models.Repositories
 {
     /// <summary>
-    /// Dette interface håndtere de metoder som indgår i ProductRepository klassen
+    /// This is the interface that handles the methods we use in our ProductRepository class.
     /// </summary>
     public interface IProductRepository
     {
