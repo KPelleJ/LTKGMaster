@@ -16,6 +16,7 @@ namespace LTKGMaster.Models.Products
         public string Model { get; set; }
 
         [Required]
+        [RegularExpression(@"^[0-9]")]
         public int Year { get; set; }
 
         [Required(ErrorMessage ="Maks 255 tegn.")]
@@ -25,6 +26,7 @@ namespace LTKGMaster.Models.Products
 
         [Required(ErrorMessage ="Skal være mere end 0.")]
         [Range(0, 1000000)]
+        [RegularExpression(@"^[0-9]")]
         public decimal Price { get; set; }
 
         [Required(ErrorMessage ="Må ikke være mere end 4000 tegn.")]

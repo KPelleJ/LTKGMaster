@@ -26,7 +26,7 @@ namespace LTKGMaster.Pages
         public List<SalesAd> SalesAds { get; set; }
 
 
-        public void OnGet()
+        public void OnGet(string searchQuery)
         {
            
             //!!!!!!!!!!!!!!ATTENZIONE!!!!!!!!!!!!
@@ -38,10 +38,12 @@ namespace LTKGMaster.Pages
             {
                 ad.ProductPictures = _pictureRepository.GetAll(ad.ProdId);
                 ad.ProductPictures = _pictureConverter.ByteArrayToBase64(ad.ProductPictures);
-                output.Add(ad);
-            }
 
-            Debug.WriteLine("Stop");
+                if (string.IsNullOrEmpty(searchQuery) || ad.Title.Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
+                {
+                    output.Add(ad);
+                }
+            }
 
             SalesAds = output;
         }
