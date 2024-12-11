@@ -21,22 +21,29 @@ namespace LTKGMaster.Models.Repositories
         /// <param name="account">IUser object with user information to be written to the sql database</param>
         public void Add(IUser account)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
 
-                string sql = "INSERT INTO Credentials (Email, PasswordHash) " +
-                             "VALUES (@Email, @PasswordHash);" +
-                             "INSERT INTO Users (UserName, CredEmail, City)" +
-                             "VALUES (@UserName, @CredEmail, @City)";
+                    string sql = "INSERT INTO Credentials (Email, PasswordHash) " +
+                                 "VALUES (@Email, @PasswordHash);" +
+                                 "INSERT INTO Users (UserName, CredEmail, City)" +
+                                 "VALUES (@UserName, @CredEmail, @City)";
 
-                SqlCommand command = new SqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@Email", account.Credential.Email);
-                command.Parameters.AddWithValue("@PasswordHash", account.Credential.PasswordHash);
-                command.Parameters.AddWithValue("@UserName", account.UserName);
-                command.Parameters.AddWithValue("@CredEmail", account.Credential.Email);
-                command.Parameters.AddWithValue("@City", account.City);
-                command.ExecuteNonQuery();
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@Email", account.Credential.Email);
+                    command.Parameters.AddWithValue("@PasswordHash", account.Credential.PasswordHash);
+                    command.Parameters.AddWithValue("@UserName", account.UserName);
+                    command.Parameters.AddWithValue("@CredEmail", account.Credential.Email);
+                    command.Parameters.AddWithValue("@City", account.City);
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new InvalidOperationException("Database operation failed.", ex);
             }
         }
 

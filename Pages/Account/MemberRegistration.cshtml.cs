@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace LTKGMaster.Pages.Account
 {
-    //Author Kasper
     public class MemberRegistrationModel : PageModel
     {
         private readonly UserRegistration _userRegistration;
@@ -30,8 +29,21 @@ namespace LTKGMaster.Pages.Account
                 return Page();
             }
 
-            _userRegistration.CreateUser(User);
-            return RedirectToPage("/Index");
+            try
+            {
+                _userRegistration.CreateUser(User);
+                return RedirectToPage("/Index");
+            }
+            catch (InvalidOperationException ex)
+            {
+                ModelState.AddModelError(string.Empty, "An error occured while creating the user");
+                return Page();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "An unexpected error occurred. Please try again.");
+                return Page();
+            }
         }
     }
 }

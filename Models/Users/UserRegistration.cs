@@ -20,12 +20,22 @@ namespace LTKGMaster.Models.Users
         /// <param name="user"></param>
         public void CreateUser(IUser user)
         {
-            IUser output = user;
+            try
+            {
+                IUser output = user;
 
-            //The users password input in string format is salted and hashed by using BCrypt.
-            output.Credential.PasswordHash = BCrypt.Net.BCrypt.EnhancedHashPassword(user.Credential.Password, 12);
+                output.Credential.PasswordHash = BCrypt.Net.BCrypt.EnhancedHashPassword(user.Credential.Password, 12);
 
-            _accountRepository.Add(output);
+                _accountRepository.Add(output);
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw new InvalidOperationException("An error occurred while creating the user.", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Unexpected error in CreateUser method.", ex);
+            }
         }
     }
 }

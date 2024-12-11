@@ -16,6 +16,7 @@ namespace LTKGMaster.Models.Repositories
             _connectionString = configuration.GetConnectionString("myDb1");
             _factory = factory;
         }
+
         /// <summary>
         /// This method adds a new product to the database and returns the product again.
         /// </summary>
@@ -125,7 +126,7 @@ namespace LTKGMaster.Models.Repositories
         /// <param name="id">It is the id that we use to get the Product</param>
         /// <param name="type">Its the type of Product we get when we call the method.</param>
         /// <returns>Returns the Product we want to get by id.</returns>
-        public Product GetById(int id, ProductType type)
+        public Product GetByIdAndType(int id, ProductType type)
         {
             try
             {
@@ -142,6 +143,7 @@ namespace LTKGMaster.Models.Repositories
                     command.Parameters.AddWithValue("@Id", id);
 
                     SqlDataReader reader = command.ExecuteReader();
+                    
 
                     while (reader.Read())
                     {
@@ -160,6 +162,45 @@ namespace LTKGMaster.Models.Repositories
             {
                 throw new InvalidOperationException("Kunne ikke finde produkt med det Id. Server fejl.", e);
             }
+        }
+
+        public Product GetById(int id)
+        {
+            try
+            {
+                Product output = new StandardProduct();
+
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+
+                    string sql = "SELECT Id, Description, Year, Brand, Model, Price, CatId FROM Products WHERE Id = @Id;";
+
+                    SqlCommand command = new SqlCommand(sql, connection);
+
+                    command.Parameters.AddWithValue("@Id", id);
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+
+                    while (reader.Read())
+                    {
+                        output = _factory.Create((ProductType)reader.GetInt32(6));
+                        output.Id = reader.GetInt32(0);
+                        output.Description = reader.GetString(1);
+                        output.Year = reader.GetInt32(2);
+                        output.Brand = reader.GetString(3);
+                        output.Model = reader.GetString(4);
+                        output.Price = reader.GetDecimal(5);
+                    }
+                }
+
+                return output;
             }
+            catch (SqlException e)
+            {
+                throw new InvalidOperationException("Kunne ikke finde produkt med det Id. Server fejl.", e);
+            }
+        }
     }
 }

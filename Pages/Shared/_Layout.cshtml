@@ -22,8 +22,14 @@
                     </button>
                     <ul>
                         <li role="search">
-                            <input type="search" placeholder="Search.." id="searchbar" name="q" aria-label="Search through site content" />
-                            <button type="submit">Search</button>
+                            <form method="get" action="/SalesAds/Search">
+                                <input type="search"
+                                       placeholder="Search.."
+                                       id="searchbar"
+                                       name="searchQuery"
+                                       aria-label="Search through site content" />
+                                <button type="submit">Søg</button>
+                            </form>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/SalesAds/CreateSalesAd">Opret ny annonce</a>

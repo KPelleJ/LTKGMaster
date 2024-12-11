@@ -1,0 +1,37 @@
+﻿@page
+@model LTKGMaster.Pages.SalesAds.SearchModel
+@{
+}
+<div class="container">
+    <div class="title-container text-center my-4">
+        <h1>@ViewData["Title"]</h1>
+    </div>
+    <h1>Søgeresultater for '@Model.SearchQuery'</h1>
+    <div class="grid-container">
+        @if(Model.SearchResults.Count.Equals(0))
+        {
+            <h1>Der er ingen resultater for '@Model.SearchQuery'</h1>
+        }
+        else
+        {
+        @foreach (var ad in Model.SearchResults)
+        {
+            <div class="ad-box mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>@ad.Title</h2>
+                        <p>Created: @ad.DateOfCreation.ToString("dd-MM-yyyy")</p>
+                        <div class="ad-images mb-3">
+                            <div class="ad-image mb-3">
+                                <img src="@ad.ProductPictures.First().ImageDataBase64String" class="img-fluid" alt="@ad.ProductPictures.First().FileName" />
+                            </div>
+                        </div>
+
+                        <a class="btn btn-primary" asp-page="/SalesAds/ShowAd" asp-route-id="@ad.ProdId" asp-route-type="@ad.Product.Type">View Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+        }
+    </div>
+</div>

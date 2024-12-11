@@ -35,14 +35,11 @@ namespace LTKGMaster.Models.SalesAds
             _salesAdRepository.Add(salesAd);
         }
 
-        //!!!!!!!!!!!!!!!!!!!!!!!ATTENZIONE!!!!!!!!!!!!!!!!!!
-        //Den her metode kan laves om til en giga lang query hvis det er bedre, vi skal lige høre Camilla ad
-        //!!!!!!!!!!!!!!!!!!!!!!!ATTENZIONE!!!!!!!!!!!!!!!!!!
         public SalesAd Get(int id, ProductType type)
         { 
             SalesAd output = _salesAdRepository.GetById(id);
             output.User = _accountRepository.GetById(output.UserId);
-            output.Product = _productRepository.GetById(id, type);
+            output.Product = _productRepository.GetByIdAndType(id, type);
             output.ProductPictures = _pictureConverter.ByteArrayToBase64(_pictureRepository.GetAll(id));
             return output;
         }
@@ -65,9 +62,34 @@ namespace LTKGMaster.Models.SalesAds
 
             foreach (SalesAd output in _salesAdRepository.GetAllProductsOfType(type))
             {
-                output.Product = _productRepository.GetById(output.ProdId, type);
+                output.Product = _productRepository.GetByIdAndType(output.ProdId, type);
                 output.User = _accountRepository.GetById(output.UserId);
-                output.ProductPictures = _pictureRepository.GetAll(output.ProdId);
+                output.ProductPictures = _pictureConverter.ByteArrayToBase64(_pictureRepository.GetAll(output.ProdId));
+                outputList.Add(output);
+            }
+
+            return outputList;
+        }
+
+        public List<SalesAd> GetSearchResults(string searchQuery)
+        {
+            List<SalesAd> listToSearch = new List<SalesAd>();
+            List<SalesAd> outputList = new List<SalesAd>();
+
+            foreach (SalesAd output in _salesAdRepository.GetAll())
+            {
+                output.Product = _productRepository.GetById(output.ProdId);
+                listToSearch.Add(output);
+            }
+
+            foreach (SalesAd output in listToSearch.FindAll(x => 
+            x.Title.Contains(searchQuery) || 
+            x.Product.Type.ToString().Equals(searchQuery) ||
+            x.Product.Brand.Contains(searchQuery) ||
+            x.Product.Model.Contains(searchQuery)))
+            {
+                output.User = _accountRepository.GetById(output.UserId);
+                output.ProductPictures = _pictureConverter.ByteArrayToBase64(_pictureRepository.GetAll(output.ProdId));
                 outputList.Add(output);
             }
 
