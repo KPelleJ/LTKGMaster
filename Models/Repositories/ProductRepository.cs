@@ -13,10 +13,12 @@ namespace LTKGMaster.Models.Repositories
 
         public ProductRepository(IConfiguration configuration, ProductFactory factory)
         {
-            _connectionString = configuration.GetConnectionString("myDb1");
+            if (configuration != null)
+            {
+                _connectionString = configuration.GetConnectionString("myDb1");
+            }
             _factory = factory;
         }
-
         /// <summary>
         /// This method adds a new product to the database and returns the product again.
         /// </summary>
@@ -24,32 +26,40 @@ namespace LTKGMaster.Models.Repositories
         /// <returns>The product we want to return so that we can use it somewhere else in our code.</returns>
         public Product Add(Product product)
         {
-
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            try
             {
-                connection.Open();
-
-                string sql = "INSERT INTO Products (CatId, Description, Year, Brand, Model, Price) " +
-                             "VALUES (@CatId, @Description, @Year, @Brand, @Model, @Price)" +
-                             "SELECT Id FROM Products WHERE Id = SCOPE_IDENTITY();";
-
-                SqlCommand command = new SqlCommand(sql, connection);
-
-                command.Parameters.AddWithValue("@CatId", product.Type);
-                command.Parameters.AddWithValue("@Description", product.Description);
-                command.Parameters.AddWithValue("@Year", product.Year);
-                command.Parameters.AddWithValue("@Brand", product.Brand);
-                command.Parameters.AddWithValue("@Model", product.Model);
-                command.Parameters.AddWithValue("@Price", product.Price);
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
+                using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
-                    product.Id = reader.GetInt32(0);
+                    connection.Open();
+
+                    string sql = "INSERT INTO Products (CatId, Description, Year, Brand, Model, Price) " +
+                                 "VALUES (@CatId, @Description, @Year, @Brand, @Model, @Price)" +
+                                 "SELECT Id FROM Products WHERE Id = SCOPE_IDENTITY();";
+
+                    SqlCommand command = new SqlCommand(sql, connection);
+
+                    command.Parameters.AddWithValue("@CatId", product.Type);
+                    command.Parameters.AddWithValue("@Description", product.Description);
+                    command.Parameters.AddWithValue("@Year", product.Year);
+                    command.Parameters.AddWithValue("@Brand", product.Brand);
+                    command.Parameters.AddWithValue("@Model", product.Model);
+                    command.Parameters.AddWithValue("@Price", product.Price);
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        product.Id = reader.GetInt32(0);
+                    }
                 }
+                return product;
             }
-            return product;
+            //Here we catch an error if that would have occured
+            catch(SqlException e)
+            {
+                throw new InvalidOperationException("Fejl opstået ved tilføjelse af produkt. Server fejl.", e);
+                //We could also have thrown a 'throw;' to keep the stack trace.
+            }
         }
 
         /// <summary>
@@ -58,23 +68,30 @@ namespace LTKGMaster.Models.Repositories
         /// <param name="product">The product we want to update.</param>
         public void Update(Product product)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
 
-                string sql = "UPDATE Products SET Description = @Description, Year = @Year," +
-                    "Brand = @Brand, Model = @Model, Price = @Price WHERE Id = @Id";
+                    string sql = "UPDATE Products SET Description = @Description, Year = @Year," +
+                        "Brand = @Brand, Model = @Model, Price = @Price WHERE Id = @Id";
 
-                SqlCommand command = new SqlCommand(sql, connection);
+                    SqlCommand command = new SqlCommand(sql, connection);
 
-                command.Parameters.AddWithValue("@Description", product.Description);
-                command.Parameters.AddWithValue("@Year", product.Year);
-                command.Parameters.AddWithValue("@Brand", product.Brand);
-                command.Parameters.AddWithValue("@Model", product.Model);
-                command.Parameters.AddWithValue("@Price", product.Price);
+                    command.Parameters.AddWithValue("@Description", product.Description);
+                    command.Parameters.AddWithValue("@Year", product.Year);
+                    command.Parameters.AddWithValue("@Brand", product.Brand);
+                    command.Parameters.AddWithValue("@Model", product.Model);
+                    command.Parameters.AddWithValue("@Price", product.Price);
 
-                command.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
+                }
             }
+            catch (SqlException e) 
+            {
+                throw new InvalidOperationException("Fejl ved opdatering af produkt. Server fejl.", e);
+            } 
         }
 
         /// <summary>
@@ -84,17 +101,23 @@ namespace LTKGMaster.Models.Repositories
         /// <param name="id">It is the id of the product we want to delete.</param>
         public void Delete(int id)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
 
-                string sql = "DELETE FROM Products Where Id = @Id";
+                    string sql = "DELETE FROM Products Where Id = @Id";
 
-                SqlCommand command = new SqlCommand(sql, connection);
+                    SqlCommand command = new SqlCommand(sql, connection);
 
-                command.Parameters.AddWithValue("@Id", id);
+                    command.Parameters.AddWithValue("@Id", id);
 
-                command.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
+                }
+            }catch(SqlException e)
+            {
+                throw new InvalidOperationException("Fejl ved sletning af produkt. Server fejl.", e);
             }
         }
 
@@ -107,32 +130,39 @@ namespace LTKGMaster.Models.Repositories
         /// <returns>Returns the Product we want to get by id.</returns>
         public Product GetById(int id, ProductType type)
         {
-            Product output = _factory.Create(type);
-
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            try
             {
-                connection.Open();
+                Product output = _factory.Create(type);
 
-                string sql = "SELECT Id, Description, Year, Brand, Model, Price FROM Products WHERE Id = @Id;";
-
-                SqlCommand command = new SqlCommand(sql, connection);
-
-                command.Parameters.AddWithValue("@Id", id);
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
+                using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
-                    output.Id = reader.GetInt32(0);
-                    output.Description = reader.GetString(1);
-                    output.Year = reader.GetInt32(2);
-                    output.Brand = reader.GetString(3);
-                    output.Model = reader.GetString(4);
-                    output.Price = reader.GetDecimal(5);
-                }
-            }
+                    connection.Open();
 
-            return output;
-        }
+                    string sql = "SELECT Id, Description, Year, Brand, Model, Price FROM Products WHERE Id = @Id;";
+
+                    SqlCommand command = new SqlCommand(sql, connection);
+
+                    command.Parameters.AddWithValue("@Id", id);
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        output.Id = reader.GetInt32(0);
+                        output.Description = reader.GetString(1);
+                        output.Year = reader.GetInt32(2);
+                        output.Brand = reader.GetString(3);
+                        output.Model = reader.GetString(4);
+                        output.Price = reader.GetDecimal(5);
+                    }
+                }
+
+                return output;
+            }
+            catch (SqlException e)
+            {
+                throw new InvalidOperationException("Kunne ikke finde produkt med det Id. Server fejl.", e);
+            }
+            }
     }
 }
