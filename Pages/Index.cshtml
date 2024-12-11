@@ -7,13 +7,6 @@ ViewData["Title"] = "Salgs Annoncer";
 <div class="container">
     <div class="title-container text-center my-4">
         <h1>@ViewData["Title"]</h1>
-    </div>
-    <form class="form-check-inline my-2 my-lg-0" method="get" action="/Index">
-        <input type="search" name="searchQuery" value="@Request.Query["searchQuery"]" placeholder="Search by title:" class="form-control mr-sm-2" />
-        <p></p>
-        <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Search</button>
-    </form>
-    </div>
     <div class="grid-container">
         @foreach (var ad in Model.SalesAds)
         {
@@ -34,5 +27,6 @@ ViewData["Title"] = "Salgs Annoncer";
             </div>
         }
     </div>
+</div>
 </div>
 

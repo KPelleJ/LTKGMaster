@@ -83,10 +83,10 @@ namespace LTKGMaster.Models.SalesAds
             }
 
             foreach (SalesAd output in listToSearch.FindAll(x => 
-            x.Title.Contains(searchQuery) || 
-            x.Product.Type.ToString().Equals(searchQuery) ||
-            x.Product.Brand.Contains(searchQuery) ||
-            x.Product.Model.Contains(searchQuery)))
+            x.Title.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) || 
+            x.Product.Type.GetDisplayName().Equals(searchQuery, StringComparison.OrdinalIgnoreCase)  ||
+            x.Product.Brand.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
+            x.Product.Model.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)))
             {
                 output.User = _accountRepository.GetById(output.UserId);
                 output.ProductPictures = _pictureConverter.ByteArrayToBase64(_pictureRepository.GetAll(output.ProdId));
