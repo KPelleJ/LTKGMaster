@@ -105,7 +105,7 @@ namespace LTKGMaster.Models.SalesAds
             foreach (SalesAd output in _salesAdRepository.GetAllProductsOfType(type))
             {
                 // Retrieve related product, user, and pictures for each sales ad
-                output.Product = _productRepository.GetByIdAndType(output.ProdId, type);
+                output.Product = _productRepository.GetById(output.ProdId);
                 output.User = _accountRepository.GetById(output.UserId);
                 output.ProductPictures = _pictureConverter.ByteArrayToBase64(_pictureRepository.GetAll(output.ProdId));
                 outputList.Add(output);
