@@ -45,8 +45,6 @@ namespace LTKGMaster.Pages
                 }
             }
 
-            Debug.WriteLine("Stop");
-
             SalesAds = output;
         }
     }
