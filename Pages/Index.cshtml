@@ -8,7 +8,13 @@ ViewData["Title"] = "Salgs Annoncer";
     <div class="title-container text-center my-4">
         <h1>@ViewData["Title"]</h1>
     </div>
-
+      <div class="search-bar mb-4 text-center">
+        <form method="get" asp-page-handler="Search">
+            <input type="text" name="searchQuery" value="@Request.Query["searchQuery"]" placeholder="Search by title..." class="form-control" />
+            <button type="submit" class="btn btn-primary mt-2">Search</button>
+        </form>
+    </div>
+    <form method="get">
     <div class="grid-container">
         @foreach (var ad in Model.SalesAds)
         {
@@ -29,4 +35,6 @@ ViewData["Title"] = "Salgs Annoncer";
             </div>
         }
     </div>
+    </form>
 </div>
+

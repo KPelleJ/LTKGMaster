@@ -25,8 +25,6 @@ namespace LTKGMaster.Pages.Categories
                 Products = new List<SalesAd>();
                 return Page();
             }
-
-
             Products = _salesAdHandler.GetProductsOfType(type);
             return Page();
         }
