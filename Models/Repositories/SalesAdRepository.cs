@@ -11,17 +11,30 @@ using System.Reflection.PortableExecutable;
 
 namespace LTKGMaster.Models.Repositories
 {
+    /// <summary>
+    /// This class is responsible for interacting with the database to manage sales ads.
+    /// It handles operations such as adding, updating, deleting, and fetching sales ads.
+    /// </summary>
     public class SalesAdRepository : ISalesAdRepository
     {
         private readonly string _connectionString;
         private readonly ProductFactory _factory;
 
+        /// <summary>
+        /// Initializes a new instance of the SalesAdRepository class.
+        /// </summary>
+        /// <param name="configuration">The configuration object that contains the connection string.</param>
+        /// <param name="factory">The ProductFactory instance used to create products.</param>
         public SalesAdRepository(IConfiguration configuration, ProductFactory factory)
         {
             _connectionString = configuration.GetConnectionString("myDb1");
             _factory = factory;
         }
 
+        /// <summary>
+        /// Adds a new sales ad to the database.
+        /// </summary>
+        /// <param name="salesAd">The SalesAd object to add to the database.</param>
         public void Add(SalesAd salesAd)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -39,6 +52,10 @@ namespace LTKGMaster.Models.Repositories
             }
         }
 
+        /// <summary>
+        /// Deletes a sales ad from the database based on the provided product ID.
+        /// </summary>
+        /// <param name="id">The product ID of the sales ad to delete.</param>
         public void Delete(int id)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -53,6 +70,10 @@ namespace LTKGMaster.Models.Repositories
             }
         }
 
+        /// <summary>
+        /// Updates an existing sales ad in the database.
+        /// </summary>
+        /// <param name="salesAd">The SalesAd object containing the updated information.</param>
         public void Update(SalesAd salesAd)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -72,6 +93,11 @@ namespace LTKGMaster.Models.Repositories
             }
         }
 
+        /// <summary>
+        /// Fetches all sales ads for a specific user based on the user ID.
+        /// </summary>
+        /// <param name="id">The user ID to fetch sales ads for.</param>
+        /// <returns>A list of SalesAd objects for the specified user.</returns>
         public List<SalesAd> GetAllFromUser(int id)
         {
             List<SalesAd> list = new List<SalesAd>();
@@ -110,6 +136,11 @@ namespace LTKGMaster.Models.Repositories
             }
         }
 
+        /// <summary>
+        /// Fetches a sales ad by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the sales ad to fetch.</param>
+        /// <returns>The SalesAd object with the specified ID.</returns>
         public SalesAd GetById(int id)
         {
             SalesAd output = new SalesAd();
@@ -135,9 +166,13 @@ namespace LTKGMaster.Models.Repositories
                 }
             }
 
-            return output;
+            return output; // Return the fetched SalesAd object
         }
 
+        /// <summary>
+        /// Fetches all sales ads from the database.
+        /// </summary>
+        /// <returns>A list of all SalesAd objects in the database.</returns>
         public List<SalesAd> GetAll()
         {
             List<SalesAd> allProducts = new List<SalesAd>();
@@ -167,10 +202,15 @@ namespace LTKGMaster.Models.Repositories
 
                     allProducts.Add(output);
                 }
-                return allProducts;
+                return allProducts; // Return the list of all sales ads
             }
             }
 
+        /// <summary>
+        /// Fetches all sales ads of a specific product type.
+        /// </summary>
+        /// <param name="prodtype">The product type to filter the sales ads by.</param>
+        /// <returns>A list of SalesAd objects of the specified product type.</returns>
         public List<SalesAd> GetAllProductsOfType(ProductType prodtype)
         {
             List<SalesAd> laptops = new List<SalesAd>();
@@ -200,7 +240,7 @@ namespace LTKGMaster.Models.Repositories
 
                     laptops.Add(output);
                 }
-                return laptops;
+                return laptops; // Return the list of all sales ads
             }
         }
     }

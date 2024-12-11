@@ -13,31 +13,22 @@
         
         <div class="container">
         <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                    <div>
+                <div class="container-fluid">
                     <a class="navbar-brand d-flex align-items-center" asp-area="" asp-page="/Index">
                         <img src="~/PictureLogos/llgwlg.png" width="120" height="auto" alt="Logo" class="me-2" />
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <ul>
-                        <li role="search">
-                            <form method="get" action="/SalesAds/Search">
-                                <input type="search"
-                                       placeholder="Search.."
-                                       id="searchbar"
-                                       name="searchQuery"
-                                       aria-label="Search through site content" />
-                                <button type="submit">Søg</button>
-                            </form>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/SalesAds/CreateSalesAd">Opret ny annonce</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Categories/ShowProducts">Kategorier</a>
-                        </li>
-                    </ul>
+                    <form class="d-flex search-bar-container method="get" action="/SalesAds/Search">
+                        <input type="search" class="form-control search-input me-2" placeholder="Search..." id="searchbar" name="searchQuery" aria-label="Search through site content" />
+                        <button type="submit" class="btn btn-primary">Søg</button>
+                    </form>
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/SalesAds/CreateSalesAd">Opret ny annonce</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Categories/ShowProducts">Kategorier</a>
+                            </li>
+                        </ul>
                 </div>
                 <div class="mr-2">
                     <partial name="_LoginStatusPartial" />
@@ -63,5 +54,18 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
+
+    <footer class="footer">
+    <div class="footer-container">
+        <div class="footer-column">
+            <a href="https://www.ford.dk/oplev-ford/om-ford" style="font-family: 'Times New Roman'" class="dropdown-btn">OM OS</a>
+            <a href="https://www.ford.dk/hjaelp/generelt/kontakt-os" style="font-family: 'Times New Roman'" class="dropdown-btn">KONTAKT OS</a>
+            <a href="/Guides/GuidePage" style="font-family: 'Times New Roman'" class="guides-btn">GUIDES</a>
+        </div>
+        <div class="footer-column footer-right" style="font-family:'Times New Roman'">
+            <p>ElKirkeGården</p>
+        </div>
+    </div>
+    </footer>
 </body>
 </html>

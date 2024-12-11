@@ -3,6 +3,9 @@ using LTKGMaster.Models.SalesAds;
 
 namespace LTKGMaster.Models.Repositories
 {
+    /// <summary>
+    /// This is the interface that handles the methods we use in our SalesAdRepository class.
+    /// </summary>
     public interface ISalesAdRepository
     {
         void Add(SalesAd salesAd);

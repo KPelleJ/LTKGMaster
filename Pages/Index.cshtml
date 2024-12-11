@@ -4,29 +4,86 @@
 ViewData["Title"] = "Salgs Annoncer";
 }
 
-<div class="container">
-    <div class="title-container text-center my-4">
-        <h1>@ViewData["Title"]</h1>
-    <div class="grid-container">
-        @foreach (var ad in Model.SalesAds)
-        {
-            <div class="ad-box mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h2>@ad.Title</h2>
-                        <p>Created: @ad.DateOfCreation.ToString("dd-MM-yyyy")</p>
-                        <div class="ad-images mb-3">
-                            <div class="ad-image mb-3">
-                                <img src="@ad.ProductPictures.First().ImageDataBase64String" class="img-fluid" alt="@ad.ProductPictures.First().FileName" />
-                            </div>
-                        </div>
+<div class="grouped-category-box my-4 p-4">
+    <div class="row">
+        <div class="col-md-4 col-12 mb-3">
+            <div class="category-box text-center p-4">
+                <h2>Bærbar</h2>
+                <p>Se alle annoncer af bærbarer</p>
 
-                        <a class="btn btn-primary" asp-page="/SalesAds/ShowAd" asp-route-id="@ad.ProdId" asp-route-type="@ad.Product.Type">View Details</a>
-                    </div>
-                </div>
+                <a href="/Categories/ShowProducts/" class="btn btn-primary">Udforsk</a>
             </div>
-        }
+        </div>
+        <div class="col-md-4 col-12 mb-3">
+            <div class="category-box text-center p-4">
+                <h2>TV</h2>
+                <p>Se alle annoncer af TV'er'</p>
+
+                <a href="/Categories/ShowProducts/" class="btn btn-primary">Udforsk</a>
+            </div>
+        </div>
+        <div class="col-md-4 col-12 mb-3">
+            <div class="category-box text-center p-4">
+                <h2>Spille konsol</h2>
+                <p>Se alle annoncer af Spille Konsoller</p>
+
+                <a href="/Categories/ShowProducts/" class="btn btn-primary">Udforsk</a>
+            </div>
+        </div>
     </div>
 </div>
+
+<div class="grid-container">
+    @foreach (var ad in Model.SalesAds.Take(8))
+    {
+        <div class="ad-box mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2>@ad.Title</h2>
+                    <p>Created: @ad.DateOfCreation.ToString("dd-MM-yyyy")</p>
+                    <div class="ad-images mb-3">
+
+                        <div id="carousel-@ad.ProdId" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                            <div class="carousel-inner">
+                                @for (int i = 0; i < ad.ProductPictures.Count; i++)
+                                {
+                                    var picture = ad.ProductPictures[i];
+                                    <div class="carousel-item @(i == 0 ? "active" : "")">
+                                        <img src="@picture.ImageDataBase64String" class="d-block w-100" alt="@picture.FileName">
+                                    </div>
+                                }
+                            </div>
+
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-@ad.ProdId" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-@ad.ProdId" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+
+                    </div>
+                    <a class="btn btn-primary" asp-page="/SalesAds/ShowAd" asp-route-id="@ad.ProdId" asp-route-type="@ad.Product.Type">Se detaljer</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="container mt-4 mb-5">
+    <div class="text-center mb-3">
+        <h2>Vores vision</h2>
+    </div>
+    <div class="form-control text-box">
+        Elkirkegården er et dynamisk og innovativt firma, der har gjort det til sin mission at fremme bæredygtighed gennem cirkulært forbrug. Vores mål er at starte en online platform, der forbinder kunder med hinanden for at handle brugt elektronik. Vi er stolte af at annoncere lanceringen af vores platform: Elkirkegården.dk. Denne dedikerede side vil fungere som en kunde-til-kunde handelsplatform for brugt elektronik, der sikrer, at genbrug bliver lige så nemt og tilgængeligt som det er med tech.
+
+        Visionen for Elkirkegården er at skabe et cirkulært forbrugsmønster, hvor bæredygtighed er i centrum for alle vores aktiviteter. Vi ønsker at tilbyde vores kunder en bredere vifte af bæredygtige løsninger. Vores mål er at inspirere både nuværende og kommende brugere til at træffe valg, der reducerer affald og fremmer genbrug af elektronik.
+
+        Hos Elkirkegården.dk vil vi anvende disse principper, en brugervenlig platform, effektiv sortering, og et stærkt fokus på at skabe et trygt og tillidsfuldt miljø for vores brugere. Vores team hos Elkirkegården er dedikeret til at sikre, at både sælgere og købere får en positiv oplevelse, mens de bidrager til en mere bæredygtig fremtid.
+
+        Vi ser frem til at tage dette skridt sammen, og vi er begejstrede for at kunne tilbyde en platform, der ikke blot fremmer genbrug, men også skaber en stærk fællesskabsfølelse blandt vores brugere. Velkommen til Elkirkegården.dk – hvor bæredygtighed møder teknologi!
+    </div>
 </div>
 

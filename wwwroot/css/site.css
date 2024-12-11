@@ -1,25 +1,27 @@
+
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
+
 <Stil til grid view >
 
 html {
@@ -64,6 +66,10 @@ body {
     background-color: #f9f9f9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 
     .ad-box h2 {
@@ -81,4 +87,118 @@ body {
         display: inline-block;
     }
 
-</Stil til grid view >
+carousel img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.carousel-inner {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.grouped-category-box {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.category-box {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+    .category-box h2 {
+        font-size: 1.5em;
+        color: #333;
+        margin-bottom: 15px;
+    }
+
+    .category-box p {
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    .category-box .btn {
+        margin-top: auto;
+    }
+
+.body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+
+.title {
+    color: #2c3e50;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+    .title:hover {
+        color: #2980b9;
+    }
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+textarea {
+    width: 100%;
+    height: 300px;
+    padding: 10px;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-top: 20px;
+}
+
+
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #2980b9;
+    text-decoration: none;
+}
+
+    .back-link:hover {
+        text-decoration: underline;
+    }
+
+.text-box {
+    white-space: pre-line;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+    .text-box p {
+        margin-bottom: 20px;
+    }

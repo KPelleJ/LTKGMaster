@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LTKGMaster.Models.SalesAds
 {
+    /// <summary>
+    /// Represents a sales ad on the platform, containing details of the product, user, and the ad itself.
+    /// </summary>
     public class SalesAd
     {
         public int ProdId { get; set; }
