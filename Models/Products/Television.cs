@@ -12,8 +12,6 @@
         {
             Type = ProductType.Television;
         }
-
     }
-    
 }
 
