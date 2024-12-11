@@ -10,8 +10,6 @@ namespace LTKGMaster.Models.Repositories
         Product Add(Product product);
         void Delete(int id);
         void Update(Product product);
-        Product GetByIdAndType(int id, ProductType type);
-
         Product GetById(int id);
     }
 }

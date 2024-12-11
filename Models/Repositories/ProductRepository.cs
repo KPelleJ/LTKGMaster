@@ -56,7 +56,6 @@ namespace LTKGMaster.Models.Repositories
             catch(SqlException e)
             {
                 throw new InvalidOperationException("Fejl opstået ved tilføjelse af produkt. Server fejl.", e);
-                //We could also have thrown a 'throw;' to keep the stack trace.
             }
         }
 
@@ -113,57 +112,18 @@ namespace LTKGMaster.Models.Repositories
 
                     command.ExecuteNonQuery();
                 }
-            }catch(SqlException e)
+            }
+            catch (SqlException ex)
             {
-                throw new InvalidOperationException("Fejl ved sletning af produkt. Server fejl.", e);
+                throw new InvalidOperationException("Database operation failed.", ex);
             }
         }
 
         /// <summary>
-        /// This method finds the Product with the Id, 
-        /// and because we have more that just one type of Product we send a ProductType parameter with it.
+        /// Retrieves a Product object from the sql database by it's ProductId
         /// </summary>
-        /// <param name="id">It is the id that we use to get the Product</param>
-        /// <param name="type">Its the type of Product we get when we call the method.</param>
-        /// <returns>Returns the Product we want to get by id.</returns>
-        public Product GetByIdAndType(int id, ProductType type)
-        {
-            try
-            {
-                Product output = _factory.Create(type);
-
-                using (SqlConnection connection = new SqlConnection(_connectionString))
-                {
-                    connection.Open();
-
-                    string sql = "SELECT Id, Description, Year, Brand, Model, Price FROM Products WHERE Id = @Id;";
-
-                    SqlCommand command = new SqlCommand(sql, connection);
-
-                    command.Parameters.AddWithValue("@Id", id);
-
-                    SqlDataReader reader = command.ExecuteReader();
-                    
-
-                    while (reader.Read())
-                    {
-                        output.Id = reader.GetInt32(0);
-                        output.Description = reader.GetString(1);
-                        output.Year = reader.GetInt32(2);
-                        output.Brand = reader.GetString(3);
-                        output.Model = reader.GetString(4);
-                        output.Price = reader.GetDecimal(5);
-                    }
-                }
-
-                return output;
-            }
-            catch (SqlException e)
-            {
-                throw new InvalidOperationException("Kunne ikke finde produkt med det Id. Server fejl.", e);
-            }
-        }
-
+        /// <param name="id">The Id of the product we want to retrieve</param>
+        /// <returns>Returns the Product from the databaes with a matching id</returns>
         public Product GetById(int id)
         {
             try

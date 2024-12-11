@@ -21,8 +21,16 @@ namespace LTKGMaster.Pages.SalesAds
 
         public IActionResult OnGet(int id, ProductType type)
         {
-            AdForShow = _salesAdHandler.Get(id, type);
-            return Page();
+            try
+            {
+                AdForShow = _salesAdHandler.Get(id, type);
+                return Page();
+            }
+            catch (InvalidOperationException ex)
+            {
+                ModelState.AddModelError(string.Empty, "Kunne ikke finde salgsannoncen, prøv venligst en anden");
+                return Page();
+            }
         }
     }
 }

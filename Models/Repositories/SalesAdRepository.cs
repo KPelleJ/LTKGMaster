@@ -58,15 +58,22 @@ namespace LTKGMaster.Models.Repositories
         /// <param name="id">The product ID of the sales ad to delete.</param>
         public void Delete(int id)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            try
             {
-                connection.Open();
-                string sql = "DELETE FROM SalesAds WHERE ProdId = @ProdId";
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    string sql = "DELETE FROM SalesAds WHERE ProdId = @ProdId";
 
-                SqlCommand command = new SqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@ProdId", id);
-                
-                command.ExecuteNonQuery();
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@ProdId", id);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new InvalidOperationException("Database operation failed.", ex);
             }
         }
 
@@ -100,39 +107,46 @@ namespace LTKGMaster.Models.Repositories
         /// <returns>A list of SalesAd objects for the specified user.</returns>
         public List<SalesAd> GetAllFromUser(int id)
         {
-            List<SalesAd> list = new List<SalesAd>();
-
-            using(SqlConnection connection = new SqlConnection(_connectionString))
+            try
             {
-                connection.Open();
+                List<SalesAd> list = new List<SalesAd>();
 
-                string sql = @"
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+
+                    string sql = @"
                             SELECT ProdId, UserId, Title, CreationDate, Products.Description, Products.Price, Products.CatId 
                             FROM SalesAds JOIN Products ON Products.Id = SalesAds.ProdId where UserId = @UserId";
 
-                SqlCommand command = new SqlCommand(sql, connection);
+                    SqlCommand command = new SqlCommand(sql, connection);
 
-                command.Parameters.AddWithValue("@UserId", id);
+                    command.Parameters.AddWithValue("@UserId", id);
 
-                SqlDataReader reader = command.ExecuteReader();
+                    SqlDataReader reader = command.ExecuteReader();
 
-                while (reader.Read())
-                {
-                    SalesAd output = new SalesAd();
-                    output.ProdId = reader.GetInt32(0);
-                    output.UserId = reader.GetInt32(1);
-                    output.Title = reader.GetString(2);
-                    output.DateOfCreation = reader.GetDateTime(3);
+                    while (reader.Read())
+                    {
+                        SalesAd output = new SalesAd();
+                        output.ProdId = reader.GetInt32(0);
+                        output.UserId = reader.GetInt32(1);
+                        output.Title = reader.GetString(2);
+                        output.DateOfCreation = reader.GetDateTime(3);
 
-                    Product outputProduct = _factory.Create((ProductType)reader.GetInt32(6));
-                    outputProduct.Description = reader.GetString(4);
-                    outputProduct.Price = reader.GetDecimal(5);
-                    output.Product = outputProduct;
-                    
-                    
-                    list.Add(output);
+                        Product outputProduct = _factory.Create((ProductType)reader.GetInt32(6));
+                        outputProduct.Description = reader.GetString(4);
+                        outputProduct.Price = reader.GetDecimal(5);
+                        output.Product = outputProduct;
+
+
+                        list.Add(output);
+                    }
+                    return list;
                 }
-                return list;
+            }
+            catch (SqlException ex)
+            { 
+                throw new InvalidOperationException("Database operation failed.", ex);
             }
         }
 

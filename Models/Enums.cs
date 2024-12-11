@@ -10,7 +10,7 @@ namespace LTKGMaster.Models
         [Display(Name = "Bærbar pc")]
         Laptop = 1,
 
-        [Display(Name = "Fjernsyn")]
+        [Display(Name = "tv")]
         Television = 2,
 
         [Display(Name = "Spillekonsol")]

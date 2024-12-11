@@ -53,17 +53,24 @@ namespace LTKGMaster.Models.Repositories
         /// <param name="user">IUser object with user information to be updated in the sql database</param>
         public void Update(IUser user)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
 
-                string sql = "INSERT INTO Users (UserName, City) " +
-                             "VALUES (@UserName, @City)";
+                    string sql = "INSERT INTO Users (UserName, City) " +
+                                 "VALUES (@UserName, @City)";
 
-                SqlCommand command = new SqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@UserName", user.UserName);
-                command.Parameters.AddWithValue("@City", user.City);
-                command.ExecuteNonQuery();
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@UserName", user.UserName);
+                    command.Parameters.AddWithValue("@City", user.City);
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new InvalidOperationException("Database operation failed.", ex);
             }
         }
 
@@ -74,32 +81,38 @@ namespace LTKGMaster.Models.Repositories
         /// <returns>The IUser object matching the email</returns>
         public IUser Get(string email)
         {
-            //Det her skal laves om så der er en bedre måde at lave RegularUser på
-            IUser output = new RegularUser();
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            try
             {
-                connection.Open();
-
-                string sql = "SELECT Id, CredEmail, UserName, SignUpDate, Rating, City, Credentials.PasswordHash FROM Users " +
-                             $"JOIN Credentials ON Users.CredEmail = Credentials.Email WHERE CredEmail = '{email}'";
-
-                SqlCommand command = new SqlCommand(sql, connection);
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
+                IUser output = new RegularUser();
+                using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
-                    output.Id = reader.GetInt32(0);
-                    output.CredMail = reader.GetString(1);
-                    output.Credential.Email = output.CredMail;
-                    output.UserName = reader.GetString(2);
-                    output.SignUpDate = reader.GetDateTime(3);
-                    output.Rating = reader.GetInt32(4);
-                    output.City = reader.GetString(5);
-                    output.Credential.PasswordHash = reader.GetString(6);
+                    connection.Open();
+
+                    string sql = "SELECT Id, CredEmail, UserName, SignUpDate, Rating, City, Credentials.PasswordHash FROM Users " +
+                                 $"JOIN Credentials ON Users.CredEmail = Credentials.Email WHERE CredEmail = '{email}'";
+
+                    SqlCommand command = new SqlCommand(sql, connection);
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        output.Id = reader.GetInt32(0);
+                        output.CredMail = reader.GetString(1);
+                        output.Credential.Email = output.CredMail;
+                        output.UserName = reader.GetString(2);
+                        output.SignUpDate = reader.GetDateTime(3);
+                        output.Rating = reader.GetInt32(4);
+                        output.City = reader.GetString(5);
+                        output.Credential.PasswordHash = reader.GetString(6);
+                    }
                 }
+                return output;
             }
-            return output;
+            catch (SqlException ex)
+            {
+                throw new InvalidOperationException("Database operation failed.", ex);
+            }
         }
 
         /// <summary>
@@ -110,32 +123,40 @@ namespace LTKGMaster.Models.Repositories
         /// <returns>IUser object from the sql database with a matching UserId</returns>
         public IUser GetById(int id)
         {
-            IUser output = new RegularUser();
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            try
             {
-                connection.Open();
-
-                string sql = "SELECT Id, CredEmail, UserName, SignUpDate, Rating, City, Credentials.PasswordHash FROM Users " +
-                             $"JOIN Credentials ON Users.CredEmail = Credentials.Email WHERE Id = @Id";
-
-                SqlCommand command = new SqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@Id", id);
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
+                IUser output = new RegularUser();
+                using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
-                    output.Id = reader.GetInt32(0);
-                    output.CredMail = reader.GetString(1);
-                    output.Credential.Email = output.CredMail;
-                    output.UserName = reader.GetString(2);
-                    output.SignUpDate = reader.GetDateTime(3);
-                    output.Rating = reader.GetInt32(4);
-                    output.City = reader.GetString(5);
-                    output.Credential.PasswordHash = reader.GetString(6);
+                    connection.Open();
+
+                    string sql = "SELECT Id, CredEmail, UserName, SignUpDate, Rating, City, Credentials.PasswordHash FROM Users " +
+                                 $"JOIN Credentials ON Users.CredEmail = Credentials.Email WHERE Id = @Id";
+
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@Id", id);
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        output.Id = reader.GetInt32(0);
+                        output.CredMail = reader.GetString(1);
+                        output.Credential.Email = output.CredMail;
+                        output.UserName = reader.GetString(2);
+                        output.SignUpDate = reader.GetDateTime(3);
+                        output.Rating = reader.GetInt32(4);
+                        output.City = reader.GetString(5);
+                        output.Credential.PasswordHash = reader.GetString(6);
+                    }
                 }
+                return output;
             }
-            return output;
+            catch (SqlException ex)
+            {
+                throw new InvalidOperationException("Database operation failed.", ex);
+            }
         }
+            
     }
 }

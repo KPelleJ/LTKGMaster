@@ -4,6 +4,8 @@ using LTKGMaster.Models.Users;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Data.SqlClient;
+using System.Security.Authentication;
 using System.Security.Claims;
 
 namespace LTKGMaster.Pages.Account
@@ -26,32 +28,41 @@ namespace LTKGMaster.Pages.Account
             _accountRepository = accountRepository;
         }
 
-        public void OnGet()
-        {
-
-        }
-
         public async Task<IActionResult> OnPost()
         {
-            if (!ModelState.IsValid)
+            if (Credential.Email is null || Credential.Password is null)
             {
+                ModelState.AddModelError(string.Empty, "Email og password felterne skal udfyldes");
                 return Page();
             }
-            //Implementering af ny bool metode
-            if (_loginservice.UserLogin(Credential))
-            {
-                return await CookieAuthorizationAsync(Credential);
-            }
 
-            return RedirectToPage("/Index");
+            try
+            {
+                if (_loginservice.UserLogin(Credential))
+                {
+                    return await CookieAuthorizationAsync(Credential);
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Email eller kodeord var forkert, prøv venligst igen");
+                    return Page();
+                }
+            }
+            catch (InvalidCredentialException ex)
+            {
+                ModelState.AddModelError(string.Empty, "Der skete en fejl under valideringen af dine oplysninger, prøv venligst igen");
+                return Page();
+            }
         }
 
         private async Task<IActionResult> CookieAuthorizationAsync(Credential credential)
         {
-            IUser user = _accountRepository.Get(credential.Email);
+            try
+            {
+                IUser user = _accountRepository.Get(credential.Email);
 
-            //Creating security context
-            var claims = new List<Claim>
+                //Creating security context
+                var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(ClaimTypes.Email,user.CredMail),
@@ -61,17 +72,23 @@ namespace LTKGMaster.Pages.Account
                     new Claim("City", user.City)
                 };
 
-            var identity = new ClaimsIdentity(claims, CookieConstants.CookieName);
-            var principal = new ClaimsPrincipal(identity);
+                var identity = new ClaimsIdentity(claims, CookieConstants.CookieName);
+                var principal = new ClaimsPrincipal(identity);
 
-            var authProperties = new AuthenticationProperties
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = RememberMe
+                };
+
+                await HttpContext.SignInAsync(CookieConstants.CookieName, principal, authProperties);
+
+                return RedirectToPage("/Index");
+            }
+            catch (InvalidOperationException ex)
             {
-                IsPersistent = RememberMe
-            };
-
-            await HttpContext.SignInAsync(CookieConstants.CookieName, principal, authProperties);
-
-            return RedirectToPage("/Index");
+                ModelState.AddModelError (string.Empty, "Der skete en fejl under login, prøv venligst igen");
+                return Page();
+            }
         }
 
 

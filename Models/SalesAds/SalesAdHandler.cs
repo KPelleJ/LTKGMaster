@@ -63,10 +63,10 @@ namespace LTKGMaster.Models.SalesAds
         /// <param name="type">The product type associated with the sales ad.</param>
         /// <returns>The sales ad with its associated product, user, and pictures.</returns>
         public SalesAd Get(int id, ProductType type)
-        { 
+        {
             SalesAd output = _salesAdRepository.GetById(id);
             output.User = _accountRepository.GetById(output.UserId);
-            output.Product = _productRepository.GetByIdAndType(id, type);
+            output.Product = _productRepository.GetById(id);
             output.ProductPictures = _pictureConverter.ByteArrayToBase64(_pictureRepository.GetAll(id));
             return output;
         }
