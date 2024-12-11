@@ -13,10 +13,7 @@ namespace LTKGMaster.Models.Repositories
 
         public ProductRepository(IConfiguration configuration, ProductFactory factory)
         {
-            if (configuration != null)
-            {
-                _connectionString = configuration.GetConnectionString("myDb1");
-            }
+            _connectionString = configuration.GetConnectionString("myDb1");
             _factory = factory;
         }
         /// <summary>
