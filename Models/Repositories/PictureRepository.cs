@@ -45,17 +45,24 @@ namespace LTKGMaster.Models.Repositories
         /// <param name="id">The id of the Product of which the ProductPicture belongs to.</param>
         public void Delete(int id)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
 
-                string sql = "DELETE FROM ProductPictures Where ProdId = @ProdId";
+                    string sql = "DELETE FROM ProductPictures Where ProdId = @ProdId";
 
-                SqlCommand command = new SqlCommand(sql, connection);
+                    SqlCommand command = new SqlCommand(sql, connection);
 
-                command.Parameters.AddWithValue("@ProdId", id);
+                    command.Parameters.AddWithValue("@ProdId", id);
 
-                command.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new InvalidOperationException("Database operation failed.", ex);
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using LTKGMaster.Models.Repositories;
+﻿using LTKGMaster.Models.Exceptions;
+using LTKGMaster.Models.Repositories;
 
 namespace LTKGMaster.Models.Users
 {
@@ -20,22 +21,16 @@ namespace LTKGMaster.Models.Users
         /// <param name="user"></param>
         public void CreateUser(IUser user)
         {
-            try
+            if (user.Credential.Email.Equals(_accountRepository.Get(user.Credential.Email).Credential.Email))
             {
-                IUser output = user;
+                throw new EmailAlreadyInUseException($"The email {user.Credential.Email} is already in use");
+            }
 
-                output.Credential.PasswordHash = BCrypt.Net.BCrypt.EnhancedHashPassword(user.Credential.Password, 12);
+            IUser output = user;
 
-                _accountRepository.Add(output);
-            }
-            catch (InvalidOperationException ex)
-            {
-                throw new InvalidOperationException("An error occurred while creating the user.", ex);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Unexpected error in CreateUser method.", ex);
-            }
+            output.Credential.PasswordHash = BCrypt.Net.BCrypt.EnhancedHashPassword(user.Credential.Password, 12);
+
+            _accountRepository.Add(output);
         }
     }
 }

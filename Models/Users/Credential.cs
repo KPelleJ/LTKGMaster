@@ -20,8 +20,17 @@ namespace LTKGMaster.Models.Users
         /// The password input before hashing
         /// </summary>
         [Required]
+        [DataType(DataType.Password)]
         [Length(5,40, ErrorMessage = "Your Password must be between 5 and 125 characters")]
         public string Password { get; set; }
+
+        /// <summary>
+        /// The second password input to which is checked against the first
+        /// </summary>
+        [Required]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Passwords do not match.")]
+        public string ConfirmPassword { get; set; }
 
         /// <summary>
         /// The hashed password to be used for validation

@@ -3,17 +3,14 @@
 @{
 }
 <div class="container">
-    <div class="title-container text-center my-4">
-        <h1>@ViewData["Title"]</h1>
-    </div>
-    <h1>Søgeresultater for '@Model.SearchQuery'</h1>
-    <div class="grid-container">
         @if(Model.SearchResults.Count.Equals(0))
         {
             <h1>Der er ingen resultater for '@Model.SearchQuery'</h1>
         }
         else
         {
+        <h1>Søgeresultater for '@Model.SearchQuery'</h1>
+        <div class="grid-container">
         @foreach (var ad in Model.SearchResults)
         {
             <div class="ad-box mb-4">
@@ -32,6 +29,6 @@
                 </div>
             </div>
         }
+        </div>
         }
-    </div>
 </div>

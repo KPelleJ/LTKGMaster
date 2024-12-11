@@ -1,6 +1,8 @@
 ﻿using LTKGMaster.Models.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Data.SqlClient;
+using System.Security.Authentication;
 
 namespace LTKGMaster.Models.Users
 {
@@ -25,14 +27,21 @@ namespace LTKGMaster.Models.Users
         /// <returns>True if the Credential data is correct</returns>
         public bool UserLogin(Credential userInformation)
         {
-            var user = _accountRepository.Get(userInformation.Email);
-
-            if (user.CredMail != null && userInformation.Email == user.CredMail && BCrypt.Net.BCrypt.EnhancedVerify(userInformation.Password, user.Credential.PasswordHash))
+            try
             {
-                return true;
-            }
+                var user = _accountRepository.Get(userInformation.Email);
 
-            return false;
+                if (user.CredMail != null && userInformation.Email == user.CredMail && BCrypt.Net.BCrypt.EnhancedVerify(userInformation.Password, user.Credential.PasswordHash))
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw new InvalidCredentialException("There was an error while validating your credentials, please try again", ex);
+            }
         }
     }
 }

@@ -3,6 +3,7 @@
 @{
 }
 <div class="card" style="width: 18rem; align-self:center;">
+    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
     <img class="card-img-top" src="@Model.AdForShow.ProductPictures.First().ImageDataBase64String" alt="Product image">
     <div class="card-body">
         <h5 class="card-title">Card title</h5>

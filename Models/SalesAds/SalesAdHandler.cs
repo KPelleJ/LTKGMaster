@@ -36,10 +36,10 @@ namespace LTKGMaster.Models.SalesAds
         }
 
         public SalesAd Get(int id, ProductType type)
-        { 
+        {
             SalesAd output = _salesAdRepository.GetById(id);
             output.User = _accountRepository.GetById(output.UserId);
-            output.Product = _productRepository.GetByIdAndType(id, type);
+            output.Product = _productRepository.GetById(id);
             output.ProductPictures = _pictureConverter.ByteArrayToBase64(_pictureRepository.GetAll(id));
             return output;
         }
@@ -62,7 +62,7 @@ namespace LTKGMaster.Models.SalesAds
 
             foreach (SalesAd output in _salesAdRepository.GetAllProductsOfType(type))
             {
-                output.Product = _productRepository.GetByIdAndType(output.ProdId, type);
+                output.Product = _productRepository.GetById(output.ProdId);
                 output.User = _accountRepository.GetById(output.UserId);
                 output.ProductPictures = _pictureConverter.ByteArrayToBase64(_pictureRepository.GetAll(output.ProdId));
                 outputList.Add(output);
@@ -82,15 +82,19 @@ namespace LTKGMaster.Models.SalesAds
                 listToSearch.Add(output);
             }
 
-            foreach (SalesAd output in listToSearch.FindAll(x => 
-            x.Title.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) || 
-            x.Product.Type.GetDisplayName().Equals(searchQuery, StringComparison.OrdinalIgnoreCase)  ||
-            x.Product.Brand.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
-            x.Product.Model.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)))
+            if (searchQuery != null)
             {
-                output.User = _accountRepository.GetById(output.UserId);
-                output.ProductPictures = _pictureConverter.ByteArrayToBase64(_pictureRepository.GetAll(output.ProdId));
-                outputList.Add(output);
+                foreach (SalesAd output in listToSearch.FindAll(x =>
+                x.Title.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
+                x.Product.Type.GetDisplayName().Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
+                x.Product.Type.ToString().Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
+                x.Product.Brand.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
+                x.Product.Model.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)))
+                {
+                    output.User = _accountRepository.GetById(output.UserId);
+                    output.ProductPictures = _pictureConverter.ByteArrayToBase64(_pictureRepository.GetAll(output.ProdId));
+                    outputList.Add(output);
+                }
             }
 
             return outputList;

@@ -24,16 +24,41 @@ namespace LTKGMaster.Pages.Account
         {
             _salesAdHandler = salesAdHandler;
         }
+
         public void OnGet()
         {
-            int userId = int.Parse(User.FindFirst("Id").Value);
-            _salesAdList = _salesAdHandler.GetSalesAdsFromUser(userId);
+            try
+            {
+                int userId = int.Parse(User.FindFirst("Id").Value);
+                _salesAdList = _salesAdHandler.GetSalesAdsFromUser(userId);
+            }
+            catch (InvalidOperationException ex)
+            {
+                ModelState.AddModelError(string.Empty, "Der opstod en fejl under indlæsningen af dine annoncer, prøv venligst igen");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Der er opstået en uventet fejl");
+            }
         }
+
         public IActionResult Onpost()
         {
-            Debug.WriteLine(Id);
-            _salesAdHandler.DeleteSalesAd(Id);
-            return RedirectToPage("/Account/MySalesAds");
+            try
+            {
+                _salesAdHandler.DeleteSalesAd(Id);
+                return Page();
+            }
+            catch (InvalidOperationException ex)
+            {
+                ModelState.AddModelError(string.Empty, "Der opstod en fejl under sletningen af din annonce, prøv venligst igen");
+                return Page();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Der er opstået en uventet fejl");
+                return Page();
+            }
         }
     }
 }
