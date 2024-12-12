@@ -62,7 +62,7 @@ namespace LTKGMaster.Models.SalesAds
         /// <param name="id">The ID of the sales ad to retrieve.</param>
         /// <param name="type">The product type associated with the sales ad.</param>
         /// <returns>The sales ad with its associated product, user, and pictures.</returns>
-        public SalesAd Get(int id, ProductType type)
+        public SalesAd Get(int id)
         {
             SalesAd output = _salesAdRepository.GetById(id);
             output.User = _accountRepository.GetById(output.UserId);
