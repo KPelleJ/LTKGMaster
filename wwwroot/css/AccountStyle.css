@@ -44,7 +44,7 @@
 }
 /* Apply specific styles to only this page's navbar and greeting */
 .page-heading {
-    margin-bottom: 20px; /* Adds space between the heading and navbar */
+    margin-bottom: 20px; /* Adds space between the heading and navbar */ 
 }
 
 .my-page-navbar .navbar-nav {
@@ -58,17 +58,17 @@
     margin: 0 15px; /* Adds space between the items */
 }
 
-/* Style the links with smaller size and new color */
+/* Style the links with smaller size and new color */ 
 .my-page-navbar .nav-link {
     display: block; /* Makes each <a> tag behave like a block (so it can have height and width) */
     padding: 10px 20px; /* Reduced padding for smaller links */
     font-size: 16px; /* Smaller font size */
-    font-weight: bold; /* Makes the text bold */
-    text-align: center; /* Ensures the text is centered within the box */
-    text-decoration: none; /* Removes the underline from links */
+    font-weight: bold; /* Makes the text bold */ 
+    text-align: center; /* Ensures the text is centered within the box */ 
+    text-decoration: none; /* Removes the underline from links */ 
     background-color: #2f6a4e; /* Dark green with a slight hint of purple */
     color: white; /* Sets the text color to white */
-    border-radius: 5px; /* Rounds the corners of the link box */
+    border-radius: 5px; /* Rounds the corners of the link box */ 
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow to the box */
     transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover effects */
 }

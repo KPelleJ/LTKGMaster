@@ -165,7 +165,6 @@ carousel img {
         color: #2980b9;
     }
 
-
 a {
     text-decoration: none;
     color: inherit;
@@ -202,3 +201,8 @@ textarea {
     .text-box p {
         margin-bottom: 20px;
     }
+
+.guide-link:hover {
+    color: #3f875e; 
+    text-decoration: underline; 
+}

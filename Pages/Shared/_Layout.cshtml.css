@@ -47,8 +47,8 @@ button.accept-policy {
 }
 
     .navbar .search-bar-container {
-        flex-grow: 1;
-        max-width: 100%;
+        flex-grow: 2;
+        max-width: none;
     }
 
 .search-input {
