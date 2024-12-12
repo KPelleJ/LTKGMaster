@@ -19,11 +19,11 @@ namespace LTKGMaster.Pages.SalesAds
             _salesAdHandler = salesAdHandler;
         }
 
-        public IActionResult OnGet(int id, ProductType type)
+        public IActionResult OnGet(int id)
         {
             try
             {
-                AdForShow = _salesAdHandler.Get(id, type);
+                AdForShow = _salesAdHandler.Get(id);
                 return Page();
             }
             catch (InvalidOperationException ex)
