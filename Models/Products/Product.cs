@@ -12,15 +12,16 @@ namespace LTKGMaster.Models.Products
 
         [Required(ErrorMessage = "Maks 255 tegn.")]
         [StringLength(255)]
-        [RegularExpression(@"^[0-9a-zA-ZæøåÆØÅ.-]+$")]
+        [RegularExpression(@"^[0-9a-zA-ZæøåÆØÅ. -]+$")]
         public string Model { get; set; }
 
         [Required]
+        [Range(1900, 2100, ErrorMessage = "Year must be between 1900 and 2100.")]
         public int Year { get; set; }
 
         [Required(ErrorMessage ="Maks 255 tegn.")]
         [StringLength(255)]
-        [RegularExpression(@"^[0-9a-zA-ZæøåÆØÅ.-]+$")]
+        [RegularExpression(@"^[0-9a-zA-ZæøåÆØÅ. -]+$")]
         public string Brand { get; set; }
 
         [Required(ErrorMessage ="Skal være mere end 0.")]

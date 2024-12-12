@@ -135,7 +135,8 @@ namespace LTKGMaster.Models.SalesAds
             // Filter the list based on the search query
             foreach (SalesAd output in listToSearch.FindAll(x => 
             x.Title.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) || 
-            x.Product.Type.GetDisplayName().Equals(searchQuery, StringComparison.OrdinalIgnoreCase)  ||
+            x.Product.Type.GetDisplayName().Contains(searchQuery, StringComparison.OrdinalIgnoreCase)  ||
+            x.Product.Type.ToString().Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
             x.Product.Brand.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
             x.Product.Model.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)))
             {

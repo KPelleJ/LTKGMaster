@@ -55,7 +55,7 @@ namespace LTKGMaster.Models.Repositories
             //Here we catch an error if that would have occured
             catch(SqlException e)
             {
-                throw new InvalidOperationException("Fejl opstået ved tilføjelse af produkt. Server fejl.", e);
+                throw new InvalidOperationException("Database operation failed.", e);
             }
         }
 
@@ -87,7 +87,7 @@ namespace LTKGMaster.Models.Repositories
             }
             catch (SqlException e) 
             {
-                throw new InvalidOperationException("Fejl ved opdatering af produkt. Server fejl.", e);
+                throw new InvalidOperationException("Database operation failed.", e);
             } 
         }
 
@@ -159,7 +159,7 @@ namespace LTKGMaster.Models.Repositories
             }
             catch (SqlException e)
             {
-                throw new InvalidOperationException("Kunne ikke finde produkt med det Id. Server fejl.", e);
+                throw new InvalidOperationException("Database operation failed.", e);
             }
         }
     }

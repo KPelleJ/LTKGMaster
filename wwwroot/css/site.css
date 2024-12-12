@@ -162,7 +162,7 @@ carousel img {
 }
 
     .title:hover {
-        color: #2980b9;
+        color: #3f875e;
     }
 
 a {
@@ -205,4 +205,10 @@ textarea {
 .guide-link:hover {
     color: #3f875e; 
     text-decoration: underline; 
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #3f875e;
+    border-color: #3f875e;
 }

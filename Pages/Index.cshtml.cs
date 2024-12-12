@@ -1,3 +1,4 @@
+using LTKGMaster.Models;
 using LTKGMaster.Models.Products;
 using LTKGMaster.Models.Repositories;
 using LTKGMaster.Models.SalesAds;
@@ -14,6 +15,8 @@ namespace LTKGMaster.Pages
         private readonly IPictureRepository _pictureRepository;
         private readonly ProductPictureConverter _pictureConverter;
         private readonly ILogger<IndexModel> _logger;
+
+        public ProductType[] ProductTypes = (ProductType[])Enum.GetValues(typeof(ProductType));
 
         public IndexModel(ISalesAdRepository salesAdRepository, IPictureRepository pictureRepository, ILogger<IndexModel> logger, ProductPictureConverter pictureConverter)
         {
