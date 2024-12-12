@@ -3,21 +3,8 @@
 @model LTKGMaster.Pages.Categories.ShowProductsModel
 @{
 }
-<div class="grouped-category-box my-4 p-4">
-    <div class="row">
-        @foreach (var type in Model.ProductTypes)
-        {
-            <div class="col-md-4 col-12 mb-3">
-                <div class="category-box text-center p-4">
-                    <h2>@type.GetDisplayName()</h2>
-                    <p>Se alle @type.GetDisplayName() annoncer</p>
 
-                    <a class="btn btn-primary" asp-area="" asp-page="/Categories/ShowProducts" asp-route-type="@type">Udforsk</a>
-                </div>
-            </div>
-        }
-    </div>
-</div>
+@await Html.PartialAsync("_NavBarPartial", Model.ProductTypes)
 
 <form>
     <div class="form-control">
