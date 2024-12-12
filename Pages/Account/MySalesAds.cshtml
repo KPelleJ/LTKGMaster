@@ -8,7 +8,6 @@
 
 <div class="sales-ads-container">
     <h2 class="ads-heading">Mine salgs annoncer</h2>
-
     @foreach (var salesAd in Model._salesAdList)
     {
         <div class="sales-ad">
@@ -16,7 +15,7 @@
             <p>@salesAd.Product.Description</p>
             <p>@salesAd.DateOfCreation</p>
             <p>@salesAd.Product.Price</p>
-
+            
             <form method="post">
                 <input type="hidden" asp-for="@Model.Id" value="@salesAd.ProdId" />
                 <button type="submit" class="delete-button">Slet annonce</button>
