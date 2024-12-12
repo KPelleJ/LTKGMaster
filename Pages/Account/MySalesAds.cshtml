@@ -6,9 +6,21 @@
     <link rel="stylesheet" type="text/css" href="~/css/AccountStyle.css">
 </head>
 
+@if (Model._salesAdList is null || Model._salesAdList.Count == 0)
+{
+    <h1>Du har i øjeblikket ikke nogen salgsannoncer</h1>
+    <div class="navbar-container my-page-navbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-page="/SalesAds/CreateSalesAd">Opret ny annonce</a>
+            </li>
+        </ul>
+    </div>
+}
+else
+{
 <div class="sales-ads-container">
     <h2 class="ads-heading">Mine salgs annoncer</h2>
-
     @foreach (var salesAd in Model._salesAdList)
     {
         <div class="sales-ad">
@@ -24,4 +36,5 @@
         </div>
     }
 </div>
+}
 

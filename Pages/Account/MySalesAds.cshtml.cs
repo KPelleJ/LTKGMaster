@@ -47,7 +47,7 @@ namespace LTKGMaster.Pages.Account
             try
             {
                 _salesAdHandler.DeleteSalesAd(Id);
-                return Page();
+                return RedirectToPage("/Account/MySalesAds");
             }
             catch (InvalidOperationException ex)
             {
