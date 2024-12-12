@@ -59,8 +59,18 @@ namespace LTKGMaster.Pages.SalesAds
                 ModelState.AddModelError("ProductImages", "You can only upload up to 9 files.");
                 return Page();
             }
-
-            _salesAdHandler.Add(ProductToAdd, NewSalesAd, ProductImages);
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            try
+            {
+                _salesAdHandler.Add(ProductToAdd, NewSalesAd, ProductImages);
+            }
+            catch(InvalidOperationException e)
+            {
+                ModelState.AddModelError(e.Message, "Der skete en fejl ved oprettelse af salgs annonce.");
+            }
 
             return RedirectToPage("/Index");
         }
