@@ -22,7 +22,7 @@ body {
     margin-bottom: 60px;
 }
 
-<Stil til grid view >
+/* <Stil til grid view > */
 
 html {
     font-size: 14px;
@@ -36,6 +36,28 @@ html {
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/*<Styling til grid view>*/
+
+.btn-primary {
+    color: #fff;
+    background-color: #3f875e;
+    border-color: #3f875e;
+}
+
+
+.btn-primary:hover {
+    background-color: #5a9b7d; 
+    border-color: #5a9b7d; 
+    box-shadow: none; 
+}
+
+
+.btn-primary:focus {
+    background-color: #3f875e; 
+    border-color: #3f875e; 
+    box-shadow: none; 
 }
 
 html {
@@ -212,3 +234,42 @@ textarea {
     background-color: #3f875e;
     border-color: #3f875e;
 }
+
+
+/* <Styling til nav-bar> */
+
+.navbar.navbar-expand-lg {
+    background-color: #3f875e !important; /* Dark green background */
+}
+
+.container-fluid > .navbar {
+    background-color: #3f875e !important; /* Ensures it cascades */
+}
+
+/* Dark purple text with a white outline for navbar links */
+.navbar .nav-link {
+    color: #800080 !important; /* Dark purple text */
+    font-weight: bold; /* Optional: make text bold */
+}
+
+/* Navbar brand customization (if needed) */
+.navbar .navbar-brand {
+    color: #ffffff; /* White text for the brand link */
+    font-weight: bold;
+}
+
+/* Change text color on hover for interactivity */
+.navbar .nav-link:hover {
+    color: #6a0dad !important; /* Lighter purple on hover */
+    text-shadow: 1px 1px 2px #f5f5f5; /* Slightly brighter white outline */
+}
+
+/*Syntes det er pis hamrende grimt med den her
+.navbar .nav-link {
+    color: darkpurple;*/ /* Replace with your desired color, e.g., #800080 */
+    /*text-shadow: -1px -1px 0 #fff,*/ /* Top-left shadow */
+    /*1px -1px 0 #fff,*/ /* Top-right shadow */
+    /*-1px 1px 0 #fff,*/ /* Bottom-left shadow */
+    /*1px 1px 0 #fff;*/ /* Bottom-right shadow */
+/*}*/
+

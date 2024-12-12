@@ -46,11 +46,11 @@ button.accept-policy {
     justify-content: space-between; 
 }
 
-    .d-flex search-bar-container{
-        max-width: none;
-    }
+.d-flex search-bar-container{
+    max-width: none;
+}
 .search-input {
-    width: 600px;
+    width: 400px;
     padding: 0.5rem;
     font-size: 16px;
 }
