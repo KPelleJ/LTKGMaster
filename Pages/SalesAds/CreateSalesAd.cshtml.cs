@@ -70,6 +70,7 @@ namespace LTKGMaster.Pages.SalesAds
             catch(InvalidOperationException e)
             {
                 ModelState.AddModelError(e.Message, "Der skete en fejl ved oprettelse af salgs annonce.");
+                return Page();
             }
 
             return RedirectToPage("/Index");

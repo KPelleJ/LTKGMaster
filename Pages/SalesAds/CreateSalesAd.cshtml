@@ -3,7 +3,146 @@
 @model LTKGMaster.Pages.SalesAds.CreateSalesAdModel
 @{
 }
-<body>
+<div style="border: 2px solid #ccc; padding: 20px; margin-bottom: 20px;">
+    <h3 style="text-align: center; margin: 0;">Opret salgsannonce</h3>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+</div>
+<form method="Post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="NewSalesAd.UserId" value="@int.Parse(User.FindFirst("Id").Value)" />
+    <div style="border: 2px solid #ccc; padding: 20px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <!-- Left Grid -->
+            <div>
+                <div class="mb-3">
+                    <label asp-for="ProductToAdd.Type"></label>
+                    <select asp-for="ProductToAdd.Type" class="form-control" asp-items="Html.GetEnumSelectList<ProductType>()"></select>
+                    <span class="text-danger" asp-validation-for="ProductToAdd.Type"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="NewSalesAd.Title"></label>
+                    <input type="text" asp-for="NewSalesAd.Title" class="form-control" />
+                    <span class="text-danger" asp-validation-for="NewSalesAd.Title"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ProductToAdd.Brand"></label>
+                    <input type="text" asp-for="ProductToAdd.Brand" class="form-control" />
+                    <span class="text-danger" asp-validation-for="ProductToAdd.Brand"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ProductToAdd.Model"></label>
+                    <input type="text" asp-for="ProductToAdd.Model" class="form-control" />
+                    <span class="text-danger" asp-validation-for="ProductToAdd.Model"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ProductToAdd.Year"></label>
+                    <input type="number" asp-for="ProductToAdd.Year" class="form-control" />
+                    <span class="text-danger" asp-validation-for="ProductToAdd.Year"></span>
+                </div>
+            </div>
+
+            <!-- Right Grid -->
+            <div>
+                <div class="mb-3">
+                    <label asp-for="ProductToAdd.Description"></label>
+                    <input type="text" asp-for="ProductToAdd.Description" class="form-control" />
+                    <span class="text-danger" asp-validation-for="ProductToAdd.Description"></span>
+                </div>
+                <div class="mb-3" style="position: relative;">
+                    <label asp-for="ProductToAdd.Price"></label>
+                    <div style="display: flex; align-items: center;">
+                        <input type="number" asp-for="ProductToAdd.Price" class="form-control" style="flex: 1;" />
+                        <span style="margin-left: 5px;">kr</span>
+                    </div>
+                    <span class="text-danger" asp-validation-for="ProductToAdd.Price"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="imageInput">Upload Pictures:</label>
+                    <input type="file" asp-for="ProductImages" id="imageInput" multiple accept="image/*" onchange="previewImages(event)" />
+                    <span class="text-danger" asp-validation-for="ProductImages"></span>
+                </div>
+                <div id="imagePreview" style="display: flex; gap: 10px; flex-wrap: wrap;"></div>
+
+                <div style="text-align: right;">
+                    <input type="submit" class="btn btn-primary" value="Create Ad" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    function previewImages(event) {
+      const imagePreview = document.getElementById('imagePreview');
+      imagePreview.innerHTML = ''; // Clear existing previews
+
+      const filesArray = Array.from(event.target.files);
+      const fileInput = event.target;
+
+      filesArray.forEach((file, index) => {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const imgContainer = document.createElement('div');
+          imgContainer.style.position = 'relative';
+          imgContainer.style.display = 'inline-block';
+
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.style.maxWidth = '100px';
+          img.style.maxHeight = '100px';
+          img.style.objectFit = 'cover';
+          imgContainer.appendChild(img);
+
+          const deleteButton = document.createElement('button');
+          deleteButton.innerText = 'X';
+          deleteButton.style.position = 'absolute';
+          deleteButton.style.top = '5px';
+          deleteButton.style.right = '5px';
+          deleteButton.style.backgroundColor = 'red';
+          deleteButton.style.color = 'white';
+          deleteButton.style.border = 'none';
+          deleteButton.style.borderRadius = '50%';
+          deleteButton.style.width = '20px';
+          deleteButton.style.height = '20px';
+          deleteButton.style.cursor = 'pointer';
+
+          deleteButton.onclick = function () {
+            imgContainer.remove();
+            const newFiles = Array.from(fileInput.files).filter((_, i) => i !== index);
+            const dataTransfer = new DataTransfer();
+            newFiles.forEach(file => dataTransfer.items.add(file));
+            fileInput.files = dataTransfer.files;
+          };
+
+          imgContainer.appendChild(deleteButton);
+          imagePreview.appendChild(imgContainer);
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+</script>
+
+<script>
+    const imageInput = document.getElementById('imageInput');
+    const errorMessage = document.getElementById('errorMessage');
+
+    // Validate file selection on form submission
+    document.querySelector('form').addEventListener('submit', (event) => {
+        const fileCount = imageInput.files.length;
+
+        if (fileCount < 1 || fileCount > 9) {
+            // Show error message
+            errorMessage.style.display = 'block';
+            event.preventDefault(); // Prevent form submission
+        } else {
+            // Hide error message
+            errorMessage.style.display = 'none';
+        }
+    });
+</script>
+
+
+
+@* <body>
     <form method="Post" enctype="multipart/form-data">
     <h3>Opret sales annonce</h3>
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -53,26 +192,7 @@
         <input type="submit" class="btn btn-primary" value="Create Ad" />
     </div>
     </form>
-</body>
-
-<script>
-    const imageInput = document.getElementById('imageInput');
-    const errorMessage = document.getElementById('errorMessage');
-
-    // Validate file selection on form submission
-    document.querySelector('form').addEventListener('submit', (event) => {
-        const fileCount = imageInput.files.length;
-
-        if (fileCount < 1 || fileCount > 9) {
-            // Show error message
-            errorMessage.style.display = 'block';
-            event.preventDefault(); // Prevent form submission
-        } else {
-            // Hide error message
-            errorMessage.style.display = 'none';
-        }
-    });
-</script>
+</body> *@
 
 
 

@@ -37,18 +37,25 @@ namespace LTKGMaster.Models.Repositories
         /// <param name="salesAd">The SalesAd object to add to the database.</param>
         public void Add(SalesAd salesAd)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            try
             {
-                connection.Open();
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
 
-                string sql = "INSERT INTO SalesAds (ProdId, UserId, Title)" + "VALUES (@ProdId, @UserId, @Title)";
+                    string sql = "INSERT INTO SalesAds (ProdId, UserId, Title)" + "VALUES (@ProdId, @UserId, @Title)";
 
-                SqlCommand command = new SqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@ProdId", salesAd.ProdId);
-                command.Parameters.AddWithValue("@UserId", salesAd.UserId);
-                command.Parameters.AddWithValue("@Title", salesAd.Title);
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@ProdId", salesAd.ProdId);
+                    command.Parameters.AddWithValue("@UserId", salesAd.UserId);
+                    command.Parameters.AddWithValue("@Title", salesAd.Title);
 
-                command.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new InvalidOperationException("Database operation failed.", ex);
             }
         }
 
