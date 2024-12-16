@@ -12,6 +12,7 @@ namespace LTKGMaster.Models.SalesAds
         public int ProdId { get; set; }
         public int UserId { get; set; }
         [Required]
+        [Display(Name ="Titel")]
         public string Title { get; set; }
         public Product ?Product { get; set; }
         public IUser ?User { get; set; }
