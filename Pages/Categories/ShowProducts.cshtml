@@ -6,15 +6,42 @@
 
 @await Html.PartialAsync("_NavBarPartial", Model.ProductTypes)
 
-<form>
-    <div class="form-control">
-        @foreach (var product in Model.Products)
-        {
-            <h3>@product.Title</h3>
-            <p>@product.User.UserName</p>
-            <p>@product.Product.Description</p>
-            <p>@product.DateOfCreation</p>
-            <p>@product.Product.Price</p>
-        }
-    </div>
-</form>
+<div class="grid-container">
+    @foreach (var ad in Model.Products)
+    {
+        <div class="ad-box mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2>@ad.Title</h2>
+                    <p>Created: @ad.DateOfCreation.ToString("dd-MM-yyyy")</p>
+                    <div class="ad-images mb-3">
+
+                        <div id="carousel-@ad.ProdId" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                            <div class="carousel-inner">
+                                @for (int i = 0; i < ad.ProductPictures.Count; i++)
+                                {
+                                    var picture = ad.ProductPictures[i];
+                                    <div class="carousel-item @(i == 0 ? "active" : "")">
+                                        <img src="@picture.ImageDataBase64String" class="d-block w-100" alt="@picture.FileName">
+                                    </div>
+                                }
+                            </div>
+
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-@ad.ProdId" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-@ad.ProdId" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+
+                    </div>
+                    <a class="btn btn-primary" asp-page="/SalesAds/ShowAd" asp-route-id="@ad.ProdId" asp-route-type="@ad.Product.Type">Se detaljer</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
