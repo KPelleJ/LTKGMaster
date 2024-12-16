@@ -273,3 +273,27 @@ textarea {
     /*1px 1px 0 #fff;*/ /* Bottom-right shadow */
 /*}*/
 
+
+/* My page styling*/
+.link-item {
+    display: block; /* Makes the <a> behave like a block element */
+    width: 50%; /* Boxes take up 50% of the parent width */
+    margin: 0 auto 20px auto; /* Center-align the box and add bottom margin */
+    text-align: center;
+    padding: 15px;
+    background-color: #3f875e; /* Optional background for visual separation */
+    border: 1px solid #ddd; /* Optional border */
+    border-radius: 5px; /* Optional rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for better visuals */
+    text-decoration: none; /* Removes underline from links */
+    color: white; /* Link color */
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s; /* Smooth hover effect */
+}
+
+    .link-item:hover {
+        color: white;
+        background-color: #5a9b7d;
+        border-color: #5a9b7d;
+        box-shadow: none;
+    }
