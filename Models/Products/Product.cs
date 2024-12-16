@@ -17,19 +17,23 @@ namespace LTKGMaster.Models.Products
 
         [Required]
         [Range(1900, 2100, ErrorMessage = "Year must be between 1900 and 2100.")]
+        [Display(Name ="Årstal")]
         public int Year { get; set; }
 
         [Required(ErrorMessage ="Maks 255 tegn.")]
         [StringLength(255)]
         [RegularExpression(@"^[0-9a-zA-ZæøåÆØÅ. -]+$")]
+        [Display(Name ="Mærke")]
         public string Brand { get; set; }
 
         [Required(ErrorMessage ="Skal være mere end 0.")]
         [Range(0, 1000000)]
+        [Display(Name ="Pris")]
         public decimal Price { get; set; }
 
         [Required(ErrorMessage ="Må ikke være mere end 4000 tegn.")]
         [MaxLength(4000)]
+        [Display(Name ="Beskrivelse")]
         public string Description { get; set; }
 
         public ProductType Type { get; set; }
