@@ -258,16 +258,6 @@ textarea {
     box-shadow: none;
 }
 
-/*Syntes det er pis hamrende grimt med den her
-.navbar .nav-link {
-    color: darkpurple;*/ /* Replace with your desired color, e.g., #800080 */
-    /*text-shadow: -1px -1px 0 #fff,*/ /* Top-left shadow */
-    /*1px -1px 0 #fff,*/ /* Top-right shadow */
-    /*-1px 1px 0 #fff,*/ /* Bottom-left shadow */
-    /*1px 1px 0 #fff;*/ /* Bottom-right shadow */
-/*}*/
-
-
 /* My page styling*/
 .link-item {
     display: block; /* Makes the <a> behave like a block element */
@@ -291,3 +281,51 @@ textarea {
         border-color: #5a9b7d;
         box-shadow: none;
     }
+
+/* Show ad styling*/
+.ShowAd-Card {
+    width: 50%;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.ShowAd-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover; /* Ensures the image is scaled and centered without distortion */
+}
+
+.ShowAd-image-container {
+    width: 100%; /* Full width of the card */
+    height: 300px; /* Fixed height for the image container */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 15px 0;
+    background-color: #f9f9f9; /* Light background in case the image doesn't fill the container */
+}
+
+.ShowAd-card-body {
+    padding: 15px;
+    text-align: center;
+}
+
+.accordion-button {
+    font-weight: bold;
+    color: #333;
+}
+
+.accordion-body {
+    font-size: 14px;
+    color: #555;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-top: none; /* To remove duplicate border between header and body */
+}
