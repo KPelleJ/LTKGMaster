@@ -5,7 +5,10 @@
 }
 
 @await Html.PartialAsync("_NavBarPartial", Model.ProductTypes)
-
+@if(Model.Products == null || Model.Products.Count == 0){
+    <h1>Ingen produkter i valgte kategori.</h1>
+}
+else{
 <div class="grid-container">
     @foreach (var ad in Model.Products)
     {
@@ -43,5 +46,6 @@
             </div>
         </div>
     }
+    
 </div>
-
+}
