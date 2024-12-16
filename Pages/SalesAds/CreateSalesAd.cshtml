@@ -44,7 +44,7 @@
             <div>
                 <div class="mb-3">
                     <label asp-for="ProductToAdd.Description"></label>
-                    <input type="text" asp-for="ProductToAdd.Description" class="form-control" />
+                    <textarea asp-for="ProductToAdd.Description" class="form-control" rows="5"></textarea>
                     <span class="text-danger" asp-validation-for="ProductToAdd.Description"></span>
                 </div>
                 <div class="mb-3" style="position: relative;">
