@@ -3,31 +3,23 @@
 @{
 
 }
-<head>
-    <link rel="stylesheet" type="text/css" href="~/css/AccountStyle.css" asp-append-version="true" />
-</head>
+
 <div class="text-center">
-    <h1>Hej! </h1>
+    <h1>Hej! @User.Identity.Name</h1>
 </div>
 
 <!-- Centered box for links -->
-<div class="links-box">
-    <div class="links-container">
-        <ul>
-            <li>
-                <a asp-area="" asp-page="/SalesAds/CreateSalesAd">Opret ny annonce</a>
-            </li>
-            <li>
-                <a asp-area="" asp-page="/Account/MySalesAds">Mine annoncer</a>
-            </li>
-            <li>
-                <a asp-area="" asp-page="/Account/MyFavorites">Mine favoritter</a>
-            </li>
-            <li>
-                <a asp-area="" asp-page="/Account/UpdateAccount">Opdater oplysninger</a>
-            </li>
-        </ul>
-    </div>
-</div>
+<a asp-area="" asp-page="/SalesAds/CreateSalesAd" class="link-item">
+    Opret ny annonce
+</a>
+<a asp-area="" asp-page="/Account/MySalesAds" class="link-item">
+    Mine annoncer
+</a>
+<a asp-area="" asp-page="/Account/MyFavorites" class="link-item">
+    Mine favoritter
+</a>
+<a asp-area="" asp-page="/Account/UpdateAccount" class="link-item">
+    Opdater oplysninger
+</a>
 
 
