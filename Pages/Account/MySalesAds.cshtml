@@ -2,7 +2,9 @@
 @model LTKGMaster.Pages.Account.MySalesAdsModel
 @{
 }
-
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/AccountStyle.css" asp-append-version="true" />
+</head>
 @if (Model._salesAdList is null || Model._salesAdList.Count == 0)
 {
     <h1>Du har i øjeblikket ikke nogen salgsannoncer</h1>
