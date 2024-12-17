@@ -78,7 +78,13 @@ namespace LTKGMaster.Models.SalesAds
         /// <returns>A list of sales ads posted by the specified user.</returns>
         public List<SalesAd> GetSalesAdsFromUser(int userId)
         {
-            return _salesAdRepository.GetAllFromUser(userId);
+            List<SalesAd> outputList = new List<SalesAd>();
+            foreach (SalesAd sAd in _salesAdRepository.GetAllFromUser(userId))
+            {
+                sAd.ProductPictures = _pictureConverter.ByteArrayToBase64 (_pictureRepository.GetAll(sAd.ProdId));
+                outputList.Add(sAd);
+            }
+            return outputList;
         }
 
         /// <summary>

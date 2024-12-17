@@ -17,6 +17,7 @@ namespace LTKGMaster.Pages.Account
         public SalesAd salesAd { get; set; }
         public Product product { get; set; }
         private readonly SalesAdHandler _salesAdHandler;
+        [BindProperty]
         public List<SalesAd> _salesAdList {  get; set; }
         [BindProperty]
         public int Id { get; set; }

@@ -1,12 +1,10 @@
 ﻿@page
+@using LTKGMaster.Models
 @model LTKGMaster.Pages.Account.MySalesAdsModel
 @{
 }
-<head>
-    <link rel="stylesheet" type="text/css" href="~/css/AccountStyle.css" asp-append-version="true" />
-</head>
-@if (Model._salesAdList is null || Model._salesAdList.Count == 0)
-{
+
+@if(Model._salesAdList.Count == 0 || Model._salesAdList == null){
     <h1>Du har i øjeblikket ikke nogen salgsannoncer</h1>
     <div class="navbar-container my-page-navbar">
         <ul class="navbar-nav">
@@ -16,24 +14,47 @@
         </ul>
     </div>
 }
-else
-{
-<div class="sales-ads-container">
-    <h2 class="ads-heading">Mine salgs annoncer</h2>
-    @foreach (var salesAd in Model._salesAdList)
-    {
-        <div class="sales-ad">
-            <h3>@salesAd.Title</h3>
-            <p>@salesAd.Product.Description</p>
-            <p>@salesAd.DateOfCreation</p>
-            <p>@salesAd.Product.Price</p>
-            
-            <form method="post">
-                <input type="hidden" asp-for="@Model.Id" value="@salesAd.ProdId" />
-                <button type="submit" class="delete-button">Slet annonce</button>
-            </form>
-        </div>
-    }
-</div>
-}
+else {
+    <div class="grid-container">
+        @foreach (var ad in Model._salesAdList)
+        {
+            <div class="ad-box mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>@ad.Title</h2>
+                        <p>Created: @ad.DateOfCreation.ToString("dd-MM-yyyy")</p>
+                        <div class="ad-images mb-3">
 
+                            <div id="carousel-@ad.ProdId" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                                <div class="carousel-inner">
+                                    @for (int i = 0; i < ad.ProductPictures.Count; i++)
+                                    {
+                                        var picture = ad.ProductPictures[i];
+                                        <div class="carousel-item @(i == 0 ? "active" : "")">
+                                            <img src="@picture.ImageDataBase64String" class="d-block w-100" alt="@picture.FileName">
+                                        </div>
+                                    }
+                                </div>
+
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-@ad.ProdId" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carousel-@ad.ProdId" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+
+                        </div>
+                        <a class="btn btn-primary" asp-page="/SalesAds/ShowAd" asp-route-id="@ad.ProdId">Se detaljer</a> <form method="post">
+                            <input type="hidden" asp-for="@Model.Id" value="@ad.ProdId" />
+                            <button type="submit" class="delete-button btn-danger">Slet annonce</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+}
