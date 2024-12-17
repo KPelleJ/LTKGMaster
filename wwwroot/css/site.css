@@ -14,7 +14,7 @@ html {
 }
 
 html {
-    position: relative;
+    margin: 0;
     min-height: 100%;
 }
 
@@ -66,7 +66,15 @@ html {
 }
 
 body {
-    margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    padding-bottom:80px;
+}
+
+.content {
+    flex-grow: 1;
+    padding-bottom: 20px;
 }
 
 .title-container {
@@ -109,29 +117,70 @@ body {
         display: inline-block;
     }
 
-carousel img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-}
+/* Styling til carousel*/
 
-.carousel-inner {
-    border-radius: 8px;
-    overflow: hidden;
+.carousel-item {
+    text-align: center;
+    padding: 20px;
 }
 
 .card {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    justify-content: space-between;
+    height: 350px;
+    overflow: hidden;
 }
 
 .card-body {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    text-align: center;
+}
+
+
+    .card-body .title {
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 1.2;
+        margin-bottom: 10px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        height: 50px;
+    }
+
+
+.ad-images img {
+    width: 100%; /* Makes image fill the card width */
+    height: 200px; /* Fixed height */
+    object-fit: cover; /* Ensures the image is cropped to fit */
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+
+.card .btn {
+    margin-top: auto;
+}
+
+.carousel-item {
+    text-align: center;
+    padding: 20px;
+}
+
+.carousel .card {
     height: 100%;
+}
+
+
+
+/*Gemmer Carousel knappen*/
+.carousel-control-prev,
+.carousel-control-next {
+    display: none;
 }
 
 .grouped-category-box {
@@ -430,3 +479,49 @@ textarea {
     .delete-button:focus {
         box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #d9534f;
     }
+
+    /*Stil til ShowProducts*/
+.custom-card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    text-align: center;
+    height: 100%; 
+}
+
+    .custom-card-body .btn {
+        margin-top: auto; 
+        align-self: center; 
+        width: 100%; 
+        text-align: center; 
+    }
+
+.custom-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; 
+}
+
+/*Stil til søgeresultater*/
+.custom2-card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    text-align: center;
+    height: 100%; 
+}
+
+    .custom2-card-body .btn {
+        margin-top: auto; 
+        align-self: center; 
+        width: 100%; 
+        text-align: center; 
+    }
+
+.custom2-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; 
+}

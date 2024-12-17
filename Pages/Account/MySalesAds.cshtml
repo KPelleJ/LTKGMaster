@@ -19,8 +19,8 @@ else {
         @foreach (var ad in Model._salesAdList)
         {
             <div class="ad-box mb-4">
-                <div class="card">
-                    <div class="card-body">
+                <div class="card-fook">
+                    <div class="card-body-fook">
                         <h2>@ad.Title</h2>
                         <p>Created: @ad.DateOfCreation.ToString("dd-MM-yyyy")</p>
                         <div class="ad-images mb-3">
@@ -47,11 +47,14 @@ else {
                             </div>
 
                         </div>
-                        <a class="btn btn-primary" asp-page="/SalesAds/ShowAd" asp-route-id="@ad.ProdId">Se detaljer</a> <form method="post">
+                        <a class="btn btn-primary-fook" asp-page="/SalesAds/ShowAd" asp-route-id="@ad.ProdId">Se detaljer</a>
+                        <form method="post">
                             <input type="hidden" asp-for="@Model.Id" value="@ad.ProdId" />
+                            <p></p>
                             <button type="submit" class="delete-button btn-danger">Slet annonce</button>
                         </form>
                     </div>
+                    
                 </div>
             </div>
         }
