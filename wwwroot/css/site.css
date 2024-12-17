@@ -292,25 +292,6 @@ textarea {
     overflow: hidden;
 }
 
-.ShowAd-img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover; /* Ensures the image is scaled and centered without distortion */
-}
-
-.ShowAd-image-container {
-    width: 100%; /* Full width of the card */
-    height: 300px; /* Fixed height for the image container */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    margin: 15px 0;
-    background-color: #f9f9f9; /* Light background in case the image doesn't fill the container */
-}
-
 .ShowAd-card-body {
     padding: 15px;
     text-align: center;
@@ -328,4 +309,100 @@ textarea {
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-top: none; /* To remove duplicate border between header and body */
+}
+
+.ShowAd-description-container .accordion-header {
+    background-color: #3f875e; /* Green background */
+    color: white; /* White text */
+    border-radius: 5px; /* Optional: rounded corners */
+}
+
+.ShowAd-description-container .accordion-header .accordion-button {
+    background-color: transparent; /* Inherit parent background */
+    color: white; /* White text */
+    border: none; /* Remove default border */
+    text-align: left; /* Align text to the left */
+    padding: 10px 15px; /* Add some padding for better spacing */
+    font-weight: bold; /* Make text bold */
+    box-shadow: none; /* Remove button focus shadow */
+    transition: background-color 0.3s ease;
+}
+
+.ShowAd-description-container .accordion-header .accordion-button:hover {
+    background-color: #2e6a48; /* Darker green on hover */
+}
+
+/* Make dropdown arrow white */
+.ShowAd-description-container .accordion-header .accordion-button::after {
+    color: white; /* White arrow */
+    transition: transform 0.3s ease; /* Smooth rotation effect */
+}
+
+/* Adjust dropdown arrow rotation */
+.ShowAd-description-container .accordion-header .accordion-button:not(.collapsed)::after {
+    transform: rotate(-180deg); /* Rotate arrow when expanded */
+        }
+
+.ShowAd-carousel-container {
+    width: 100%;
+    height: 300px; /* Fixed height */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background-color: #f9f9f9; /* Optional fallback background */
+}
+
+.ShowAd-carousel {
+    width: 100%;
+    height: 100%;
+}
+
+.ShowAd-carousel-inner {
+    width: 100%;
+    height: 100%;
+}
+
+.ShowAd-carousel-item {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.ShowAd-carousel-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensures the full image is visible without cropping */
+    background-color: #f9f9f9; /* Optional background for empty spaces */
+    border-radius: 8px; /* Keeps images nicely rounded */
+}
+
+.ShowAd-carousel-control-prev,
+.ShowAd-carousel-control-next {
+    color: #333; /* Darker color for better visibility */
+    opacity: 0.8; /* Slight transparency for a modern look */
+    background-color: rgba(0, 0, 0, 0.2); /* Subtle background for better contrast */
+    border-radius: 50%; /* Rounded buttons for a sleek design */
+    width: 40px; /* Adjust size */
+    height: 40px; /* Adjust size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+    .ShowAd-carousel-control-prev:hover,
+    .ShowAd-carousel-control-next:hover {
+        background-color: rgba(0, 0, 0, 0.5); /* Darker background on hover */
+        color: #fff; /* White icon on hover for clarity */
+        opacity: 1; /* Full opacity on hover */
+    }
+
+.ShowAd-carousel-prev-icon,
+.ShowAd-carousel-next-icon {
+    width: 20px;
+    height: 20px;
+    background-size: 100%; /* Ensure icons fit perfectly */
+    filter: invert(1); /* Makes sure the icons are visible regardless of background */
 }

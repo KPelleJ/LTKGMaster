@@ -4,43 +4,71 @@
 }
 <div class="ShowAd-Card">
     <div class="ShowAd-card-body">
-        <h5 class="card-title">@Model.AdForShow.Title</h5>
-        <p class="card-text"><small class="text-muted">@Model.AdForShow.Product.Price kr</small></p>
+        <h2 class="card-title" style="margin-bottom: 10px;">@Model.AdForShow.Title</h2>
+        <h4 class="card-text">@Model.AdForShow.Product.Price kr</h4>
     </div>
 
-    <div class="ShowAd-image-container">
-        <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
+    <div class="ShowAd-carousel-container">
+        <div id="ShowAdCarousel" class="carousel ShowAd-carousel slide" data-bs-ride="carousel">
+            <div class="ShowAd-carousel-inner">
                 @foreach (var picture in Model.AdForShow.ProductPictures)
                 {
-                    <div class="carousel-item @(Model.AdForShow.ProductPictures.First() == picture ? "active" : "")">
-                        <img class="d-block w-100 ShowAd-img" src="@picture.ImageDataBase64String" alt="Product image">
+                    <div class="ShowAd-carousel-item carousel-item @(Model.AdForShow.ProductPictures.First() == picture ? "active" : "")">
+                        <img class="d-block w-100 ShowAd-carousel-img" src="@picture.ImageDataBase64String" alt="Product image">
                     </div>
                 }
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <button class="ShowAd-carousel-control-prev carousel-control-prev" type="button" data-bs-target="#ShowAdCarousel" data-bs-slide="prev">
+                <span class="ShowAd-carousel-prev-icon carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <button class="ShowAd-carousel-control-next carousel-control-next" type="button" data-bs-target="#ShowAdCarousel" data-bs-slide="next">
+                <span class="ShowAd-carousel-next-icon carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
     </div>
 
+    <div class="ShowAd-description-container accordion" id="userInfoAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingUserInformation">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUserInformation" aria-expanded="false" aria-controls="collapseUserInformation">
+                    Kontakt Oplysninger
+                </button>
+            </h2>
+            <div id="collapseUserInformation" class="accordion-collapse collapse" aria-labelledby="headingUserInformation" data-bs-parent="#userInfoAccordion">
+                <div class="accordion-body">
+                    Brugernavn: @Model.AdForShow.User.UserName
+                </div>
+                <div class="accordion-body">
+                    Email: @Model.AdForShow.User.CredMail
+                </div>
+                <div class="accordion-body">
+                    By: @Model.AdForShow.User.City
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="ShowAd-description-container accordion" id="productAccordion">
         <div class="accordion-item">
-            <h2 class="accordion-header" id="headingDescription">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDescription" aria-expanded="false" aria-controls="collapseDescription">
+            <h2 class="accordion-header" id="headingProductDescription">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProductDescription" aria-expanded="false" aria-controls="collapseProductDescription">
                     Produkt Beskrivelse
                 </button>
             </h2>
-            <div id="collapseDescription" class="accordion-collapse collapse" aria-labelledby="headingDescription" data-bs-parent="#productAccordion">
+            <div id="collapseProductDescription" class="accordion-collapse collapse" aria-labelledby="headingProductDescription" data-bs-parent="#productAccordion">
+                <div class="accordion-body">
+                    Mærke: @Model.AdForShow.Product.Brand
+                </div>
+                <div class="accordion-body">
+                    Model: @Model.AdForShow.Product.Model
+                </div>
                 <div class="accordion-body">
                     @Model.AdForShow.Product.Description
                 </div>
             </div>
         </div>
     </div>
+
 </div>
