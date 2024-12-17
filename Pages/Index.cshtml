@@ -7,43 +7,49 @@ ViewData["Title"] = "Salgs Annoncer";
 
 @await Html.PartialAsync("_NavBarPartial", Model.ProductTypes)
 
-<div class="grid-container">
-    @foreach (var ad in Model.SalesAds.Take(4))
-    {
-        <div class="ad-box mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h2>@ad.Title</h2>
-                    <p>Created: @ad.DateOfCreation.ToString("dd-MM-yyyy")</p>
-                    <div class="ad-images mb-3">
-
-                        <div id="carousel-@ad.ProdId" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-                            <div class="carousel-inner">
-                                @for (int i = 0; i < ad.ProductPictures.Count; i++)
-                                {
-                                    var picture = ad.ProductPictures[i];
-                                    <div class="carousel-item @(i == 0 ? "active" : "")">
-                                        <img src="@picture.ImageDataBase64String" class="d-block w-100" alt="@picture.FileName">
+<div id="salesAdCarousel" class="carousel slide mt-4" data-bs-ride="carousel" data-bs-interval="5000">
+    <div class="carousel-inner">
+        @for (int i = 0; i < Model.SalesAds.Count; i += 4)
+        {
+            <div class="carousel-item @(i == 0 ? "active" : "")">
+                <div class="row">
+                    @for (int j = i; j < i + 4 && j < Model.SalesAds.Count; j++)
+                    {
+                        var ad = Model.SalesAds[j];
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h2>@ad.Title</h2>
+                                    <p>Created: @ad.DateOfCreation.ToString("dd-MM-yyyy")</p>
+                                    <div class="ad-images mb-3">
+                                        @if (ad.ProductPictures != null && ad.ProductPictures.Any())
+                                        {
+                                            <img src="@ad.ProductPictures.First().ImageDataBase64String" class="d-block w-100" alt="@ad.Title" style="max-height: 200px; object-fit: cover; border-radius: 8px;">
+                                        }
+                                        else
+                                        {
+                                            <img src="default-placeholder.png" class="d-block w-100" alt="No image available" style="max-height: 200px; object-fit: cover; border-radius: 8px;">
+                                        }
                                     </div>
-                                }
+                                    <a class="btn btn-primary" asp-page="/SalesAds/ShowAd" asp-route-id="@ad.ProdId" asp-route-type="@ad.Product.Type">Se detaljer</a>
+                                </div>
                             </div>
-
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-@ad.ProdId" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-@ad.ProdId" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
                         </div>
-
-                    </div>
-                    <a class="btn btn-primary" asp-page="/SalesAds/ShowAd" asp-route-id="@ad.ProdId">Se detaljer</a>
+                    }
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
+
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#salesAdCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#salesAdCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
 </div>
 
 <div class="container mt-4 mb-5">
