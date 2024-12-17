@@ -406,3 +406,27 @@ textarea {
     background-size: 100%; /* Ensure icons fit perfectly */
     filter: invert(1); /* Makes sure the icons are visible regardless of background */
 }
+/* Ensure the delete button matches the width of the "Se detaljer" button but with smaller height */
+.delete-button {
+    width: 100%; /* Same width as the other buttons */
+    padding: 6px 10px; /* Reduced vertical padding to make the height smaller */
+    border-radius: 8px; /* Smooth corners */
+    border: 1px solid #d9534f; /* Red border */
+    background-color: #d9534f; /* Red background */
+    color: white; /* White text */
+    text-align: center; /* Center text */
+    font-weight: bold; /* Bold text */
+    transition: background-color 0.3s, border-color 0.3s; /* Smooth transition */
+    font-size: 14px; /* Make font size consistent with other buttons */
+}
+
+    /* Optional: Hover effect to match the other buttons */
+    .delete-button:hover {
+        background-color: #c9302c; /* Darker red on hover */
+        border-color: #c9302c; /* Darker border on hover */
+    }
+
+    /* Optional: Focus effect */
+    .delete-button:focus {
+        box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #d9534f;
+    }
