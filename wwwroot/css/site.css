@@ -525,29 +525,29 @@ textarea {
     justify-content: space-between;
     height: 100%; 
 }
+
 .btn-primary-fook {
-    width: 100%; /* Same width as the other buttons */
-    padding: 6px 10px; /* Reduced vertical padding to make the height smaller */
-    border-radius: 8px; /* Smooth corners */
-    border: 1px solid #3f874e; /* Red border */
-    background-color: #3f874e; /* Red background */
-    color: white; /* White text */
-    text-align: center; /* Center text */
-    font-weight: bold; /* Bold text */
-    transition: background-color 0.3s, border-color 0.3s; /* Smooth transition */
-    font-size: 14px; /* Make font size consistent with other buttons */
+    width: 100%; 
+    padding: 6px 10px; 
+    border-radius: 8px; 
+    border: 1px solid #3f874e; 
+    background-color: #3f874e; 
+    color: white; 
+    text-align: center;
+    font-weight: bold; 
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s; 
+    font-size: 14px;
 }
 
-    /* Optional: Hover effect to match the other buttons */
     .btn-primary-fook:hover {
-        background-color: #3f874e; /* Darker red on hover */
-       /* border-color: #3f874e; /* Darker border on hover */
-        box-shadow: none;
+        background-color: #5a9b7d; 
+        border-color: #5a9b7d; 
+        color: white; 
+        box-shadow: none; 
     }
 
-    /* Optional: Focus effect */
     .btn-primary-fook:focus {
-        box-shadow: none;
+        box-shadow: none; 
         background-color: #3f874e;
         border-color: #3f874e;
     }
