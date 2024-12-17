@@ -11,7 +11,7 @@
 <body>
     <header>
         <div class="container">
-        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
                 <div class="container-fluid">
                     <a class="navbar-brand d-flex align-items-center" asp-area="" asp-page="/Index">
                         <img src="~/PictureLogos/looooogo.png" width="120" height="auto" alt="Logo" class="me-2" />
@@ -20,16 +20,16 @@
                         <input type="search" class="form-control search-input me-2" placeholder="Search..." id="searchbar" name="searchQuery" aria-label="Search through site content" />
                         <button type="submit" class="btn btn-primary">Søg</button>
                     </form>
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/SalesAds/CreateSalesAd">Opret ny annonce</a>
-                            </li>
-                        </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/SalesAds/CreateSalesAd">Opret ny annonce</a>
+                        </li>
+                    </ul>
                 </div>
                 <div class="mr-2">
                     <partial name="_LoginStatusPartial" />
                 </div>
-        </nav>
+            </nav>
         </div>
     </header>
 
@@ -52,16 +52,16 @@
     @await RenderSectionAsync("Scripts", required: false)
 
     <footer class="footer">
-    <div class="footer-container">
-        <div class="footer-column">
-            <a href="https://www.ford.dk/oplev-ford/om-ford" style="font-family: 'Times New Roman'" class="dropdown-btn">OM OS</a>
-            <a href="https://www.ford.dk/hjaelp/generelt/kontakt-os" style="font-family: 'Times New Roman'" class="dropdown-btn">KONTAKT OS</a>
-            <a href="/Guides/GuidePage" style="font-family: 'Times New Roman'" class="guides-btn">GUIDES</a>
+        <div class="footer-container">
+            <div class="footer-column">
+                <a href="https://www.ford.dk/oplev-ford/om-ford" style="font-family: 'Times New Roman'" class="dropdown-btn">OM OS</a>
+                <a href="https://www.ford.dk/hjaelp/generelt/kontakt-os" style="font-family: 'Times New Roman'" class="dropdown-btn">KONTAKT OS</a>
+                <a href="/Guides/GuidePage" style="font-family: 'Times New Roman'" class="guides-btn">GUIDES</a>
+            </div>
+            <div class="footer-column footer-right" style="font-family:'Times New Roman'">
+                <p>ElKirkeGården</p>
+            </div>
         </div>
-        <div class="footer-column footer-right" style="font-family:'Times New Roman'">
-            <p>ElKirkeGården</p>
-        </div>
-    </div>
     </footer>
 </body>
 </html>
